@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfjhgsc05egag"]
+
+[ext_resource type="Texture2D" uid="uid://dp2gev2y5yg6o" path="res://Assets/crosshairs_tilesheet_white.png" id="1_hhaju"]
+
+[node name="Cursor" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(7.10543e-15, -8)
+scale = Vector2(0.47343, 0.463953)
+texture = ExtResource("1_hhaju")
+centered = false
+hframes = 20
+vframes = 10
+frame = 82

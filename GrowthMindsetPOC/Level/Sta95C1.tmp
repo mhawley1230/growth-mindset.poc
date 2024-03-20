@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d21ha7i0wrvtm"]
+
+[ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://Mobs/MobA.tscn" id="2_2nexd"]
+[ext_resource type="Script" path="res://Level/mob_spawner.gd" id="2_mx0k3"]
+
+[sub_resource type="Curve2D" id="Curve2D_rjk37"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 784, 0, 0, 0, 0, 0, 784, 32, 0, 0, 0, 0, 0, 32)
+}
+point_count = 4
+
+[node name="Stage" type="Path2D"]
+curve = SubResource("Curve2D_rjk37")
+
+[node name="MobPath" type="PathFollow2D" parent="."]
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="MobSpawner" type="Node2D" parent="MobPath"]
+script = ExtResource("2_mx0k3")
+
+[node name="MobA" parent="MobPath/MobSpawner" instance=ExtResource("2_2nexd")]
+visible = false
+speed = 200
+
+[node name="WaitPoint" type="Node2D" parent="MobPath"]
+position = Vector2(784, 8)
