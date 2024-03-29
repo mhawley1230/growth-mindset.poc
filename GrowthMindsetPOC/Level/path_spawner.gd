@@ -5,5 +5,4 @@ extends Node2D
 func _ready():
 	var temp_stage = stage.instantiate()
 	add_child(temp_stage)	
-		
-
+	
