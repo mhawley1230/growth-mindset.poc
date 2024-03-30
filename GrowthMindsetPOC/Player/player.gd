@@ -14,8 +14,6 @@ func move():
 	)
 	
 	velocity = input_direction.normalized() * move_speed
-
+	
 	return input_direction
-
-
 	

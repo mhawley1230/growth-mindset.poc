@@ -12,7 +12,7 @@ func _ready():
 	add_child(temp_mob_a)
 	mob_arr.append(temp_mob_a)
 	
-## Called every frame. 'delta' is the elapsed time since the previous frame.
+	
 func _physics_process(_delta):
 	var childCount = mob_arr.size()
 	

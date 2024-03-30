@@ -9,8 +9,8 @@ extends CharacterBody2D
 @onready var countdown: int = 3
 
 func _ready():
-	mob_path = get_tree().root.get_node("GameLevel/UI/PathSpawner/Stage/MobPath")
-	wait_point = get_tree().root.get_node("GameLevel/UI/PathSpawner/Stage/MobPath/WaitPoint")
+	mob_path = get_tree().root.get_node("GameLevel/UI/LevelSpawner/Stage/MobPath")
+	wait_point = get_tree().root.get_node("GameLevel/UI/LevelSpawner/Stage/MobPath/WaitPoint")
 	
 	
 func _process(delta):
@@ -26,22 +26,9 @@ func _process(delta):
 		speed = current_speed
 		await get_tree().create_timer(countdown).timeout
 		speed = 100
-		#speed = 0
-		#await timer(cooldown)
 		get_node("Sprite2D").flip_h = true
-		#speed = 100
-		
-		
+	 
 	
-	# TO DO: when halfway through track, stop and wait for "transaction" 
-	
-	
-func timer(num : float):
-	print("Timer start")
-	await get_tree().create_timer(num).timeout
-	print("Timer end")
-	
-		
 func round_to_dec(num, decimals):
 	num = float(num)
 	decimals = int(decimals)
