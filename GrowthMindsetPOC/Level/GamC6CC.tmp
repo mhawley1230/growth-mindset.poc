@@ -235,6 +235,7 @@ layer_1/tile_data = PackedInt32Array(0, 262146, 6, 196608, 131074, 6, 1310720, 1
 script = ExtResource("2_c1qnd")
 
 [node name="Cursor" type="Node2D" parent="UI"]
+visible = false
 scale = Vector2(3.125, 3.125)
 script = ExtResource("5_7kmhi")
 
@@ -302,8 +303,6 @@ layer_0/tile_data = PackedInt32Array(458779, 1, 4, 524315, 1, 5, 589851, 1, 6, 6
 layer_1/name = "Plant"
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
-
-[node name="PlantHolder" type="Node" parent="UI/Farm"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="UI/Farm"]
 z_index = 1
