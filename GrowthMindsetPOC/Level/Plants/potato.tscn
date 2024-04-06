@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://Assets/progress.png" id="2_d477v"]
 
 [sub_resource type="Animation" id="Animation_xkm4i"]
+resource_name = "grow_anim"
 length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -58,25 +59,26 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fw52k"]
 _data = {
-"RESET": SubResource("Animation_xkm4i"),
+"grow_anim": SubResource("Animation_xkm4i"),
 "new_animation": SubResource("Animation_0jpdp")
 }
 
 [node name="Potato" type="Sprite2D"]
+z_index = 3
 texture = ExtResource("1_7mkgm")
+offset = Vector2(16, 16)
 hframes = 4
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = -16.0
+offset_top = -16.0
+offset_right = 64.0
+scale = Vector2(0.5, 1)
 texture_under = ExtResource("2_d477v")
 texture_over = ExtResource("2_d477v")
 texture_progress = ExtResource("2_d477v")
 tint_under = Color(1, 1, 1, 0)
 tint_over = Color(1, 1, 1, 0)
-tint_progress = Color(0.0611384, 0.841377, 0.0515826, 1)
+tint_progress = Color(0.0627451, 0.843137, 0.0509804, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

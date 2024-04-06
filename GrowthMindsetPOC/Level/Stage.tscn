@@ -6,9 +6,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_rjk37"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 784, 0, 0, 0, 0, 0, 784, 32, 0, 0, 0, 0, 0, 32)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14.672, 4.63684, 0, 0, 0, 0, 784, 0, 0, 0, 0, 0, 784, 32, 0, 0, 0, 0, 61.6182, 32.5048, 0, 0, 0, 0, 0, 32)
 }
-point_count = 4
+point_count = 6
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpajm"]
 texture = ExtResource("1_umm10")
@@ -233,6 +233,7 @@ loop = false
 script = ExtResource("2_mx0k3")
 
 [node name="MobA" parent="MobPath/MobSpawner" instance=ExtResource("2_2nexd")]
+visible = false
 speed = 200
 
 [node name="WaitPoint" type="Node2D" parent="MobPath"]

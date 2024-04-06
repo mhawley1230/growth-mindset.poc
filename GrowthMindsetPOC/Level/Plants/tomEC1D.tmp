@@ -4,8 +4,9 @@
 [ext_resource type="Script" path="res://Level/Plants/tomato.gd" id="2_egsj3"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://Assets/progress.png" id="2_tv6fr"]
 
-[sub_resource type="Animation" id="Animation_c18p6"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_as1ij"]
+resource_name = "new_animation"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -13,25 +14,35 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1]
+"values": [0, 1, 2, 3]
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureProgressBar:value")
+tracks/1/path = NodePath("../../Potato/Sprite2D/TextureProgressBar:value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [33.0]
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 33, -0.25, 0, 0.25, 0, 66, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureProgressBar:value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(3)
 }
 
-[sub_resource type="Animation" id="Animation_w1toh"]
+[sub_resource type="Animation" id="Animation_1wqti"]
 resource_name = "grow_anim"
 length = 3.0
 tracks/0/type = "value"
@@ -46,38 +57,35 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("TextureProgressBar:value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 33.0, 66.0, 100.0]
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 33, -0.25, 0, 0.25, 0, 66, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgviu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7x1k3"]
 _data = {
-"RESET": SubResource("Animation_c18p6"),
-"grow_anim": SubResource("Animation_w1toh")
+"grow_anim": SubResource("Animation_1wqti"),
+"new_animation": SubResource("Animation_as1ij")
 }
 
 [node name="Tomato" type="Sprite2D"]
-z_index = 3
 texture = ExtResource("1_8ve1n")
-offset = Vector2(16, 16)
 hframes = 4
-frame = 1
 script = ExtResource("2_egsj3")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_top = -16.0
-offset_right = 64.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 48.0
+offset_bottom = -16.0
 scale = Vector2(0.5, 1)
-value = 33.0
 texture_under = ExtResource("2_tv6fr")
 texture_over = ExtResource("2_tv6fr")
 texture_progress = ExtResource("2_tv6fr")
@@ -88,5 +96,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_kgviu")
+"": SubResource("AnimationLibrary_7x1k3")
 }
+speed_scale = 0.5

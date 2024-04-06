@@ -4,8 +4,13 @@ extends CharacterBody2D
 
 @onready var input_direction: Vector2
 @onready var tomato = preload("res://Level/Plants/tomato.tscn")
+@onready var cur = get_tree().root.get_node("GameLevel/UI/Cursor")
+
+var cur_pos: Vector2
+var positions_arr: Array
 
 func _process(_delta):
+	cur_pos = cur.position
 	move()
 	move_and_slide()
 	
@@ -22,16 +27,27 @@ func move():
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
 		if event.as_text() == "Z":
-			create_plant()
+			if !isPlantAtPosition(cur_pos):
+				create_plant()
 			
 func create_plant():
-	var offset = Vector2(16, 16)
-	var cur_pos = get_tree().root.get_node("GameLevel/UI/Cursor").position
 	var plant_holder = get_tree().root.get_node("GameLevel/UI/Farm/PlantHolder")
-	var temp_tomato = tomato.instantiate()
-	plant_holder.add_child(temp_tomato)
-	var current_tom = plant_holder.get_child(-1)
-	current_tom.set_position(cur_pos + offset)
+	var temp_plant = tomato.instantiate()
+	
+	temp_plant.name = "Tomato" + str(plant_holder.get_child_count())
+	plant_holder.add_child(temp_plant)
+	temp_plant.set_position(cur_pos)
+	positions_arr.append(temp_plant.position)
+	temp_plant.get_node("AnimationPlayer").play("grow_anim")
+	
+func isPlantAtPosition(pos: Vector2):
+	if positions_arr.is_empty() != true:
+		for position in positions_arr:
+			if position == cur_pos:
+				return true
+	return false
+	
+	
 	
 	
 	

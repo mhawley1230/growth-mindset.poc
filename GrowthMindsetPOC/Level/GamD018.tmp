@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Level/mob_spawner.gd" id="8_0en6i"]
 [ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://Mobs/MobA.tscn" id="9_jxicu"]
 [ext_resource type="Texture2D" uid="uid://163np3w522ow" path="res://Assets/farmstand.png" id="10_2msy7"]
-[ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://Level/FarmPlot.tscn" id="10_l03bq"]
+[ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://Level/farm_plot.tscn" id="10_l03bq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3bgv"]
 texture = ExtResource("1_mtvxc")

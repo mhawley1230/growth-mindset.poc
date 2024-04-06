@@ -15,6 +15,10 @@ run/main_scene="res://Level/GameLevel.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Assets/icon.svg"
 
+[autoload]
+
+Global="*res://Scripts/global.gd"
+
 [dotnet]
 
 project/assembly_name="GrowthMindsetPOC"
@@ -50,3 +54,10 @@ right={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+
+[shader_globals]
+
+TILE_SIZE={
+"type": "int",
+"value": 32
+}

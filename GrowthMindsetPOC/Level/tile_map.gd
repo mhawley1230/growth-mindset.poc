@@ -11,7 +11,7 @@ class_name Tile
 
 var dict: Dictionary = {}
 
-const TILE_SIZE: int = 32
+var TILE_SIZE: int = Global.TILE_SIZE
 
 func _ready():
 	create_map()
