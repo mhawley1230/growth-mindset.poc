@@ -42,3 +42,10 @@ func is_within_farm_plot():
 			result = true
 	#
 	return result
+	
+func delete_plant():
+	if plant_holder.get_children() != null:
+		for plant in plant_holder.get_children():
+			var progress = plant.get_node("TextureProgressBar")
+			if progress.get_value() >= progress.get_max():
+				plant.queue_free()
