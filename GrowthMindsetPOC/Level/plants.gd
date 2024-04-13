@@ -6,7 +6,7 @@ extends Node
 @onready var tomato = preload("res://Level/Plants/tomato.tscn")
 @onready var potato = preload("res://Level/Plants/potato.tscn")
 
-var plants_dict: Dictionary = {"Tomato" : 0, "Potato": 0}
+var plants_dict: Dictionary = {"Tomato" : { "#_created": 0, "#_harvested": 0 }, "Potato": { "#_created": 0, "#_harvested": 0 } }
 var positions_arr: Array
 var cur_pos: Vector2
 var offset = Global.offset
@@ -24,9 +24,9 @@ func create_plant(plant_index):
 			temp = tomato.instantiate()
 		"Potato":
 			temp = potato.instantiate()
-	
-	temp.name = selected_plant + "_" + str(plants_dict[selected_plant])
-	plants_dict[selected_plant] += 1
+			
+	temp.name = selected_plant + "_" + str(plants_dict[selected_plant]["#_created"])
+	plants_dict[selected_plant]["#_created"] += 1
 	plant_holder.add_child(temp)
 	temp.set_position(cur_pos)
 	positions_arr.append(temp.position)
@@ -46,4 +46,7 @@ func harvest():
 		var progress = plant.get_node("TextureProgressBar")
 		if is_plant_at_position():
 			if plant.position == cur_pos and progress.get_value() == progress.get_max():
+				positions_arr.erase(plant.position)
+				var name = plant.name.split("_")[0]
+				plants_dict[name]["#_harvested"] += 1
 				plant.queue_free()
