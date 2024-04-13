@@ -26,12 +26,11 @@ func move():
 	
 func _input(_event):
 	if Input.is_action_just_pressed("action_1"):
-		Plants.is_within_farm_plot()
-		#if !Plants.is_plant_at_position():
-			#Plants.create_plant(tomato)
-	#if Input.is_action_just_pressed("action_2"):
-		#if !Plants.is_plant_at_position():
-			#Plants.create_plant(potato)
+		if !Plants.is_plant_at_position() and Plants.is_within_farm_plot():
+			Plants.create_plant(tomato)
+	if Input.is_action_just_pressed("action_2"):
+		if !Plants.is_plant_at_position() and Plants.is_within_farm_plot(): 
+			Plants.create_plant(potato)
 			
 
 	

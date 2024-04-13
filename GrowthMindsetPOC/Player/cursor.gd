@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var player = get_tree().root.get_node("GameLevel/UI/Player")
 @onready var tile_map = get_tree().root.get_node("GameLevel/UI/TileMap")
-@onready var tile = Tile.new()
-@onready var tile_size = tile.TILE_SIZE
-@onready var offset = Vector2(tile_size / 4, tile_size / 4)
+@onready var tile = preload("res://Level/tile_map.gd")
+@onready var tile_size = Global.TILE_SIZE
+@onready var offset = Global.offset
 
 
 func _process(_delta):

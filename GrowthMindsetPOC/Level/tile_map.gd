@@ -1,9 +1,7 @@
 extends TileMap
 
-class_name Tile
-
-@export var grid_size_x: int = 100
-@export var grid_size_y: int = 60
+var grid_size_x: int = 100
+var grid_size_y: int = 60
 
 @onready var grass_tile: CompressedTexture2D = preload("res://Assets/grass_tile.png")
 @onready var tilemap = get_tree().root.get_node("GameLevel/UI/TileMap")
