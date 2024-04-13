@@ -40,13 +40,11 @@ func is_plant_at_position():
 	return false
 	
 func harvest():
-	var harvested_plant
-	
 	for plant in plant_holder.get_children():
 		var progress = plant.get_node("TextureProgressBar")
 		if is_plant_at_position():
 			if plant.position == cur_pos and progress.get_value() == progress.get_max():
 				positions_arr.erase(plant.position)
-				var name = plant.name.split("_")[0]
-				plants_dict[name]["#_harvested"] += 1
+				var harvested_name = plant.name.split("_")[0]
+				plants_dict[harvested_name]["#_harvested"] += 1
 				plant.queue_free()

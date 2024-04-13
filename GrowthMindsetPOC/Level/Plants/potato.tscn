@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bumy4d5ivp0qy"]
+[gd_scene load_steps=7 format=3 uid="uid://bumy4d5ivp0qy"]
 
 [ext_resource type="Texture2D" uid="uid://b2o1r6exd648h" path="res://Assets/potato.png" id="1_7mkgm"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://Assets/progress.png" id="2_d477v"]
+[ext_resource type="Script" path="res://Level/Plants/potato.gd" id="2_xnvne"]
 
 [sub_resource type="Animation" id="Animation_x5onc"]
 resource_name = "grow_anim"
@@ -66,6 +67,7 @@ texture = ExtResource("1_7mkgm")
 offset = Vector2(16, 16)
 hframes = 4
 frame = 1
+script = ExtResource("2_xnvne")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_top = -16.0
