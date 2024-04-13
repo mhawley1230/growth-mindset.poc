@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jan4ldawyafy"]
+[gd_scene load_steps=20 format=3 uid="uid://jan4ldawyafy"]
 
 [ext_resource type="PackedScene" uid="uid://b0wyg35r54jsh" path="res://Player/Player.tscn" id="1_kod4g"]
 [ext_resource type="Texture2D" uid="uid://d3dumkeuyalte" path="res://Assets/grass_tile.png" id="1_mtvxc"]
@@ -8,9 +8,7 @@
 [ext_resource type="Script" path="res://Player/cursor.gd" id="5_7kmhi"]
 [ext_resource type="Script" path="res://Level/mob_spawner.gd" id="8_0en6i"]
 [ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://Mobs/MobA.tscn" id="9_jxicu"]
-[ext_resource type="PackedScene" uid="uid://bumy4d5ivp0qy" path="res://Level/Plants/potato.tscn" id="9_t6hny"]
 [ext_resource type="Texture2D" uid="uid://163np3w522ow" path="res://Assets/farmstand.png" id="10_2msy7"]
-[ext_resource type="PackedScene" uid="uid://b023ov5t23iv0" path="res://Level/Plants/tomato.tscn" id="10_eubp3"]
 [ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://Level/FarmPlot.tscn" id="10_l03bq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3bgv"]
@@ -411,13 +409,6 @@ speed = 200
 scale = Vector2(2, 2)
 
 [node name="PlantHolder" type="Node" parent="UI/Farm"]
-
-[node name="Potato" parent="UI/Farm/PlantHolder" instance=ExtResource("9_t6hny")]
-visible = false
-scale = Vector2(2, 2)
-
-[node name="Tomato" parent="UI/Farm/PlantHolder" instance=ExtResource("10_eubp3")]
-visible = false
 
 [node name="FarmStand" type="Sprite2D" parent="UI/Farm"]
 z_index = 2
