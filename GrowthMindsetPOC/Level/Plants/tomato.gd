@@ -7,4 +7,4 @@ func _process(_delta):
 	
 	if progress_bar.get_value() >= progress_bar.get_max():
 		progress_bar.set_visible(false)
-		
+	

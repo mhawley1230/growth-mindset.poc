@@ -12,6 +12,5 @@ func get_dimensions():
 			x += 1
 		if cell.y >= y:
 			y += 1
-			
-	return Vector2(x * Global.TILE_SIZE, y * Global.TILE_SIZE)
 		
+	return Vector2(x * Global.TILE_SIZE, y * Global.TILE_SIZE)

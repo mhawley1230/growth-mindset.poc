@@ -9,6 +9,7 @@ size = Vector2(24.2692, 25)
 
 [node name="MobA" type="CharacterBody2D"]
 script = ExtResource("2_mibdu")
+speed = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.37999, 2.84217e-14)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GrowthMindsetPOC"
-run/main_scene="res://Level/GameLevel.tscn"
+run/main_scene="res://Level/POCStage.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Assets/icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://Assets/icon.svg"
 
 Global="*res://Global/global.gd"
 Plants="*res://Level/plants.gd"
+
+[display]
+
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
@@ -63,6 +67,11 @@ action_2={
 action_3={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"echo":false,"script":null)
+]
+}
+action_4={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":86,"key_label":0,"unicode":118,"echo":false,"script":null)
 ]
 }
 

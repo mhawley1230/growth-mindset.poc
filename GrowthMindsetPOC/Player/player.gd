@@ -2,10 +2,18 @@ extends CharacterBody2D
 
 @export var move_speed: float = 100
 @onready var input_direction: Vector2
-@onready var cur = get_tree().root.get_node("GameLevel/UI/Cursor")
+@onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
+@onready var farm_stand = get_tree().root.get_node("SceneTree/GameLevel/Farm")
+@onready var sell_area = farm_stand.get_node("SellArea")
+@onready var plants = preload("res://Level/plants.gd")
 
 var cur_pos: Vector2
 var positions_arr: Array
+var plants_dict
+
+func _ready():
+	var p = plants.new()
+	plants_dict = p.get_plants_dict()
 
 func _process(_delta):
 	move()
@@ -26,17 +34,14 @@ func _input(_event):
 		if !Plants.is_plant_at_position() and cur.is_cursor_within_farm_plot():
 			Plants.create_plant(0)
 	if Input.is_action_just_pressed("action_2"):
-		if !Plants.is_plant_at_position() and cur.is_cursor_within_farm_plot(): 
+		if !Plants.is_plant_at_position() and cur.is_cursor_within_farm_plot():
 			Plants.create_plant(1)
 	if Input.is_action_just_pressed("action_3"):
 		if Plants.is_plant_at_position():
 			Plants.harvest()
+	if Input.is_action_just_pressed("action_4"):
+		if sell_area.can_sell():
+			print("Able to sell")
+			#sell_to_customer()
 			
-
-	
-
-	
-	
-	
-	
-	
+#func sell_to_customer():

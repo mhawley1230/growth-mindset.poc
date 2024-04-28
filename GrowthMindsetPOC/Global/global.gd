@@ -1,8 +1,6 @@
 extends Node
 
 var TILE_SIZE: int = 32
-@warning_ignore("integer_division")
-var offset = Vector2(TILE_SIZE / 4, TILE_SIZE / 4)
 
 func round_to_dec(num, decimals):
 	num = float(num)
