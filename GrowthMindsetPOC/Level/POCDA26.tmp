@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://56ebfdkcee17"]
+[gd_scene load_steps=21 format=3 uid="uid://56ebfdkcee17"]
 
 [ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://Assets/tomato_icon.png" id="1_pnivm"]
 [ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://Assets/potato_icon.png" id="2_7kcas"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://Player/cursor.gd" id="7_x3efu"]
 [ext_resource type="PackedScene" uid="uid://b0wyg35r54jsh" path="res://Player/Player.tscn" id="8_4mxk3"]
 [ext_resource type="Script" path="res://Level/mob_spawner.gd" id="9_ryb8b"]
-[ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://Mobs/MobA.tscn" id="10_7v7tx"]
 [ext_resource type="Texture2D" uid="uid://163np3w522ow" path="res://Assets/farmstand.png" id="11_4fcn7"]
 [ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://Level/FarmPlot.tscn" id="11_gejgn"]
 [ext_resource type="Script" path="res://Level/sell_area.gd" id="11_mhp4i"]
@@ -493,10 +492,6 @@ loop = false
 
 [node name="MobSpawner" type="Node2D" parent="GameLevel/LevelSpawner/Stage/MobPath"]
 script = ExtResource("9_ryb8b")
-
-[node name="MobA" parent="GameLevel/LevelSpawner/Stage/MobPath/MobSpawner" instance=ExtResource("10_7v7tx")]
-visible = false
-speed = 200
 
 [node name="WaitPoint" type="Node2D" parent="GameLevel/LevelSpawner/Stage/MobPath"]
 
