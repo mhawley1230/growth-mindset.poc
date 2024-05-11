@@ -5,15 +5,17 @@ extends CharacterBody2D
 @onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
 @onready var farm_stand = get_tree().root.get_node("SceneTree/GameLevel/Farm")
 @onready var sell_area = farm_stand.get_node("SellArea")
-@onready var plants = preload("res://Level/plants.gd")
+@onready var plants_scripts = preload("res://Level/plants.gd")
+#@onready var mob_scripts = preload("res://Mobs/mob_a.gd")
 
+var p
 var cur_pos: Vector2
 var positions_arr: Array
-var plants_dict
+var mob
 
-func _ready():
-	var p = plants.new()
-	plants_dict = p.get_plants_dict()
+#func _ready():
+	#var p = plants_scripts.new()
+	#var mob = mob_scripts.new()
 
 func _process(_delta):
 	move()
@@ -40,8 +42,14 @@ func _input(_event):
 		if Plants.is_plant_at_position():
 			Plants.harvest()
 	if Input.is_action_just_pressed("action_4"):
-		if sell_area.can_sell():
-			print("Able to sell")
-			#sell_to_customer()
+		if sell_area.is_player_in_sell_area():
+			trade()
 			
-#func sell_to_customer():
+func trade():
+	print(mob.get_trade_status())
+	print("Ready to trade")
+	#for item in order:
+		#dict[item]["current"]["plant_on_hand"] -= 1
+		#dict[item]["current"]["seeds"] += 2
+	#transaction_complete = true
+	

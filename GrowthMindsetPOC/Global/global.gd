@@ -1,6 +1,7 @@
 extends Node
 
 var TILE_SIZE: int = 32
+var orders_dict: Dictionary = {}
 
 func round_to_dec(num, decimals):
 	num = float(num)

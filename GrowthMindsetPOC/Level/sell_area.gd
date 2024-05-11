@@ -2,14 +2,13 @@ extends Area2D
 
 class_name SellArea
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	is_player_in_sell_area()
-	
+@onready var player = get_tree().root.get_node("SceneTree/GameLevel/Player")
+#@onready var mobs = get_tree().root.get_node("SceneTree/GameLevel/LevelSpawner/Stage/MobPath/MobSpawner")
 	
 func is_player_in_sell_area():
 	var can_sell = false
-	if has_overlapping_bodies():
+	if get_overlapping_bodies().find(player):
+		print("player detected")
 		can_sell = true
 		
 	return can_sell
