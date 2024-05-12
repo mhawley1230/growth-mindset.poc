@@ -42,14 +42,23 @@ func _input(_event):
 		if Plants.is_plant_at_position():
 			Plants.harvest()
 	if Input.is_action_just_pressed("action_4"):
-		if sell_area.is_player_in_sell_area():
-			trade()
+		if sell_area.is_player_in_sell_area() && sell_area.is_customer_in_sell_area()["can_sell"]:
+			trade(sell_area.is_customer_in_sell_area()["mob_name"])
 			
-func trade():
-	print(mob.get_trade_status())
-	print("Ready to trade")
-	#for item in order:
-		#dict[item]["current"]["plant_on_hand"] -= 1
-		#dict[item]["current"]["seeds"] += 2
-	#transaction_complete = true
+func trade(customer):
+	print("Ready to trade with " + customer)
+	print(Global.orders_dict[customer])
+	#for item in Global.orders_dict[customer]:
+	var product = Global.orders_dict[customer]["product"]
+	print(product)
+	var number = Global.orders_dict[customer]["number"]
+	var inventory = Plants.get_plants_dict()[product]["current"]["plants_on_hand"]
+		#if Plants.get_plants_dict()[item]["current"]["plants_on_hand"] >= Global.orders_dict[customer]["number"]:
+	print("Customer " + customer + " wants " + str(number) + " of " + product)
+	if Plants.get_plants_dict().has(product):
+		print("Inventory contains " + str(inventory) + " of " + product)
+			#Plants.get_plants_dict()[item] -= Global.orders_dict[customer]["number"]
+			#Plants.get_plants_dict()[item]["current"]["seeds"] += 2
+			#print("trade complete")
+			#emit_signal("trade_complete")
 	

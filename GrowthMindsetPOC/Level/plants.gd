@@ -16,7 +16,7 @@ var plants_dict: Dictionary = \
 			"#_created": 0, "#_harvested": 0 \
 			}, \
 		"current": { \
-			"seeds": 4, "plant_on_hand": 0, "target_inventory": 10 \
+			"seeds": 4, "plants_on_hand": 0, "target_inventory": 10 \
 			} \
 	}, \
 	"Potato": { \
@@ -24,7 +24,7 @@ var plants_dict: Dictionary = \
 			"#_created": 0, "#_harvested": 0 \
 			}, \
 		"current": { \
-			"seeds": 4, "plant_on_hand": 0, "target_inventory": 10 \
+			"seeds": 4, "plants_on_hand": 0, "target_inventory": 10 \
 			} \
 	} \
 }
@@ -38,7 +38,7 @@ func _process(_delta):
 	for element in plants_ui.get_children():
 		if element.name.contains("Label"):
 			var plant = element.name.split("L")[0]
-			var held = plants_dict[plant]["current"]["plant_on_hand"]
+			var held = plants_dict[plant]["current"]["plants_on_hand"]
 			var max_held = plants_dict[plant]["current"]["target_inventory"]
 			element.text = str(held) + " / " + str(max_held)
 			
@@ -81,10 +81,10 @@ func harvest():
 		var progress = plant.get_node("TextureProgressBar")
 		if is_plant_at_position():
 			if plant.position == cur_pos and progress.get_value() == progress.get_max():
-				if plants_dict[harvested_plant]["current"]["plant_on_hand"] + 1 <= plants_dict[harvested_plant]["current"]["target_inventory"]:
+				if plants_dict[harvested_plant]["current"]["plants_on_hand"] + 1 <= plants_dict[harvested_plant]["current"]["target_inventory"]:
 					positions_arr.erase(plant.position)
 					plants_dict[harvested_plant]["total"]["#_harvested"] += 1
-					plants_dict[harvested_plant]["current"]["plant_on_hand"] += 1
+					plants_dict[harvested_plant]["current"]["plants_on_hand"] += 1
 					plant.queue_free()
 					
 func get_plants_dict():

@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var speed: int = 100
 
+@onready var customers = get_parent()
 @onready var mob_spawner = preload("res://Level/mob_spawner.gd")
 @onready var plants_scripts = preload("res://Level/plants.gd")
 @onready var player_scripts = preload("res://Player/player.gd")
@@ -31,12 +32,11 @@ func _process(delta):
 	mob_path.set_progress(mob_path.get_progress() + speed * delta)
 	
 	if Global.round_to_dec(mob_path.get_progress_ratio(), 2) == 0.50:
-		var current_speed = 0
-		speed = current_speed
-		#await player.has_signal("traded")
-		current_speed = 200
-		speed = current_speed
-		get_node("Sprite2D").flip_h = true
+		speed = 0
+		
+		if has_traded:
+			speed = 200
+			get_node("Sprite2D").flip_h = true
 	
 		
 func add_random_order_to_mob():
@@ -59,15 +59,12 @@ func add_random_order_to_mob():
 func get_order():
 	return Global.orders_dict[name]
 	
-func get_trade_status():
-	return has_traded
+#func get_trade_status():
+	#for customer in customers.get_children():
+		#print(customer)
+	#return has_traded
+#
+#func set_trade_status(status: bool):
+	#has_traded = status
+	#return has_traded
 
-func set_trade_status(status: bool):
-	has_traded = status
-	return has_traded
-	
-#func trade():
-	#print(get_trade_status())
-	#print("trading......")
-	#await get_tree().create_timer(countdown).timeout
-	#print(set_trade_status(true))
