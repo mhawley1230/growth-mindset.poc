@@ -10,6 +10,7 @@ extends Node
 @onready var seeds_ui = get_tree().root.get_node("SceneTree/UI/SeedsUI/MarginContainer/GridContainer")
 
 var plants_dict: Dictionary = \
+# TODO: limit max number of grown plants vs. number of seeds to complete level
 { \
 	"Tomato" : { \
 		"total": { \

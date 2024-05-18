@@ -1,8 +1,10 @@
 extends Node2D
 
-@onready var mob_arr: Array[CharacterBody2D]
+# TODO: Create spawn_mob() function on loop within _physics_process()
+# TODO: Test with numbers of mob spawned over different time limits
+# 			starting with infinite
 @onready var mob_a: PackedScene = preload("res://Mobs/MobA.tscn")
-
+@onready var mob_arr: Array[CharacterBody2D]
 
 @onready var temp_mob_a: CharacterBody2D
 @onready var path: PathFollow2D

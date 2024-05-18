@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed: int = 100
+@export var speed: int = 300
 
 @onready var customers = get_parent()
 @onready var mob_spawner = preload("res://Level/mob_spawner.gd")
@@ -22,7 +22,6 @@ var mob_order
 func _ready():
 	player = player_scripts.new()
 	mob_path = get_tree().root.get_node("SceneTree/GameLevel/LevelSpawner/Stage/MobPath")
-	#player = player_scripts.new()
 	plants = plants_scripts.new()
 	available_plants = plants.get_plants_dict().keys()
 	mob_order = add_random_order_to_mob()
@@ -34,11 +33,12 @@ func _process(delta):
 	if Global.round_to_dec(mob_path.get_progress_ratio(), 2) == 0.50:
 		speed = 0
 		
-		if has_traded:
+		if Global.orders_dict[name]["order_completed"]:
 			speed = 200
 			get_node("Sprite2D").flip_h = true
 	
-		
+# TODO: Randomize multiple numbers of products within order, 
+# 			i.e. 2 Potato vs 1 Tomato vs 2 Potato, 1 Tomato
 func add_random_order_to_mob():
 	var texture_paths = ["res://Assets/tomato_icon.png", "res://Assets/potato_icon.png"]	
 	var product_name = available_plants[randi_range(0, available_plants.size() - 1)]
@@ -52,19 +52,11 @@ func add_random_order_to_mob():
 		str(mob_name): 
 			{
 				"product": product_name,
-				"number": 1
+				"number": 1,
+				"order_completed": false
 			}
 	}
 	
 func get_order():
 	return Global.orders_dict[name]
-	
-#func get_trade_status():
-	#for customer in customers.get_children():
-		#print(customer)
-	#return has_traded
-#
-#func set_trade_status(status: bool):
-	#has_traded = status
-	#return has_traded
 
