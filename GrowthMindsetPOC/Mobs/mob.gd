@@ -2,32 +2,20 @@ extends CharacterBody2D
 
 class_name Mob
 
-@export var speed: int = Global.speed
-@export var has_traded: bool = false
-
-@onready var plants_scripts = preload("res://Level/plants.gd")
+@onready var movement_handler = $MovementHandler as MovementHandler
 @onready var mob_path = get_parent()
 @onready var progress: float
-@onready var plants
 @onready var available_plants
 
-var spawned = 0
-
-
 func _ready():
-	plants = plants_scripts.new()
-	available_plants = plants.get_plants_dict().keys()
+	available_plants = Global.plants_dict.keys()
 	name += "_" + str(Global.mobs_dict["spawned"]["mob_a"])
 	Global.mobs_dict["spawned"]["mob_a"] += 1
 	add_random_order_to_mob()
 	
 	
 func _physics_process(delta):
-	mob_path.set_progress(mob_path.get_progress() + speed * delta)
-	
-	if Global.round_to_dec(mob_path.get_progress_ratio(), 3) == 0.500:
-	#&& !Global.orders_dict[name]["order_completed"]:
-		Global.stop_queue()
+	mob_path.set_progress(mob_path.get_progress() + movement_handler.movement_speed * delta)
 	
 	if Global.round_to_dec(mob_path.get_progress_ratio(), 2) > 0.50:
 		get_node("Sprite2D").flip_h = true

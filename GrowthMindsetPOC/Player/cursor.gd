@@ -1,5 +1,7 @@
+class_name Cursor
 extends Node2D
 
+@onready var input_handler = $InputHandler as InputHandler
 @onready var player = get_tree().root.get_node("SceneTree/GameLevel/Player")
 @onready var tile_map = get_tree().root.get_node("SceneTree/GameLevel/TileMap")
 @onready var farm_plots = get_tree().root.get_node("SceneTree/GameLevel/Farm/FarmPlotHolder")
@@ -7,7 +9,8 @@ extends Node2D
 
 
 func _process(_delta):
-	var input = player.move()
+	var input = input_handler.handle_movement()
+	
 	var grid_pos = tile_map.local_to_map(player.get_position())
 	var local_grid_pos = tile_map.map_to_local(grid_pos)
 	 

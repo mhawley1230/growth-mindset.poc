@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b2o1r6exd648h" path="res://Assets/potato.png" id="1_7mkgm"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://Assets/progress.png" id="2_d477v"]
-[ext_resource type="Script" path="res://Level/Plants/potato.gd" id="2_xnvne"]
+[ext_resource type="Script" path="res://Level/plant.gd" id="2_tg0qp"]
 
 [sub_resource type="Animation" id="Animation_an1ld"]
 length = 0.001
@@ -67,7 +67,7 @@ texture = ExtResource("1_7mkgm")
 offset = Vector2(16, 16)
 hframes = 4
 frame = 1
-script = ExtResource("2_xnvne")
+script = ExtResource("2_tg0qp")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_top = -16.0

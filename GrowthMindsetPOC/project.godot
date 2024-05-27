@@ -18,7 +18,6 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 Global="*res://Global/global.gd"
-Plants="*res://Level/plants.gd"
 
 [display]
 

@@ -2,6 +2,10 @@ extends Node
 
 @export var speed = 200
 
+@onready var plant = Plant.new()
+@onready var plants_ui = get_tree().root.get_node("SceneTree/UI/PlantsUI/MarginContainer/GridContainer")
+@onready var seeds_ui = get_tree().root.get_node("SceneTree/UI/SeedsUI/MarginContainer/GridContainer")
+
 var TILE_SIZE: int = 32
 var orders_dict: Dictionary = {}
 var mobs_dict = {
@@ -9,6 +13,24 @@ var mobs_dict = {
 		"mob_a": 0
 	}
 }
+# TODO: limit max number of grown plants vs. number of seeds to complete level
+var plants_dict: Dictionary = {"Tomato":{"total":{"#_created": 0, "#_harvested": 0},"current": {"seeds": 4, "plants_on_hand": 0, "target_inventory": 5}},"Potato": {"total": {"#_created": 0, "#_harvested": 0},"current": {"seeds": 4, "plants_on_hand": 0, "target_inventory": 5}}}
+
+
+func _process(_delta):
+	for element in plants_ui.get_children():
+		if element.name.contains("Label"):
+			var n = element.name.split("L")[0]
+			var held = plants_dict[n]["current"]["plants_on_hand"]
+			var max_held = plants_dict[n]["current"]["target_inventory"]
+			element.text = str(held) + " / " + str(max_held)
+			
+	for element in seeds_ui.get_children():
+		if element.name.contains("Label"):
+			var n = element.name.split("Seeds")[0]
+			var held = plants_dict[n]["current"]["seeds"]
+			var max_held = plants_dict[n]["current"]["target_inventory"]
+			element.text = str(held) + " / " + str(max_held)
 
 func round_to_dec(num, decimals):
 	num = float(num)
@@ -22,24 +44,3 @@ func round_to_dec(num, decimals):
 	var num_dec = round(num_fraction * pow(10.0, decimals)) / pow(10.0, decimals)
 	var round_num = sgn*(int(num) + num_dec)
 	return round_num
-	
-func stop_queue():
-	var path_holder = get_tree().root.get_node("SceneTree/GameLevel/PathSpawner")
-	for mob_path in path_holder.get_children():
-		if mob_path is Path2D:
-			var path = mob_path.get_child(0)
-			if path.get_progress_ratio() < 0.50:
-				path.get_child(0).speed = 0
-	path_holder.get_node("Timer").set_paused(true)
-				
-func continue_queue():
-	print("continue called for:")
-	var path_holder = get_tree().root.get_node("SceneTree/GameLevel/PathSpawner")
-	for mob_path in path_holder.get_children():
-		if mob_path is Path2D:
-			var path = mob_path.get_child(0)
-			for child in path.get_children():
-				#if child.get_parent().get_progress_ratio() < 0.50:
-				child.speed = Global.speed
-					#print(child.speed)
-	path_holder.get_node("Timer").set_paused(false)
