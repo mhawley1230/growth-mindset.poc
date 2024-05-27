@@ -1,8 +1,6 @@
-#extends Node2D
-#
-#@onready var stage: PackedScene = preload("res://Level/Stage.tscn")
-#
-#func _ready():
-	#var temp_stage = stage.instantiate()
-	#add_child(temp_stage)
-	#
+extends Node2D
+@onready var path = preload("res://Level/path.tscn")
+
+func _on_timer_timeout():
+	var temp = path.instantiate()
+	add_child(temp)

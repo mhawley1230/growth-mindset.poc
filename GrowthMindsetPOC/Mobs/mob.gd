@@ -1,41 +1,39 @@
 extends CharacterBody2D
 
+class_name Mob
 
-@export var speed: int = 300
+@export var speed: int = Global.speed
+@export var has_traded: bool = false
 
-@onready var customers = get_parent()
-@onready var mob_spawner = preload("res://Level/mob_spawner.gd")
 @onready var plants_scripts = preload("res://Level/plants.gd")
-@onready var player_scripts = preload("res://Player/player.gd")
-@onready var mob_path: PathFollow2D
-@onready var wait_point: Node2D
-@onready var wait_point_pos: Vector2
+@onready var mob_path = get_parent()
 @onready var progress: float
-@onready var countdown: int = 3
 @onready var plants
 @onready var available_plants
 
-var player
-var mob_order
-@export var has_traded: bool = false
+var spawned = 0
+
 
 func _ready():
-	player = player_scripts.new()
-	mob_path = get_tree().root.get_node("SceneTree/GameLevel/LevelSpawner/Stage/MobPath")
 	plants = plants_scripts.new()
 	available_plants = plants.get_plants_dict().keys()
-	mob_order = add_random_order_to_mob()
+	name += "_" + str(Global.mobs_dict["spawned"]["mob_a"])
+	Global.mobs_dict["spawned"]["mob_a"] += 1
+	add_random_order_to_mob()
 	
 	
-func _process(delta):
+func _physics_process(delta):
 	mob_path.set_progress(mob_path.get_progress() + speed * delta)
 	
-	if Global.round_to_dec(mob_path.get_progress_ratio(), 2) == 0.50:
-		speed = 0
-		
-		if Global.orders_dict[name]["order_completed"]:
-			speed = 200
-			get_node("Sprite2D").flip_h = true
+	if Global.round_to_dec(mob_path.get_progress_ratio(), 3) == 0.500:
+	#&& !Global.orders_dict[name]["order_completed"]:
+		Global.stop_queue()
+	
+	if Global.round_to_dec(mob_path.get_progress_ratio(), 2) > 0.50:
+		get_node("Sprite2D").flip_h = true
+			
+	if mob_path.get_progress_ratio() == 1:
+		queue_free()
 	
 # TODO: Randomize multiple numbers of products within order, 
 # 			i.e. 2 Potato vs 1 Tomato vs 2 Potato, 1 Tomato
@@ -48,15 +46,9 @@ func add_random_order_to_mob():
 		if path.contains(product_name.to_lower()):
 			var texture = load(path)
 			req.set_texture(texture)
-	Global.orders_dict = {
-		str(mob_name): 
-			{
+	Global.orders_dict[mob_name] = {
 				"product": product_name,
 				"number": 1,
 				"order_completed": false
 			}
-	}
-	
-func get_order():
-	return Global.orders_dict[name]
 

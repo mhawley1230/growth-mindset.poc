@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var move_speed: float = 100
 @onready var input_direction: Vector2
 @onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
 @onready var farm_stand = get_tree().root.get_node("SceneTree/GameLevel/Farm")
 @onready var sell_area = farm_stand.get_node("SellArea")
 @onready var plants_scripts = preload("res://Level/plants.gd")
-#@onready var mob_scripts = preload("res://Mobs/mob_a.gd")
 
 var p
 var cur_pos: Vector2
@@ -38,26 +39,25 @@ func _input(_event):
 		if Plants.is_plant_at_position():
 			Plants.harvest()
 	if Input.is_action_just_pressed("action_4"):
-		if sell_area.is_player_in_sell_area() && sell_area.is_customer_in_sell_area()["can_sell"]:
-			trade(sell_area.is_customer_in_sell_area()["mob_name"])
+		if sell_area.is_player_in_sell_area() && sell_area.is_customer_in_sell_area():
+			var customer_name = sell_area.get_customer_name_in_sell_area()
+			trade(customer_name)
+			
+			if Global.orders_dict[customer_name]["order_completed"]:
+				Global.continue_queue()
 			
 func trade(customer):
-	print("Ready to trade with " + customer)
-	print(Global.orders_dict)
-	
-	for order in Global.orders_dict.values():
-		var product = Global.orders_dict[customer]["product"]
-		var num_ordered = Global.orders_dict[customer]["number"]
-		var inventory = Plants.get_plants_dict()[product]["current"]
-		print("Customer " + customer + " ordered " + str(num_ordered) + " of " + product)
+	var order = Global.orders_dict[customer]
+	var product = order["product"]
+	var num_ordered = order["number"]
+	var inventory = Plants.get_plants_dict()[product]["current"]
 		
-		if Plants.get_plants_dict().has(product) and inventory["plants_on_hand"] >= Global.orders_dict[customer]["number"]:
-			inventory["plants_on_hand"] -= num_ordered
-			inventory["seeds"] += 2
-			order["order_completed"] = true
-		else:
-			# TODO: audio/visual indicator why trade failed
-			print(str(product) + ": item not found in inventory.")
+		
+	if Plants.get_plants_dict().has(product) and inventory["plants_on_hand"] >= order["number"]:
+		inventory["plants_on_hand"] -= num_ordered
+		inventory["seeds"] += 2
+		order["order_completed"] = true
+	else:
+		# TODO: audio/visual indicator why trade failed
+		print(str(product) + ": item not found in inventory.")
 			
-		
-	

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d21ha7i0wrvtm"]
+[gd_scene load_steps=6 format=3 uid="uid://d21ha7i0wrvtm"]
 
 [ext_resource type="Texture2D" uid="uid://hpvkrmrslja7" path="res://Assets/Grass.png" id="1_umm10"]
 [ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://Mobs/MobA.tscn" id="2_2nexd"]
-[ext_resource type="Script" path="res://Level/mob_spawner.gd" id="2_mx0k3"]
 
 [sub_resource type="Curve2D" id="Curve2D_rjk37"]
 _data = {
@@ -230,7 +229,6 @@ cubic_interp = false
 loop = false
 
 [node name="MobSpawner" type="Node2D" parent="MobPath"]
-script = ExtResource("2_mx0k3")
 
 [node name="MobA" parent="MobPath/MobSpawner" instance=ExtResource("2_2nexd")]
 visible = false
