@@ -1,6 +1,20 @@
 class_name Cursor
 extends Node2D
 
+var can_plant: bool = false
+
+
+func _ready():
+	SignalBus.on_is_within_farm_plot.connect(on_is_within_farm_plot)
+
+
+func _process(_delta):
+	print(can_plant)
+
+
+func on_is_within_farm_plot(is_within: bool):
+	can_plant = is_within
+
 #@onready var input_handler = $InputHandler as InputHandler
 #@onready var player = get_tree().root.get_node("Main/EntityContainer/PlayerEntity")
 #@onready var tile_map = get_tree().root.get_node("Main/LevelContainer/GameLevel/TileMap")

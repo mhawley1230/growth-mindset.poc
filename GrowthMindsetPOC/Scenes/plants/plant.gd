@@ -1,4 +1,4 @@
-class_name Product
+class_name Plant
 extends Node
 
 @onready var animation_player =  $AnimationPlayer as AnimationPlayer
@@ -10,7 +10,7 @@ func _ready():
 
 func _process(_delta):
 	if texture_progress_bar.value == 100:
-		texture_progress_bar.queue_free()
+		texture_progress_bar.visible = false
 	
 #@onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
 #
@@ -25,26 +25,6 @@ func _process(_delta):
 		#progress_bar.set_visible(false)
 	#
 	#cur_pos = cur.get_position()
-
-#func create_plant(index):
-	#var keys = Global.plants_dict.keys()
-	#var selected_plant = keys[index]
-	#var temp: Sprite2D
-	#
-	#if Global.plants_dict[selected_plant]["current"]["seeds"] > 0:
-		#match selected_plant:
-			#"Tomato": 
-				#temp  = tomato.instantiate()
-			#"Potato":
-				#temp = potato.instantiate()
-			#
-		#temp.name = selected_plant + "_" + str(Global.plants_dict[selected_plant]["total"]["#_created"])
-		#Global.plants_dict[selected_plant]["total"]["#_created"] += 1
-		#Global.plants_dict[selected_plant]["current"]["seeds"] -= 1
-		#plant_holder.add_child(temp)
-		#temp.set_position(cur_pos)
-		#positions_arr.append(temp.position)
-		#temp.get_node("AnimationPlayer").play("grow_anim")
 
 #func is_plant_at_position():
 	#if positions_arr.is_empty() != true:

@@ -3,8 +3,11 @@ extends CharacterBody2D
 
 @onready var input_handler = $HandlerContainer/InputHandler as InputHandler
 @onready var movement_handler = $HandlerContainer/MovementHandler as MovementHandler
-@onready var cursor_position_handler = $HandlerContainer/CursorPositionHandler as CursorPositionHandler
+@onready var cursor_handler = $HandlerContainer/CursorHandler as CursorHandler
+@onready var action_handler = $HandlerContainer/ActionHandler as ActionHandler
 @onready var cursor: Sprite2D = get_node("Cursor")
+
+var can_plant = false
 
 #@onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
 #@onready var farm_stand = get_tree().root.get_node("SceneTree/GameLevel/PathSpawner")
@@ -15,31 +18,24 @@ extends CharacterBody2D
 
 func _ready():
 	SignalBus.emit_on_player_ready(self)
-	print(NodeExtensions.get_entity_container())
-	
-	
+	NodeExtensions.get_entity_container()
+
 
 func _physics_process(_delta):
 	movement_handler.handle_movement(self, input_handler.handle_movement())
-	cursor_position_handler.handle_cursor_position(self, input_handler.handle_movement(), cursor)
+	cursor_handler.handle_cursor_position(self, input_handler.handle_movement(), cursor)
 	move_and_slide()
-	
-	
 
-#func _input(_event):
-	#if input_handler.handle_action_1_input():
-		#if !plant.is_plant_at_position() and cur.is_cursor_within_farm_plot():
-			#plant.create_plant(0)
-	#if input_handler.handle_action_2_input():
-		#if !plant.is_plant_at_position() and cur.is_cursor_within_farm_plot():
-			#plant.create_plant(1)
-	#if input_handler.handle_action_3_input():
-		#if plant.is_plant_at_position():
-			#plant.harvest()
-	#if input_handler.handle_action_4_input():
-		#if in_sell_area && sell_area.is_customer_in_sell_area():
-			#var customer_name = sell_area.get_customer_name_in_sell_area()
-			#trade(customer_name)
+
+func _input(_event):
+	if input_handler.handle_action_1_input():
+		action_handler.create_plant(0, cursor.global_position)
+	if input_handler.handle_action_2_input():
+		action_handler.create_plant(1, cursor.global_position)
+	if input_handler.handle_action_3_input():
+		print("action 3 pressed")
+	if input_handler.handle_action_4_input():
+		print("action 4 pressed")
 
 
 #func trade(customer):

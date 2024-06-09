@@ -4,5 +4,5 @@ extends Node
 func _ready():
 	SignalBus.on_player_ready.connect(on_player_ready)
 
-func on_player_ready(player: CharacterBody2D) -> void:
-	print(player)
+func on_player_ready(_player: CharacterBody2D) -> void:
+	pass

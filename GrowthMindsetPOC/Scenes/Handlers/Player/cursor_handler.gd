@@ -1,10 +1,12 @@
-class_name CursorPositionHandler
+class_name CursorHandler
 extends Node
 
 var tile_size: Vector2 = Vector2(32, 32)
 var offset: int = 16
 var position_locked: bool = false
 var direction: Vector2 = Vector2.ZERO
+
+
 
 func handle_cursor_position(character_body: CharacterBody2D, input_dir: Vector2, cursor: Sprite2D) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
@@ -26,5 +28,3 @@ func handle_cursor_position(character_body: CharacterBody2D, input_dir: Vector2,
 	
 	cursor.global_position = snapped(cursor.global_position, tile_size)
 	position_locked = false
-	
-	

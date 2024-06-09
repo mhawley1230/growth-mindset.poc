@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b023ov5t23iv0"]
 
 [ext_resource type="Texture2D" uid="uid://b8ofgqo6rqsp5" path="res://assets/tomato.png" id="1_8ve1n"]
-[ext_resource type="Script" path="res://scenes/products/product.gd" id="2_dbtj0"]
+[ext_resource type="Script" path="res://scenes/plants/plant.gd" id="2_dbtj0"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="2_tv6fr"]
 
 [sub_resource type="Animation" id="Animation_c18p6"]

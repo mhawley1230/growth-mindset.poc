@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://424u4jgqjonn"]
+[gd_scene load_steps=3 format=3 uid="uid://424u4jgqjonn"]
 
 [ext_resource type="Texture2D" uid="uid://dl7wei6o2u2k0" path="res://assets/cursor.png" id="1_coqyu"]
+[ext_resource type="Script" path="res://scenes/handlers/Player/cursor.gd" id="2_i4esu"]
 
 [node name="Cursor" type="Sprite2D"]
 texture = ExtResource("1_coqyu")
+script = ExtResource("2_i4esu")

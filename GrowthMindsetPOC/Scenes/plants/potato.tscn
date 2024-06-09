@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b2o1r6exd648h" path="res://assets/potato.png" id="1_7mkgm"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="2_d477v"]
-[ext_resource type="Script" path="res://scenes/products/product.gd" id="2_tg0qp"]
+[ext_resource type="Script" path="res://scenes/plants/plant.gd" id="2_tg0qp"]
 
 [sub_resource type="Animation" id="Animation_an1ld"]
 length = 0.001
