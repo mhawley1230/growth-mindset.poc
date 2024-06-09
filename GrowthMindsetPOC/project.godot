@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="GrowthMindsetPOC"
-run/main_scene="res://Level/POCStage.tscn"
+run/main_scene="res://scenes/levels/POCStage.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://Assets/icon.svg"
+config/icon="res://assets/icon.svg"
 
 [autoload]
 
-Global="*res://Global/global.gd"
+NodeExtensions="*res://Autoloads/NodeExtensions.gd"
+SignalBus="*res://autoloads/SignalBus.gd"
 
 [display]
 
@@ -78,6 +79,8 @@ action_4={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+viewport/size/viewport_height=600
+viewport/size/viewport_width=900
 
 [shader_globals]
 

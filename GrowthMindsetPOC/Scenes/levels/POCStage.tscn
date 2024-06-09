@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://56ebfdkcee17"]
+
+[ext_resource type="PackedScene" uid="uid://dkqq8ioytos1s" path="res://scenes/levels/base_level.tscn" id="4_o3fqc"]
+[ext_resource type="PackedScene" uid="uid://vuumnp328oiu" path="res://scenes/levels/boundary_container.tscn" id="4_sipyb"]
+[ext_resource type="PackedScene" uid="uid://cpeo3xlr2tb7g" path="res://scenes/managers/game_state_manager.tscn" id="6_a5ujg"]
+[ext_resource type="PackedScene" uid="uid://23nd1ysnsqpl" path="res://scenes/managers/player_manager.tscn" id="7_dp2t4"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(-2, -1)
+
+[node name="ManagerContainer" type="Node" parent="." groups=["manager_container"]]
+
+[node name="GameStateManager" parent="ManagerContainer" instance=ExtResource("6_a5ujg")]
+
+[node name="PlayerManager" parent="ManagerContainer" instance=ExtResource("7_dp2t4")]
+
+[node name="LevelContainer" type="Node2D" parent="." groups=["level_container"]]
+
+[node name="BaseLevel" parent="LevelContainer" instance=ExtResource("4_o3fqc")]
+
+[node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]
+position = Vector2(-1, 0)
+
+[node name="BoundaryContainer" parent="." instance=ExtResource("4_sipyb")]

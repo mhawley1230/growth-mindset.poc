@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp2gev2y5yg6o"
-path="res://.godot/imported/crosshairs_tilesheet_white.png-4c18816de68462e0108b37382f8d33c4.ctex"
+path="res://.godot/imported/crosshairs_tilesheet_white.png-f315bb8a6a8a2f00b60b3a10f9b17e68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/crosshairs_tilesheet_white.png"
-dest_files=["res://.godot/imported/crosshairs_tilesheet_white.png-4c18816de68462e0108b37382f8d33c4.ctex"]
+source_file="res://assets/crosshairs_tilesheet_white.png"
+dest_files=["res://.godot/imported/crosshairs_tilesheet_white.png-f315bb8a6a8a2f00b60b3a10f9b17e68.ctex"]
 
 [params]
 

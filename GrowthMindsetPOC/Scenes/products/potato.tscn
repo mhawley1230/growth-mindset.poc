@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://bumy4d5ivp0qy"]
+
+[ext_resource type="Texture2D" uid="uid://b2o1r6exd648h" path="res://assets/potato.png" id="1_7mkgm"]
+[ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="2_d477v"]
+[ext_resource type="Script" path="res://scenes/products/product.gd" id="2_tg0qp"]
+
+[sub_resource type="Animation" id="Animation_an1ld"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureProgressBar:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(33, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_x5onc"]
+resource_name = "grow_anim"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureProgressBar:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 33, -0.25, 0, 0.25, 0, 66, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uum4x"]
+_data = {
+"RESET": SubResource("Animation_an1ld"),
+"grow_anim": SubResource("Animation_x5onc")
+}
+
+[node name="Potato" type="Sprite2D"]
+z_index = 3
+texture = ExtResource("1_7mkgm")
+offset = Vector2(16, 16)
+hframes = 4
+frame = 1
+script = ExtResource("2_tg0qp")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_top = -16.0
+offset_right = 64.0
+scale = Vector2(0.5, 1)
+value = 33.0
+texture_under = ExtResource("2_d477v")
+texture_over = ExtResource("2_d477v")
+texture_progress = ExtResource("2_d477v")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.0627451, 0.843137, 0.0509804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uum4x")
+}
