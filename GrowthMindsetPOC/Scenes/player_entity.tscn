@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/player_entity.gd" id="1_lm50g"]
 [ext_resource type="Texture2D" uid="uid://b4hu5c4oqm8kw" path="res://assets/Basic Charakter Spritesheet.png" id="2_vq6j4"]
-[ext_resource type="Texture2D" uid="uid://dl7wei6o2u2k0" path="res://assets/cursor.png" id="3_27ics"]
+[ext_resource type="PackedScene" uid="uid://3nddxuydkt2p" path="res://scenes/cursor_entity.tscn" id="3_ym8fr"]
 [ext_resource type="PackedScene" uid="uid://bodxxkfsugul" path="res://scenes/handlers/Player/input_handler.tscn" id="4_jjnqv"]
 [ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="5_31lkk"]
 [ext_resource type="PackedScene" uid="uid://cwnljinkuvs12" path="res://scenes/levels/action_handler.tscn" id="7_kk0fe"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b023ov5t23iv0" path="res://scenes/plants/tomato.tscn" id="9_mkgdv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_024ml"]
-size = Vector2(14, 16)
+size = Vector2(11, 12)
 
 [node name="PlayerEntity" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -24,28 +24,21 @@ hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_024ml")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -1.52588e-05)
-limit_left = 0
+limit_left = 60
 limit_top = 0
-limit_right = 1200
-limit_bottom = 600
-position_smoothing_enabled = true
+limit_right = 1600
+limit_bottom = 800
 drag_left_margin = 0.25
 drag_top_margin = 0.25
 drag_right_margin = 0.25
 drag_bottom_margin = 0.25
 
-[node name="Cursor" type="Sprite2D" parent="."]
-z_index = 3
-z_as_relative = false
-position = Vector2(-16, -12)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_27ics")
-centered = false
+[node name="CursorEntity" parent="." instance=ExtResource("3_ym8fr")]
 
 [node name="HandlerContainer" type="Node" parent="."]
 

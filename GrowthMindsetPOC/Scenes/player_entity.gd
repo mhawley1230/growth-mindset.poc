@@ -5,20 +5,14 @@ extends CharacterBody2D
 @onready var movement_handler = $HandlerContainer/MovementHandler as MovementHandler
 @onready var cursor_handler = $HandlerContainer/CursorHandler as CursorHandler
 @onready var action_handler = $HandlerContainer/ActionHandler as ActionHandler
-@onready var cursor: Sprite2D = get_node("Cursor")
+@onready var cursor = $CursorEntity as CursorEntity
 
 var can_plant = false
-
-#@onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
-#@onready var farm_stand = get_tree().root.get_node("SceneTree/GameLevel/PathSpawner")
-#@onready var sell_area = farm_stand.get_node("CustomerSellArea")
-
-#var plant = Plant.new()
-#var in_sell_area: bool = false
 
 func _ready():
 	SignalBus.emit_on_player_ready(self)
 	NodeExtensions.get_entity_container()
+	SignalBus.on_is_within_farm_plot.connect(on_is_within_farm_plot)
 
 
 func _physics_process(_delta):
@@ -28,14 +22,19 @@ func _physics_process(_delta):
 
 
 func _input(_event):
-	if input_handler.handle_action_1_input():
+	if input_handler.handle_action_1_input() && can_plant:
 		action_handler.create_plant(0, cursor.global_position)
-	if input_handler.handle_action_2_input():
+	if input_handler.handle_action_2_input() && can_plant:
 		action_handler.create_plant(1, cursor.global_position)
 	if input_handler.handle_action_3_input():
 		print("action 3 pressed")
 	if input_handler.handle_action_4_input():
 		print("action 4 pressed")
+
+
+func on_is_within_farm_plot(is_within: bool) -> bool:
+	can_plant = is_within
+	return can_plant
 
 
 #func trade(customer):

@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://56ebfdkcee17"]
+[gd_scene load_steps=8 format=3 uid="uid://56ebfdkcee17"]
 
 [ext_resource type="PackedScene" uid="uid://dkqq8ioytos1s" path="res://scenes/levels/base_level.tscn" id="4_o3fqc"]
-[ext_resource type="PackedScene" uid="uid://vuumnp328oiu" path="res://scenes/levels/boundary_container.tscn" id="4_sipyb"]
 [ext_resource type="PackedScene" uid="uid://cpeo3xlr2tb7g" path="res://scenes/managers/game_state_manager.tscn" id="6_a5ujg"]
 [ext_resource type="PackedScene" uid="uid://23nd1ysnsqpl" path="res://scenes/managers/player_manager.tscn" id="7_dp2t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy4b2"]
+size = Vector2(20, 12.5076)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sj8b"]
+size = Vector2(20, 20.4524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueesk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kufy4"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(-2, -1)
@@ -21,7 +30,41 @@ position = Vector2(-2, -1)
 [node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]
 position = Vector2(-1, 0)
 
-[node name="BoundaryContainer" parent="." instance=ExtResource("4_sipyb")]
+[node name="BoundaryContainer" type="Node2D" parent="." groups=["boundary_container"]]
+position = Vector2(2, -2)
+
+[node name="UpperBounds" type="StaticBody2D" parent="BoundaryContainer"]
+position = Vector2(842, -29)
+scale = Vector2(1.26707, 2.39854)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/UpperBounds"]
+scale = Vector2(74.2, 2.4)
+shape = SubResource("RectangleShape2D_xy4b2")
+
+[node name="LeftBounds" type="StaticBody2D" parent="BoundaryContainer"]
+position = Vector2(-48, 467)
+scale = Vector2(-1.70392, 41.0123)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/LeftBounds"]
+scale = Vector2(-2.78612, 1.22947)
+shape = SubResource("RectangleShape2D_7sj8b")
+
+[node name="LowerBounds" type="StaticBody2D" parent="BoundaryContainer"]
+position = Vector2(869, 957)
+scale = Vector2(-94.1467, -4.61012)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/LowerBounds"]
+position = Vector2(0.477977, 14.3163)
+shape = SubResource("RectangleShape2D_ueesk")
+
+[node name="RightBounds" type="StaticBody2D" parent="BoundaryContainer"]
+position = Vector2(1776, 459)
+scale = Vector2(1.35547, 1.24818)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/RightBounds"]
+position = Vector2(-82.6282, 0)
+scale = Vector2(-2.92665, 41.7112)
+shape = SubResource("RectangleShape2D_kufy4")
 
 [node name="PlantContainer" type="Node2D" parent="." groups=["plant_container"]]
 position = Vector2(-2, 0)

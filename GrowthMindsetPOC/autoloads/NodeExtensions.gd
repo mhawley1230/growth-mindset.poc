@@ -6,6 +6,11 @@ const LEVEL_CONTAINER: String = "level_container"
 const MANAGER_CONTAINER: String = "manager_container"
 const UI_CONTAINER: String = "ui_container"
 const PLANT_CONTAINER: String = "plant_container"
+const BOUNDARY_CONTAINER: String = "boundary_container"
+
+
+func get_boundary_container() -> Node:
+	return get_tree().get_first_node_in_group(BOUNDARY_CONTAINER)
 
 
 func get_plant_container() -> Node:

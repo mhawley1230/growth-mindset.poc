@@ -21,12 +21,13 @@ script = ExtResource("1_s7aja")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(48, 48)
 shape = SubResource("RectangleShape2D_iqsn3")
+metadata/_edit_group_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_y4lol")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 131073, 0, 131072, 131073, 0, 1, 131073, 0, 65537, 131073, 0, 2, 131073, 0, 65538, 65537, 0, 131074, 131073, 0, 131073, 131073, 0)
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 131073, 0, 131072, 131073, 0, 1, 131073, 0, 65537, 131073, 0, 131073, 131073, 0, 2, 131073, 0, 65538, 65537, 0, 131074, 131073, 0)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
