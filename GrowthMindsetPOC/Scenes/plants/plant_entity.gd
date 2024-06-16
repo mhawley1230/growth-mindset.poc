@@ -1,16 +1,33 @@
-class_name Plant
-extends Node
+class_name PlantEntity
+extends Area2D
 
 @onready var animation_player =  $AnimationPlayer as AnimationPlayer
 @onready var texture_progress_bar = $TextureProgressBar as TextureProgressBar
 
+var isHarvestable: bool = false
 
-func _ready():
-	animation_player.play("grow_anim")
 
-func _process(_delta):
-	if texture_progress_bar.value == 100:
-		texture_progress_bar.visible = false
+#func _ready():
+	#animation_player.play("plant_growing")
+#
+#func _process(_delta):
+	#if texture_progress_bar.value == 100:
+		#texture_progress_bar.visible = false
+		#isHarvestable = true
+
+
+func _on_area_exited(area):
+	if area is CursorEntity:
+		SignalBus.emit_on_area_contains_plant(false)
+
+
+func _on_area_entered(area):
+	if area is CursorEntity:
+		await get_tree().process_frame
+		SignalBus.emit_on_area_contains_plant(true)
+		
+
+
 	
 #@onready var cur = get_tree().root.get_node("SceneTree/GameLevel/Cursor")
 #

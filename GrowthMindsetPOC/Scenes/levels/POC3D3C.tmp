@@ -17,6 +17,7 @@ size = Vector2(24.7274, 20)
 size = Vector2(104, 1432)
 
 [node name="Main" type="Node2D"]
+position = Vector2(-2, -1)
 
 [node name="ManagerContainer" type="Node" parent="." groups=["manager_container"]]
 
@@ -35,31 +36,33 @@ position = Vector2(-1, 0)
 position = Vector2(2, -2)
 
 [node name="UpperBounds" type="StaticBody2D" parent="BoundaryContainer"]
-position = Vector2(1136, -30)
+position = Vector2(1136, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/UpperBounds"]
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_xy4b2")
 
 [node name="LeftBounds" type="StaticBody2D" parent="BoundaryContainer"]
 position = Vector2(-48, 467)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/LeftBounds"]
-position = Vector2(-10, 207)
+position = Vector2(8, 184)
 shape = SubResource("RectangleShape2D_7sj8b")
 
 [node name="LowerBounds" type="StaticBody2D" parent="BoundaryContainer"]
-position = Vector2(1110, 1346)
+position = Vector2(1112, 1299)
 scale = Vector2(-94.1467, -4.61012)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/LowerBounds"]
-position = Vector2(3.82382, 128.413)
+position = Vector2(-0.297408, -6.94122)
 shape = SubResource("RectangleShape2D_ueesk")
 
 [node name="RightBounds" type="StaticBody2D" parent="BoundaryContainer"]
 position = Vector2(2320, 651)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/RightBounds"]
-position = Vector2(-874, -281)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_kufy4")
 
 [node name="PlantContainer" type="Node2D" parent="." groups=["plant_container"]]
+position = Vector2(-2, 0)

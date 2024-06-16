@@ -7,32 +7,32 @@
 [ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="5_31lkk"]
 [ext_resource type="PackedScene" uid="uid://cwnljinkuvs12" path="res://scenes/levels/action_handler.tscn" id="7_kk0fe"]
 [ext_resource type="PackedScene" uid="uid://bdudl17tjdjk" path="res://scenes/handlers/Player/cursor_handler.tscn" id="7_nadg3"]
-[ext_resource type="PackedScene" uid="uid://bumy4d5ivp0qy" path="res://scenes/plants/potato.tscn" id="8_kvxgl"]
-[ext_resource type="PackedScene" uid="uid://b023ov5t23iv0" path="res://scenes/plants/tomato.tscn" id="9_mkgdv"]
+[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/plants/tomato.tscn" id="9_mkgdv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
+atlas = ExtResource("2_vq6j4")
+region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_024ml"]
-size = Vector2(11, 12)
+size = Vector2(29, 31)
 
 [node name="PlayerEntity" type="CharacterBody2D"]
-scale = Vector2(2, 2)
 script = ExtResource("1_lm50g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_vq6j4")
-hframes = 4
-vframes = 4
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_gr6va")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_024ml")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -1.52588e-05)
-limit_left = 60
+limit_left = 0
 limit_top = 0
-limit_right = 1600
-limit_bottom = 800
+limit_right = 2048
+limit_bottom = 1024
 drag_left_margin = 0.25
 drag_top_margin = 0.25
 drag_right_margin = 0.25
@@ -47,7 +47,7 @@ drag_bottom_margin = 0.25
 [node name="MovementHandler" parent="HandlerContainer" instance=ExtResource("5_31lkk")]
 movement_speed = 200
 
-[node name="CursorHandler" parent="HandlerContainer" instance=ExtResource("7_nadg3")]
-
 [node name="ActionHandler" parent="HandlerContainer" instance=ExtResource("7_kk0fe")]
-available_plants = Array[PackedScene]([ExtResource("8_kvxgl"), ExtResource("9_mkgdv")])
+available_plants = Array[PackedScene]([ExtResource("9_mkgdv")])
+
+[node name="CursorHandler" parent="HandlerContainer" instance=ExtResource("7_nadg3")]

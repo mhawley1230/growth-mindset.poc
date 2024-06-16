@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dl7wei6o2u2k0" path="res://assets/cursor.png" id="1_x5amq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rdvr"]
-size = Vector2(6.5, 7)
+size = Vector2(32.032, 32.032)
 
 [node name="CursorEntity" type="Area2D"]
-position = Vector2(8, 8)
+position = Vector2(16, 16)
+scale = Vector2(0.999, 0.999)
 script = ExtResource("1_gujeb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,4 +17,5 @@ z_as_relative = false
 texture = ExtResource("1_x5amq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.99, 0.99)
 shape = SubResource("RectangleShape2D_6rdvr")

@@ -29,8 +29,8 @@ func _ready():
 	else:
 		pass
 	
-	customer_spawn_timer.timeout.connect(on_customer_spawn)
-	customer_spawn_timer.start()
+	#customer_spawn_timer.timeout.connect(on_customer_spawn)
+	#customer_spawn_timer.start()
 
 
 func spawn_player() -> void:
@@ -44,24 +44,27 @@ func spawn_player() -> void:
 	new_player_entity.position = player_spawn_point.position
 
 
-func on_customer_spawn() -> void:
-	if enemy_count >= max_customers_spawned:
-		return
-	
-	var new_customer: CustomerEntity = customer_entity_scene.instantiate()
-	var entity_container: Node2D = NodeExtensions.get_entity_container()
-	
-	if entity_container == null:
-		return
-	
-	spawn_points.shuffle()
-	
-	var chosen_spawn_point: Marker2D = spawn_points.pick_random()
-	
-	entity_container.add_child(new_customer)
-	new_customer.position = chosen_spawn_point.position
-	
-	customer_spawn_timer.start(NodeExtensions.get_random_time(enemy_spawn_timer_min \
-	  ,enemy_spawn_timer_max))
-	
-	enemy_count += 1
+#func on_customer_spawn() -> void:
+	#if enemy_count >= max_customers_spawned:
+		#return
+	#
+	#var new_customer: CustomerEntity = customer_entity_scene.instantiate()
+	#var entity_container: Node2D = NodeExtensions.get_entity_container()
+	#
+	#if entity_container == null:
+		#return
+	#
+	#spawn_points.shuffle()
+	#
+	##var chosen_spawn_point: Marker2D = spawn_points.pick_random()
+	#
+	#if entity_container == null:
+		#return
+	#
+	#entity_container.add_child(new_customer)
+#a	new_customer.position = chosen_spawn_point.position
+	#
+	#customer_spawn_timer.start(NodeExtensions.get_random_time(enemy_spawn_timer_min \
+	  #,enemy_spawn_timer_max))
+	#
+	#enemy_count += 1

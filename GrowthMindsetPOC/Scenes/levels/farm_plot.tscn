@@ -16,6 +16,7 @@ texture = ExtResource("1_8y6eq")
 sources/1 = SubResource("TileSetAtlasSource_x14vh")
 
 [node name="FarmPlot" type="Area2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_s7aja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,7 +27,7 @@ shape = SubResource("RectangleShape2D_iqsn3")
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_y4lol")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 131073, 0, 131072, 131073, 0, 1, 131073, 0, 65537, 131073, 0, 2, 131073, 0, 65538, 65537, 0, 131074, 131073, 0, 131073, 131073, 0)
+layer_0/tile_data = PackedInt32Array(0, 65537, 1610612736, 1, 1, 1610612736, 2, 131073, 1610612736, 65538, 65537, 1610612736, 65537, 131073, 1610612736, 65536, 1, 1610612736, 131072, 1, 1610612736, 131073, 1, 1610612736, 131074, 131073, 1610612736)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

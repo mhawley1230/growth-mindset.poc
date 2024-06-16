@@ -4,10 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b0wyg35r54jsh" path="res://scenes/player_entity.tscn" id="2_j2iyn"]
 [ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://scenes/mobs/frog_entity.tscn" id="2_vgg52"]
 
-[node name="EntitySpawnManager" type="Node" node_paths=PackedStringArray("spawn_points")]
+[node name="EntitySpawnManager" type="Node"]
 script = ExtResource("1_c107t")
 player_packed_scene = ExtResource("2_j2iyn")
-spawn_points = [null]
 customer_entity_scene = ExtResource("2_vgg52")
 
 [node name="CustomerSpawnTimer" type="Timer" parent="."]
