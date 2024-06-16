@@ -7,25 +7,22 @@ extends Area2D
 var isHarvestable: bool = false
 
 
-#func _ready():
-	#animation_player.play("plant_growing")
-#
-#func _process(_delta):
-	#if texture_progress_bar.value == 100:
-		#texture_progress_bar.visible = false
-		#isHarvestable = true
+func _ready():
+	animation_player.play("plant_growing")
+
+func _process(_delta):
+	
+	if texture_progress_bar == null:
+		return
+	elif texture_progress_bar.value == 100:
+		texture_progress_bar.visible = false
+		isHarvestable = true
+		texture_progress_bar.queue_free()
 
 
-func _on_area_exited(area):
-	if area is CursorEntity:
-		SignalBus.emit_on_area_contains_plant(false)
-
-
-func _on_area_entered(area):
-	if area is CursorEntity:
-		await get_tree().process_frame
-		SignalBus.emit_on_area_contains_plant(true)
-		
+#func _on_area_exited(area):
+	#if area is CursorEntity:
+		#SignalBus.emit_on_area_contains_plant(false)
 
 
 	

@@ -3,34 +3,26 @@ extends CharacterBody2D
 
 @onready var input_handler = $HandlerContainer/InputHandler as InputHandler
 @onready var movement_handler = $HandlerContainer/MovementHandler as MovementHandler
-@onready var cursor_handler = $HandlerContainer/CursorHandler as CursorHandler
+@onready var cursor_handler = $CursorEntity/CursorHandler as CursorHandler
 @onready var action_handler = $HandlerContainer/ActionHandler as ActionHandler
 @onready var cursor = $CursorEntity as CursorEntity
-
-var within_plot: bool = false
-var contains_plant: bool = false
-var can_plant: bool = false
 
 func _ready():
 	SignalBus.emit_on_player_ready(self)
 	NodeExtensions.get_entity_container()
-	SignalBus.on_is_within_farm_plot.connect(is_within_farm_plot)
-	SignalBus.on_area_contains_plant.connect(does_contain_plant)
+	#SignalBus.on_is_within_farm_plot.connect(is_within_farm_plot)
+	#SignalBus.on_area_contains_plant.connect(does_contain_plant)
 
 
 func _physics_process(_delta):
 	movement_handler.handle_movement(self, input_handler.handle_movement())
 	cursor_handler.handle_cursor_position(self, input_handler.handle_movement(), cursor)
 	move_and_slide()
-	
-	if within_plot && !contains_plant:
-		can_plant = true
-	can_plant = false
-	print("play can plant: " + str(can_plant))
 
 
 func _input(_event):
-	if input_handler.handle_action_1_input() && can_plant:
+	if input_handler.handle_action_1_input() && \
+		cursor_handler.planting_enabled(cursor_handler.detect_overlapped_areas(cursor)):
 		action_handler.create_plant(0, cursor.global_position)
 	#if input_handler.handle_action_2_input() && can_plant:
 		#action_handler.create_plant(1, cursor.global_position)
@@ -40,11 +32,11 @@ func _input(_event):
 		print("action 4 pressed")
 
 
-func is_within_farm_plot(is_within: bool) -> void:
-	within_plot = is_within
+#func is_within_farm_plot(is_within: bool) -> void:
+	#within_plot = is_within
 
-func does_contain_plant(does_contain: bool) -> void:
-	contains_plant = does_contain
+#func does_contain_plant(does_contain: bool) -> void:
+	#contains_plant = does_contain
 
 
 
