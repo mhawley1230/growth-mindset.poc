@@ -17,8 +17,10 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-NodeExtensions="*res://Autoloads/NodeExtensions.gd"
+NodeExtensions="*res://autoloads/NodeExtensions.gd"
 SignalBus="*res://autoloads/SignalBus.gd"
+GlobalStatsContainer="*res://autoloads/GlobalStatsContainer.gd"
+GlobalVars="*res://autoloads/GlobalVars.gd"
 
 [display]
 

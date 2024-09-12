@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkqq8ioytos1s"]
 
-[ext_resource type="Texture2D" uid="uid://hpvkrmrslja7" path="res://assets/Grass.png" id="1_pf8y3"]
+[ext_resource type="Texture2D" uid="uid://hpvkrmrslja7" path="res://assets/Grass.png" id="1_rckd2"]
 [ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://scenes/levels/farm_plot.tscn" id="2_oyu7q"]
-[ext_resource type="Texture2D" uid="uid://163np3w522ow" path="res://assets/farmstand.png" id="3_ollrv"]
+[ext_resource type="Texture2D" uid="uid://163np3w522ow" path="res://assets/farmstand.png" id="3_8iri2"]
 [ext_resource type="PackedScene" uid="uid://blimsiu84ruko" path="res://scenes/managers/entity_spawn_manager.tscn" id="4_weprp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ntapu"]
-texture = ExtResource("1_pf8y3")
+texture = ExtResource("1_rckd2")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -89,7 +89,7 @@ _data = {
 point_count = 7
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpajm"]
-texture = ExtResource("1_pf8y3")
+texture = ExtResource("1_rckd2")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -312,7 +312,7 @@ scale = Vector2(1, 1)
 [node name="FarmStand" type="Sprite2D" parent="FarmHolder"]
 position = Vector2(976, 264)
 scale = Vector2(2, 2.148)
-texture = ExtResource("3_ollrv")
+texture = ExtResource("3_8iri2")
 
 [node name="EntitySpawnManager" parent="." node_paths=PackedStringArray("player_spawn_point") instance=ExtResource("4_weprp")]
 player_spawn_point = NodePath("PlayerSpawnMarker")

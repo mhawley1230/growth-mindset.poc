@@ -1,4 +1,4 @@
-class_name EntitySpawnManager
+class_name EntitySpawnManager 
 extends Node
 
 #region Player Region

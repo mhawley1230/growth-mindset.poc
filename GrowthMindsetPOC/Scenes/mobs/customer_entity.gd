@@ -1,6 +1,5 @@
-extends CharacterBody2D
-
 class_name CustomerEntity
+extends CharacterBody2D
 
 
 #@onready var movement_handler = $MovementHandler as MovementHandler

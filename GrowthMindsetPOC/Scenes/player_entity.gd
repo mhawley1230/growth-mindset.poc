@@ -1,29 +1,31 @@
 class_name PlayerEntity
 extends CharacterBody2D
 
+# Player handlers
 @onready var input_handler = $HandlerContainer/InputHandler as InputHandler
 @onready var movement_handler = $HandlerContainer/MovementHandler as MovementHandler
-@onready var cursor_handler = $CursorEntity/CursorHandler as CursorHandler
 @onready var action_handler = $HandlerContainer/ActionHandler as ActionHandler
+
+# Cursor entity and handlers
 @onready var cursor = $CursorEntity as CursorEntity
+@onready var cursor_movement_handler = $CursorEntity/HandlerContainer/CursorMovementHandler as CursorMovementHandler
+
 
 func _ready():
 	SignalBus.emit_on_player_ready(self)
 	NodeExtensions.get_entity_container()
-	#SignalBus.on_is_within_farm_plot.connect(is_within_farm_plot)
-	#SignalBus.on_area_contains_plant.connect(does_contain_plant)
 
 
 func _physics_process(_delta):
 	movement_handler.handle_movement(self, input_handler.handle_movement())
-	cursor_handler.handle_cursor_position(self, input_handler.handle_movement(), cursor)
+	cursor_movement_handler.handle_cursor_position(self, input_handler.handle_movement(), cursor)
 	move_and_slide()
 
 
 func _input(_event):
-	if input_handler.handle_action_1_input() && \
-		cursor_handler.planting_enabled(cursor_handler.detect_overlapped_areas(cursor)):
-		action_handler.create_plant(0, cursor.global_position)
+	#if input_handler.handle_action_1_input() && \
+		#cursor_action_handler.planting_enabled(cursor_action_handler.detect_overlapped_areas(cursor)):
+		#action_handler.create_plant(0, cursor.global_position)
 	#if input_handler.handle_action_2_input() && can_plant:
 		#action_handler.create_plant(1, cursor.global_position)
 	if input_handler.handle_action_3_input():
@@ -37,7 +39,6 @@ func _input(_event):
 
 #func does_contain_plant(does_contain: bool) -> void:
 	#contains_plant = does_contain
-
 
 
 #func trade(customer):
