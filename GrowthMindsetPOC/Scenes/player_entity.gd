@@ -18,27 +18,22 @@ func _ready():
 
 func _physics_process(_delta):
 	movement_handler.handle_movement(self, input_handler.handle_movement())
-	cursor_movement_handler.handle_cursor_position(self, input_handler.handle_movement(), cursor)
 	move_and_slide()
+	cursor_movement_handler.handle_cursor_position(self, cursor)
 
 
 func _input(_event):
-	#if input_handler.handle_action_1_input() && \
-		#cursor_action_handler.planting_enabled(cursor_action_handler.detect_overlapped_areas(cursor)):
-		#action_handler.create_plant(0, cursor.global_position)
-	#if input_handler.handle_action_2_input() && can_plant:
-		#action_handler.create_plant(1, cursor.global_position)
-	if input_handler.handle_action_3_input():
-		print("action 3 pressed")
-	if input_handler.handle_action_4_input():
-		print("action 4 pressed")
+	if input_handler.handle_action_1_input() && \
+		action_handler.is_planting_enabled(action_handler.detect_overlapped_areas(cursor)):
+		action_handler.create_plant(0, cursor.global_position)
 
-
-#func is_within_farm_plot(is_within: bool) -> void:
-	#within_plot = is_within
-
-#func does_contain_plant(does_contain: bool) -> void:
-	#contains_plant = does_contain
+	if input_handler.handle_action_2_input():
+		action_handler.harvest_plant(action_handler.detect_overlapped_areas(cursor))
+		
+	#if input_handler.handle_action_3_input():
+		#print("action 3 pressed")
+	#if input_handler.handle_action_4_input():
+		#print("action 4 pressed")
 
 
 #func trade(customer):
@@ -55,12 +50,3 @@ func _input(_event):
 	#else:
 		## TODO: audio/visual indicator why trade failed
 		#print(str(product) + ": item not found in inventory.")
-		
-
-
-#func _on_sell_area_body_entered(_body):
-	#in_sell_area = true
-#
-#
-#func _on_sell_area_body_exited(_body):
-	#in_sell_area = false

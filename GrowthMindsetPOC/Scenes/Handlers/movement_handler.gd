@@ -1,7 +1,9 @@
 class_name MovementHandler
 extends Node
 
+
 @export var movement_speed: int = 300
+
 
 func handle_movement(character_body: CharacterBody2D, input_dir: Vector2) -> void:
 	handle_deceleration(character_body)
