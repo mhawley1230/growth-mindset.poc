@@ -1,5 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://56ebfdkcee17"]
+[gd_scene load_steps=10 format=3 uid="uid://56ebfdkcee17"]
 
+[ext_resource type="PackedScene" uid="uid://cn4837c5caikg" path="res://scenes/managers/cursor_manager.tscn" id="3_4wtrn"]
+[ext_resource type="PackedScene" uid="uid://da1krdnq5bubx" path="res://scenes/managers/customer_manager.tscn" id="4_g8yox"]
 [ext_resource type="PackedScene" uid="uid://dkqq8ioytos1s" path="res://scenes/levels/base_level.tscn" id="4_o3fqc"]
 [ext_resource type="PackedScene" uid="uid://cpeo3xlr2tb7g" path="res://scenes/managers/game_state_manager.tscn" id="6_a5ujg"]
 [ext_resource type="PackedScene" uid="uid://23nd1ysnsqpl" path="res://scenes/managers/player_manager.tscn" id="7_dp2t4"]
@@ -24,12 +26,13 @@ size = Vector2(104, 1432)
 
 [node name="PlayerManager" parent="ManagerContainer" instance=ExtResource("7_dp2t4")]
 
+[node name="CursorManager" parent="ManagerContainer" instance=ExtResource("3_4wtrn")]
+
+[node name="CustomerManager" parent="ManagerContainer" instance=ExtResource("4_g8yox")]
+
 [node name="LevelContainer" type="Node2D" parent="." groups=["level_container"]]
 
 [node name="BaseLevel" parent="LevelContainer" instance=ExtResource("4_o3fqc")]
-
-[node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]
-position = Vector2(-1, 0)
 
 [node name="BoundaryContainer" type="Node2D" parent="." groups=["boundary_container"]]
 position = Vector2(2, -2)
@@ -60,4 +63,9 @@ position = Vector2(1439, 347)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/RightBounds"]
 shape = SubResource("RectangleShape2D_kufy4")
 
-[node name="PlantContainer" type="Node2D" parent="." groups=["plant_container"]]
+[node name="PlayerEntityContainer" type="Node2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="PlantEntityContainer" type="Node2D" parent="."]
+
+[node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]

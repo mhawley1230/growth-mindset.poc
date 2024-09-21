@@ -11,26 +11,25 @@ var player_spawned: bool = false
 
 #region Customer Region
 @export_category("Customer")
-@export var enemy_spawn_timer_min: float = 0.1
-@export var enemy_spawn_timer_max: float = 4.0
+#@export var enemy_spawn_timer_min: float = 0.1
+#@export var enemy_spawn_timer_max: float = 4.0
 @export var spawn_points: Array[Marker2D] = []
 @export var customer_entity_scene: PackedScene = null
-@export var max_customers_spawned: int = 3
+#@export var max_customers_spawned: int = 3
 
-@onready var customer_spawn_timer = $CustomerSpawnTimer as Timer
+#@onready var customer_spawn_timer = $CustomerSpawnTimer as Timer
 
-var enemy_count: int = 0
+#var customer_count: int = 0
 #endregion
 
 
 func _ready():
 	if player_spawned == false:
 		spawn_player()
-	else:
+	else:	
 		pass
 	
-	#customer_spawn_timer.timeout.connect(on_customer_spawn)
-	#customer_spawn_timer.start()
+	spawn_customer()
 
 
 func spawn_player() -> void:
@@ -44,27 +43,25 @@ func spawn_player() -> void:
 	new_player_entity.position = player_spawn_point.position
 
 
-#func on_customer_spawn() -> void:
-	#if enemy_count >= max_customers_spawned:
+func spawn_customer() -> void:
+	#if customer_count >= max_customers_spawned:
 		#return
+	
+	var new_customer_entity: CustomerEntity = customer_entity_scene.instantiate()
+	var entity_container: Node2D = NodeExtensions.get_entity_container()
 	#
-	#var new_customer: CustomerEntity = customer_entity_scene.instantiate()
-	#var entity_container: Node2D = NodeExtensions.get_entity_container()
+	if entity_container == null:
+		return
 	#
-	#if entity_container == null:
-		#return
-	#
-	#spawn_points.shuffle()
-	#
-	##var chosen_spawn_point: Marker2D = spawn_points.pick_random()
-	#
-	#if entity_container == null:
-		#return
-	#
-	#entity_container.add_child(new_customer)
-#a	new_customer.position = chosen_spawn_point.position
-	#
+	entity_container.add_child(new_customer_entity)
+	new_customer_entity.position = spawn_points[0].position
+	
+	
 	#customer_spawn_timer.start(NodeExtensions.get_random_time(enemy_spawn_timer_min \
 	  #,enemy_spawn_timer_max))
 	#
-	#enemy_count += 1
+	#customer_count += 1
+
+#
+#func _on_customer_spawn_timer_timeout():
+	#spawn_customer()

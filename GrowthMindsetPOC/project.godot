@@ -24,6 +24,7 @@ GlobalVars="*res://autoloads/GlobalVars.gd"
 
 [display]
 
+window/size/viewport_width=1200
 window/stretch/scale_mode="integer"
 
 [dotnet]

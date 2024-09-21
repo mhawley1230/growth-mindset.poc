@@ -8,18 +8,17 @@ extends CharacterBody2D
 
 # Cursor entity and handlers
 @onready var cursor = $CursorEntity as CursorEntity
-@onready var cursor_movement_handler = $CursorEntity/HandlerContainer/CursorMovementHandler as CursorMovementHandler
+@onready var cursor_position_handler = $CursorEntity/HandlerContainer/CursorPositionHandler as CursorPositionHandler
 
 
 func _ready():
-	SignalBus.emit_on_player_ready(self)
 	NodeExtensions.get_entity_container()
 
 
 func _physics_process(_delta):
 	movement_handler.handle_movement(self, input_handler.handle_movement())
 	move_and_slide()
-	cursor_movement_handler.handle_cursor_position(self, cursor)
+	cursor_position_handler.handle_cursor_position(self, cursor)
 
 
 func _input(_event):

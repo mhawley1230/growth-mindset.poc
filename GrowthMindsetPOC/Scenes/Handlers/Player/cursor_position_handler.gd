@@ -1,4 +1,4 @@
-class_name CursorMovementHandler
+class_name CursorPositionHandler
 extends Node
 
 @onready var tile_size = GlobalVars.TILE_SIZE

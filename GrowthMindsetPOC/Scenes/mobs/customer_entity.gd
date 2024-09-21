@@ -1,8 +1,32 @@
 class_name CustomerEntity
-extends CharacterBody2D
+extends Node2D
 
 
-#@onready var movement_handler = $MovementHandler as MovementHandler
+@onready var path_follow: PathFollow2D = $Path2D/PathFollow2D as PathFollow2D
+@onready var movement_handler: MovementHandler = $HandlerContainer/MovementHandler as MovementHandler
+@onready var customer_sprite: Sprite2D = $Path2D/PathFollow2D/CharacterBody2D/Sprite2D as Sprite2D
+@onready var customer_order: CustomerOrder = $CustomerOrderContainer/CustomerOrder as CustomerOrder
+
+
+func _physics_process(delta: float) -> void:
+	path_follow.set_progress(path_follow.get_progress() + movement_handler.movement_speed * delta)
+	
+	flip_customer_sprite()
+	despawn_customer()
+
+
+func flip_customer_sprite():
+	if path_follow.get_progress_ratio() > 0.5:
+		customer_sprite.flip_h = true
+
+
+func despawn_customer():
+	if path_follow.get_progress_ratio() >= 1.0:
+		SignalBus.emit_on_customer_despawn(self)
+		queue_free()
+
+
+
 #@onready var mob_path = get_parent()
 #@onready var progress: float
 #@onready var available_plants

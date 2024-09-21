@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/managers/entity_spawn_manager.gd" id="1_c107t"]
 [ext_resource type="PackedScene" uid="uid://b0wyg35r54jsh" path="res://scenes/player_entity.tscn" id="2_j2iyn"]
-[ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://scenes/mobs/frog_entity.tscn" id="2_vgg52"]
+[ext_resource type="PackedScene" uid="uid://cvpha3kog16rg" path="res://scenes/mobs/frog_entity.tscn" id="2_vgg52"]
 
 [node name="EntitySpawnManager" type="Node"]
 script = ExtResource("1_c107t")
@@ -12,7 +12,5 @@ customer_entity_scene = ExtResource("2_vgg52")
 [node name="CustomerSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[node name="CustomerSpawnPointContainer" type="Node" parent="."]
 
 [connection signal="timeout" from="CustomerSpawnTimer" to="." method="_on_customer_spawn_timer_timeout"]
