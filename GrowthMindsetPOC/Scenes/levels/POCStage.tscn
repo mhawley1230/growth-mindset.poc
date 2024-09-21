@@ -63,9 +63,4 @@ position = Vector2(1439, 347)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryContainer/RightBounds"]
 shape = SubResource("RectangleShape2D_kufy4")
 
-[node name="PlayerEntityContainer" type="Node2D" parent="."]
-position = Vector2(-1, 0)
-
-[node name="PlantEntityContainer" type="Node2D" parent="."]
-
 [node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]
