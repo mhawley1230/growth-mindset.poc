@@ -11,6 +11,8 @@ extends Node2D
 func _physics_process(delta: float) -> void:
 	path_follow.set_progress(path_follow.get_progress() + movement_handler.movement_speed * delta)
 	
+	
+	
 	flip_customer_sprite()
 	despawn_customer()
 
