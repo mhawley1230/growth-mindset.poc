@@ -26,15 +26,15 @@ position = Vector2(93, 266)
 rotates = false
 loop = false
 
-[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+[node name="CustomerBody" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CustomerBody"]
 z_index = 1
 position = Vector2(0, -4)
 texture = ExtResource("2_rfxew")
 hframes = 11
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CustomerBody"]
 position = Vector2(-0.37999, 0)
 scale = Vector2(1.04, 1.08)
 shape = SubResource("RectangleShape2D_vrnta")
@@ -55,5 +55,3 @@ one_shot = true
 script = ExtResource("4_4oxfj")
 
 [node name="Sprite2D" type="Sprite2D" parent="CustomerOrderContainer/CustomerOrder"]
-
-[connection signal="area_entered" from="Path2D/PathFollow2D/Area2D" to="." method="_on_area_2d_area_entered"]

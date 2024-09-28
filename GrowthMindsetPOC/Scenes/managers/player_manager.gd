@@ -7,5 +7,4 @@ func _ready():
 
 
 func on_player_ready(_player: PlayerEntity) -> void:
-	## After player loads, do something
 	pass

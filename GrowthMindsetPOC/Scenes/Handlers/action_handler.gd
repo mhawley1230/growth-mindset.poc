@@ -33,5 +33,5 @@ func harvest_plant(areas: Array[Area2D]) -> void:
 	
 	for area in areas:
 		if area is PlantEntity && area.isHarvestable:
-			SignalBus.emit_on_plant_collected(area.plant_name)
+			SignalBus.emit_on_product_collected(area.plant_name)
 			area.free()

@@ -4,9 +4,11 @@ extends Node2D
 
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D as PathFollow2D
 @onready var movement_handler: MovementHandler = $HandlerContainer/MovementHandler as MovementHandler
-@onready var customer_sprite: Sprite2D = $Path2D/PathFollow2D/Area2D/Sprite2D as Sprite2D
+@onready var customer_sprite: Sprite2D = $Path2D/PathFollow2D/CustomerBody/Sprite2D as Sprite2D
 @onready var customer_order: CustomerOrder = $CustomerOrderContainer/CustomerOrder as CustomerOrder
-@onready var area: Area2D = $Path2D/PathFollow2D/Area2D as Area2D
+
+func _ready() -> void:
+	SignalBus.on_customer_wait_area_entered.connect(on_customer_wait_area_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -17,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	
 	if path_follow.get_progress_ratio() >= 1.0:
 		despawn_customer()
- 
+
 
 func flip():
 	customer_sprite.flip_h = true
@@ -28,10 +30,17 @@ func despawn_customer():
 	queue_free()
 
 
-func _on_area_2d_area_entered(area):
-	if area is WaitArea:
-		movement_handler.movement_speed = 0
-		#await SignalBus.on_trade_completed()
+func on_customer_wait_area_entered():
+	movement_handler.movement_speed = 0
+	await get_tree().create_timer(3.0).timeout
+	#await SignalBus.on_trade_completed()
+	movement_handler.movement_speed = 300
+	
+	#if area2d.get_overlapping_areas():
+		#print(area2d.get_overlapping_areas())
+
+	#if area.get_overlapping_areas()
+		
 
 #@onready var mob_path = get_parent()
 #@onready var progress: float
