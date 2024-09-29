@@ -3,6 +3,10 @@ extends Node
 
 @onready var tile_size = GlobalVars.TILE_SIZE
 
+## TODO: Refactor this. How could this function better?
+##    Player character facing direction vs static character w/ cursor
+##    pointing at last direction moved
+
 func handle_cursor_position(character_body: CharacterBody2D, cursor: CursorEntity) -> void:
 	
 	# Set cursor position relative to character, snapping to (32,32) tile grid

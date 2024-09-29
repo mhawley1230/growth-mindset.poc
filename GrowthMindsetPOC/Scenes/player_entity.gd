@@ -11,17 +11,17 @@ extends CharacterBody2D
 @onready var cursor_position_handler = $CursorEntity/HandlerContainer/CursorPositionHandler as CursorPositionHandler
 
 
-func _ready():
+func _ready() -> void:
 	NodeExtensions.get_entity_container()
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	movement_handler.handle_movement(self, input_handler.handle_movement())
 	move_and_slide()
 	cursor_position_handler.handle_cursor_position(self, cursor)
 
 
-func _input(_event):
+func _input(_event) -> void:
 	if input_handler.handle_action_1_input() && \
 		action_handler.is_planting_enabled(action_handler.detect_overlapped_areas(cursor)):
 		action_handler.create_plant(0, cursor.global_position)
@@ -33,19 +33,3 @@ func _input(_event):
 		#print("action 3 pressed")
 	#if input_handler.handle_action_4_input():
 		#print("action 4 pressed")
-
-
-#func trade(customer):
-	#var order = Global.orders_dict[customer]
-	#var product = order["product"]
-	#var num_ordered = order["number"]
-	#var inventory = plant.get_plants_dict()[product]["current"]
-		#
-		#
-	#if plant.get_plants_dict().has(product) and inventory["plants_on_hand"] >= order["number"]:
-		#inventory["plants_on_hand"] -= num_ordered
-		#inventory["seeds"] += 2
-		#order["order_completed"] = true
-	#else:
-		## TODO: audio/visual indicator why trade failed
-		#print(str(product) + ": item not found in inventory.")

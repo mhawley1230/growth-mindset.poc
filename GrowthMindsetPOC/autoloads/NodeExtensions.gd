@@ -1,6 +1,5 @@
 extends Node
 
-
 const ENTITY_CONTAINER : String = "entity_container"
 const LEVEL_CONTAINER: String = "level_container"
 const MANAGER_CONTAINER: String = "manager_container"

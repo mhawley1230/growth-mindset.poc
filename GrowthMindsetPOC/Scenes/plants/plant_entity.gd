@@ -9,6 +9,9 @@ var isHarvestable: bool = false
 var num_created: int = 0
 var plant_name: String = ""
 
+## TODO: StateManager for growing states, 3-4 total states, 2-3 player/automated 
+##     actions to advance state w/ animations
+
 
 func _ready():
 	plant_name = self.name.split("Entity")[0]
