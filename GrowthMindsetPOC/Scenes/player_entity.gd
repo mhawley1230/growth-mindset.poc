@@ -18,7 +18,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	movement_handler.handle_movement(self, input_handler.handle_movement())
 	move_and_slide()
-	cursor_position_handler.handle_cursor_position(self, cursor)
+	cursor_position_handler.handle_cursor_position(self, cursor, input_handler.handle_movement())
 
 
 func _input(_event) -> void:

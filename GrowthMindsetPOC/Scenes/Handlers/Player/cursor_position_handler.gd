@@ -7,10 +7,8 @@ extends Node
 ##    Player character facing direction vs static character w/ cursor
 ##    pointing at last direction moved
 
-func handle_cursor_position(character_body: CharacterBody2D, cursor: CursorEntity) -> void:
+func handle_cursor_position(character_body: CharacterBody2D, cursor: CursorEntity, input_dir: Vector2) -> void:
 	
-	# Set cursor position relative to character, snapping to (32,32) tile grid
-	# as player moves freely
-	var grid_pos = Vector2i(int(character_body.global_position.x) / tile_size.x, int(character_body.global_position.y) / tile_size.y)
-	cursor.global_position = Vector2i(snappedi(grid_pos.x * tile_size.x, tile_size.x), snappedi(grid_pos.y * tile_size.y, tile_size.y))
-	pass
+	var cursor_direction: Vector2 = input_dir * (tile_size / 2)
+	if input_dir != Vector2.ZERO:
+		cursor.global_position = snapped(character_body.global_position + cursor_direction, tile_size)
