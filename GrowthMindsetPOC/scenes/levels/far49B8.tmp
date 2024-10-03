@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://but238i4h4316"]
+
+[ext_resource type="Texture2D" uid="uid://csr8kriuv850q" path="res://assets/farmplot.png" id="1_8y6eq"]
+[ext_resource type="Script" path="res://scenes/levels/farm_plot.gd" id="1_s7aja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsn3"]
+size = Vector2(95.5625, 95.9375)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x14vh"]
+texture = ExtResource("1_8y6eq")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_y4lol"]
+sources/1 = SubResource("TileSetAtlasSource_x14vh")
+
+[node name="FarmPlot" type="Area2D"]
+script = ExtResource("1_s7aja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 48)
+shape = SubResource("RectangleShape2D_iqsn3")
+metadata/_edit_group_ = true
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_y4lol")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 131073, 0, 131072, 131073, 0, 1, 131073, 0, 65537, 131073, 0, 131073, 131073, 0, 2, 131073, 0, 65538, 65537, 0, 131074, 131073, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

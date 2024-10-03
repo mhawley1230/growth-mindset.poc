@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvpha3kog16rg"]
+
+[ext_resource type="Script" path="res://scenes/mobs/customer_entity.gd" id="1_fwoo5"]
+[ext_resource type="Texture2D" uid="uid://de4ubn2wqdx17" path="res://assets/Idle (32x32).png" id="2_rfxew"]
+[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="3_lxon7"]
+[ext_resource type="Script" path="res://scenes/mobs/customer_order.gd" id="4_4oxfj"]
+
+[sub_resource type="Curve2D" id="Curve2D_1i7p1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 93, 266, 0, 0, 0, 0, 867.743, 265.514, 0, 0, 0, 0, 868.743, 298.514, 0, 0, 0, 0, 91, 300)
+}
+point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrnta"]
+size = Vector2(24.2692, 25)
+
+[node name="FrogEntity" type="Node2D"]
+script = ExtResource("1_fwoo5")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-83.7434, -265.514)
+curve = SubResource("Curve2D_1i7p1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(93, 266)
+rotates = false
+loop = false
+
+[node name="CustomerBody" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CustomerBody"]
+z_index = 1
+position = Vector2(0, -4)
+texture = ExtResource("2_rfxew")
+hframes = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CustomerBody"]
+position = Vector2(-0.37999, 0)
+scale = Vector2(1.04, 1.08)
+shape = SubResource("RectangleShape2D_vrnta")
+
+[node name="_Timer_55982" type="Timer" parent="Path2D/PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="HandlerContainer" type="Node" parent="."]
+
+[node name="MovementHandler" parent="HandlerContainer" instance=ExtResource("3_lxon7")]
+
+[node name="CustomerOrderHandler" type="Node" parent="HandlerContainer"]
+
+[node name="CustomerOrderContainer" type="Node" parent="."]
+
+[node name="CustomerOrder" type="Node2D" parent="CustomerOrderContainer"]
+script = ExtResource("4_4oxfj")
+
+[node name="Sprite2D" type="Sprite2D" parent="CustomerOrderContainer/CustomerOrder"]

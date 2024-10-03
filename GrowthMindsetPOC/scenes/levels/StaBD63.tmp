@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d21ha7i0wrvtm"]
+
+[ext_resource type="Script" path="res://Level/mob_path.gd" id="1_w2yej"]
+[ext_resource type="PackedScene" uid="uid://dsh4lxljt3qj5" path="res://Mobs/MobA.tscn" id="2_2nexd"]
+
+[sub_resource type="Curve2D" id="Curve2D_rjk37"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 63, 289, 0, 0, 0, 0, 850, 291, 0, 0, 0, 0, 851, 319, 0, 0, 0, 0, 63, 321)
+}
+point_count = 4
+
+[node name="Stage" type="Path2D"]
+position = Vector2(-2, 0)
+curve = SubResource("Curve2D_rjk37")
+
+[node name="MobPath" type="PathFollow2D" parent="."]
+position = Vector2(63, 289)
+rotates = false
+loop = false
+script = ExtResource("1_w2yej")
+
+[node name="MobA" parent="MobPath" instance=ExtResource("2_2nexd")]
+position = Vector2(1.98475, -12.0025)
+speed = 200

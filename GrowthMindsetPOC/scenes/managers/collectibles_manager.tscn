@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdv0sod1g3ff1"]
+
+[ext_resource type="Script" path="res://scenes/managers/collectibles_manager.gd" id="1_hraa1"]
+
+[node name="CollectiblesManager" type="Node"]
+script = ExtResource("1_hraa1")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsh4lxljt3qj5"]
+
+[ext_resource type="Texture2D" uid="uid://de4ubn2wqdx17" path="res://Assets/Idle (32x32).png" id="1_scbb0"]
+[ext_resource type="Script" path="res://Mobs/mob_a.gd" id="2_mibdu"]
+[ext_resource type="Texture2D" uid="uid://b8ofgqo6rqsp5" path="res://Assets/tomato.png" id="3_s7o25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrnta"]
+size = Vector2(24.2692, 25)
+
+[node name="MobA" type="CharacterBody2D"]
+script = ExtResource("2_mibdu")
+speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.37999, 2.84217e-14)
+scale = Vector2(1.04, 1.08)
+shape = SubResource("RectangleShape2D_vrnta")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -4)
+texture = ExtResource("1_scbb0")
+hframes = 11
+
+[node name="SellReq" type="Node2D" parent="."]
+position = Vector2(0, -25)
+
+[node name="Tomato" type="Sprite2D" parent="SellReq"]
+position = Vector2(-0.0547498, 0.0342853)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_s7o25")
+hframes = 4
+frame = 3

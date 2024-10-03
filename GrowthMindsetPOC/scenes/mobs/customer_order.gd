@@ -1,0 +1,2 @@
+class_name CustomerOrder
+extends Node2D

@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0wyg35r54jsh"]
+
+[ext_resource type="Script" path="res://scenes/player_entity.gd" id="1_syolw"]
+[ext_resource type="Texture2D" uid="uid://b4hu5c4oqm8kw" path="res://assets/Basic Charakter Spritesheet.png" id="2_k0x40"]
+[ext_resource type="PackedScene" uid="uid://3nddxuydkt2p" path="res://scenes/cursor_entity.tscn" id="3_jpdlc"]
+[ext_resource type="PackedScene" uid="uid://bodxxkfsugul" path="res://scenes/handlers/player/input_handler.tscn" id="4_xbdc4"]
+[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="5_fu6rx"]
+[ext_resource type="PackedScene" uid="uid://cwnljinkuvs12" path="res://scenes/handlers/action_handler.tscn" id="6_c0ekc"]
+[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/plants/tomato_entity.tscn" id="7_7iujj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
+atlas = ExtResource("2_k0x40")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_024ml"]
+size = Vector2(29, 31)
+
+[node name="PlayerEntity" type="CharacterBody2D"]
+script = ExtResource("1_syolw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_gr6va")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_024ml")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 2048
+limit_bottom = 1024
+drag_left_margin = 0.25
+drag_top_margin = 0.25
+drag_right_margin = 0.25
+drag_bottom_margin = 0.25
+
+[node name="CursorEntity" parent="." instance=ExtResource("3_jpdlc")]
+
+[node name="HandlerContainer" type="Node" parent="."]
+
+[node name="InputHandler" parent="HandlerContainer" instance=ExtResource("4_xbdc4")]
+
+[node name="MovementHandler" parent="HandlerContainer" instance=ExtResource("5_fu6rx")]
+movement_speed = 200
+
+[node name="ActionHandler" parent="HandlerContainer" instance=ExtResource("6_c0ekc")]
+available_plants = Array[PackedScene]([ExtResource("7_7iujj")])
