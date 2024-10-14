@@ -34,7 +34,6 @@ func harvest_plant(areas: Array[Area2D]) -> void:
 	for area in areas:
 		if area is PlantEntity && area.isHarvestable:
 			SignalBus.emit_on_product_collected(area.plant_name)
-			GlobalStatsContainer.tomato_plants_collected += 1
 			area.free()
 
 ## TODO: Figure out way to swap types of seeds in action bar
@@ -53,17 +52,6 @@ func harvest_plant(areas: Array[Area2D]) -> void:
 ##    3. Enable trading when: CustomerEntity is in CustomerWaitArea, 
 ##         player is in PlayerTradeArea
 ##    4. Transact, update global stats, update UI, and emit trade complete signal
-#func trade(customer: PlayerEntity) -> void:
-	#var order = Global.orders_dict[customer]
-	#var product = order["product"]
-	#var num_ordered = order["number"]
-	#var inventory = plant.get_plants_dict()[product]["current"]
-		#
-		#
-	#if plant.get_plants_dict().has(product) and inventory["plants_on_hand"] >= order["number"]:
-		#inventory["plants_on_hand"] -= num_ordered
-		#inventory["seeds"] += 2
-		#order["order_completed"] = true
-	#else:
-		## TODO: audio/visual indicator why trade failed
-		#print(str(product) + ": item not found in inventory.")
+func trade() -> void:
+	SignalBus.emit_on_trade_complete()
+	print("trade complete signal emitted")

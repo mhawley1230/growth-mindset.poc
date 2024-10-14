@@ -9,9 +9,10 @@ func _ready():
 	SignalBus.on_product_collected.connect(on_product_collected)
 
 func on_product_collected(product_name: String) -> void:
-	match product_name:
+	match product_name.to_lower():
 		"tomato":
 			tomatoes_collected += 1
+			print("tomatoes collected: ", tomatoes_collected)
 		"potato":
 			potatoes_collected += 1
 	

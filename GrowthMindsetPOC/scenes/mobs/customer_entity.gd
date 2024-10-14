@@ -32,8 +32,8 @@ func despawn_customer():
 
 func on_customer_wait_area_entered():
 	movement_handler.movement_speed = 0
-	await get_tree().create_timer(3.0).timeout
-	#await SignalBus.on_trade_completed()
+	#await get_tree().create_timer(3.0).timeout
+	await SignalBus.on_trade_complete
 	movement_handler.movement_speed = 300
 
 

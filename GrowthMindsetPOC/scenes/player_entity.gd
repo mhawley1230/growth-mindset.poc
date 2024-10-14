@@ -29,7 +29,8 @@ func _input(_event) -> void:
 	if input_handler.handle_action_2_input():
 		action_handler.harvest_plant(action_handler.detect_overlapped_areas(cursor))
 		
-	#if input_handler.handle_action_3_input():
-		#print("action 3 pressed")
+	if input_handler.handle_action_3_input():
+		action_handler.trade()
+		
 	#if input_handler.handle_action_4_input():
 		#print("action 4 pressed")

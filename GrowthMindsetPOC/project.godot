@@ -19,8 +19,8 @@ config/icon="res://assets/icon.svg"
 
 NodeExtensions="*res://autoloads/NodeExtensions.gd"
 SignalBus="*res://autoloads/SignalBus.gd"
-GlobalStatsContainer="*res://autoloads/GlobalStatsContainer.gd"
-GlobalVars="*res://autoloads/GlobalVars.gd"
+Globals="*res://autoloads/Globals.gd"
+LevelStats="*res://autoloads/LevelStats.gd"
 
 [display]
 

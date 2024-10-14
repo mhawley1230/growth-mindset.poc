@@ -1,7 +1,7 @@
 class_name CursorPositionHandler
 extends Node
 
-@onready var tile_size = GlobalVars.TILE_SIZE
+@onready var tile_size = Globals.TILE_SIZE
 
 ## TODO: Refactor this. How could this function better?
 ##    Player character facing direction vs static character w/ cursor
