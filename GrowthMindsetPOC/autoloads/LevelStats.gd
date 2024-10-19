@@ -13,7 +13,7 @@ func on_product_collected(plant_name) -> void:
 	if inventory == null:
 		return
 	
-	match plant_name.to_lower:
+	match plant_name.to_lower():
 		"tomato":
 			tomatoes_in_inventory += 1
 			print("tomatoes in inventory: ", tomatoes_in_inventory)
