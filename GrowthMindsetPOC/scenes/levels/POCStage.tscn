@@ -67,3 +67,5 @@ position = Vector2(1439, 347)
 shape = SubResource("RectangleShape2D_kufy4")
 
 [node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]
+
+[node name="UIContainer" type="Node2D" parent="." groups=["ui_container"]]
