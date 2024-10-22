@@ -8,6 +8,17 @@
 
 config_version=5
 
+[addons]
+
+resources_spreadsheet_view/array_color_tint=100.0
+resources_spreadsheet_view/color_rows=true
+resources_spreadsheet_view/array_min_width=128.0
+resources_spreadsheet_view/resource_preview_size=32.0
+resources_spreadsheet_view/clip_headers=false
+resources_spreadsheet_view/dupe_arrays=true
+resources_spreadsheet_view/context_menu_on_leftclick=false
+resources_spreadsheet_view/fold_docks=false
+
 [application]
 
 config/name="GrowthMindsetPOC"
@@ -20,7 +31,7 @@ config/icon="res://assets/icon.svg"
 NodeExtensions="*res://autoloads/NodeExtensions.gd"
 SignalBus="*res://autoloads/SignalBus.gd"
 Globals="*res://autoloads/Globals.gd"
-LevelStats="*res://autoloads/LevelStats.gd"
+Inventory="*res://scenes/levels/inventory.gd"
 
 [display]
 
@@ -30,6 +41,14 @@ window/stretch/scale_mode="integer"
 [dotnet]
 
 project/assembly_name="GrowthMindsetPOC"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg")
+
+[godot_resource_groups]
+
+auto_rebuild=true
 
 [input]
 

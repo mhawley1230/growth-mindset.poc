@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0wyg35r54jsh"]
+[gd_scene load_steps=9 format=3 uid="uid://b0wyg35r54jsh"]
 
 [ext_resource type="Script" path="res://scenes/player_entity.gd" id="1_syolw"]
 [ext_resource type="Texture2D" uid="uid://b4hu5c4oqm8kw" path="res://assets/Basic Charakter Spritesheet.png" id="2_k0x40"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bodxxkfsugul" path="res://scenes/handlers/player/input_handler.tscn" id="4_xbdc4"]
 [ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="5_fu6rx"]
 [ext_resource type="PackedScene" uid="uid://cwnljinkuvs12" path="res://scenes/handlers/action_handler.tscn" id="6_c0ekc"]
-[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/plants/tomato_entity.tscn" id="7_7iujj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
 atlas = ExtResource("2_k0x40")
@@ -48,4 +47,3 @@ drag_bottom_margin = 0.25
 movement_speed = 200
 
 [node name="ActionHandler" parent="HandlerContainer" instance=ExtResource("6_c0ekc")]
-available_plants = Array[PackedScene]([ExtResource("7_7iujj")])

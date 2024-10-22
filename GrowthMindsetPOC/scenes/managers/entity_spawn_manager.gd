@@ -52,11 +52,9 @@ func spawn_customer() -> void:
 	#
 	if entity_container == null:
 		return
-	#
+	
 	entity_container.add_child(new_customer_entity)
 	new_customer_entity.position = spawn_points[0].position
-	
-	
 	#customer_spawn_timer.start(NodeExtensions.get_random_time(enemy_spawn_timer_min \
 	  #,enemy_spawn_timer_max))
 	#
