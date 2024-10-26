@@ -5,6 +5,6 @@ extends Control
 @onready var potato_label: Label = %PotatoLabel
 
 
-#func _physics_process(_delta) -> void:
-	#tomato_label.text = str(Inventory.get_product("tomato", false)["tomato"])
-	#potato_label.text = str(Inventory.get_product("potato", false)["potato"])
+func _physics_process(_delta) -> void:
+	tomato_label.text = str(Inventory.get_inventory("plants", "tomato"))
+	potato_label.text = str(Inventory.get_inventory("plants", "potato"))

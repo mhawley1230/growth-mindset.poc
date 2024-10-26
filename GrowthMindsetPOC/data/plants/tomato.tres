@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Plant" load_steps=3 format=3 uid="uid://bc1j2l3habya6"]
 
 [ext_resource type="Script" path="res://data/plants/plant.gd" id="1_7wlis"]
-[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/plants/tomato_entity.tscn" id="1_ubrte"]
+[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/plants/entities/tomato.tscn" id="1_oxgto"]
 
 [resource]
+resource_local_to_scene = true
+resource_name = "tomato"
 script = ExtResource("1_7wlis")
 name = "tomato"
-scene = ExtResource("1_ubrte")
+scene = ExtResource("1_oxgto")

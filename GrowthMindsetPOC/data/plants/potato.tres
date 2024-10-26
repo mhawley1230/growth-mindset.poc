@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Plant" load_steps=3 format=3 uid="uid://cvnyqwi5l3nml"]
 
 [ext_resource type="Script" path="res://data/plants/plant.gd" id="1_lvrjj"]
-[ext_resource type="PackedScene" uid="uid://caj6rs1e5q13p" path="res://scenes/plants/potato_entity.tscn" id="1_tab33"]
+[ext_resource type="PackedScene" uid="uid://caj6rs1e5q13p" path="res://scenes/plants/entities/potato_entity.tscn" id="1_tab33"]
 
 [resource]
 script = ExtResource("1_lvrjj")
