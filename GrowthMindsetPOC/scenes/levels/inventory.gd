@@ -21,7 +21,6 @@ func has_inventory(category: String, product: String) -> bool:
 
 
 func create_inventory(category: String, product: String, num: int) -> void:
-	print(_contents)
 	_contents[category][product] = num
 
 

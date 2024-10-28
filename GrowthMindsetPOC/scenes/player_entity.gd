@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	NodeExtensions.get_entity_container()
+	SignalBus.emit_on_player_ready(self)
 
 
 func _physics_process(_delta) -> void:

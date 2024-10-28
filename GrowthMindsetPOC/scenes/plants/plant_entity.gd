@@ -13,6 +13,10 @@ var isHarvestable: bool = false
 func _ready():
 	var instance: Node = plant.scene.instantiate()
 	add_child(instance)
+	
+	if instance == null:
+		return
+	
 	texture_progress_bar = get_node("Node2D/TextureProgressBar")
 	animation_player = get_node("Node2D/AnimationPlayer")
 	

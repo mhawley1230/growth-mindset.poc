@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvpha3kog16rg"]
+[gd_scene load_steps=8 format=3 uid="uid://cvpha3kog16rg"]
 
 [ext_resource type="Script" path="res://scenes/mobs/customer_entity.gd" id="1_fwoo5"]
 [ext_resource type="Texture2D" uid="uid://de4ubn2wqdx17" path="res://assets/Idle (32x32).png" id="2_rfxew"]
 [ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="3_lxon7"]
 [ext_resource type="Script" path="res://scenes/mobs/customer_order.gd" id="4_4oxfj"]
+[ext_resource type="PackedScene" uid="uid://xtyib2sv0qox" path="res://scenes/handlers/customer/customer_order_handler.tscn" id="4_cadih"]
 
 [sub_resource type="Curve2D" id="Curve2D_1i7p1"]
 _data = {
@@ -47,7 +48,7 @@ one_shot = true
 
 [node name="MovementHandler" parent="HandlerContainer" instance=ExtResource("3_lxon7")]
 
-[node name="CustomerOrderHandler" type="Node" parent="HandlerContainer"]
+[node name="CustomerOrderHandler" parent="HandlerContainer" instance=ExtResource("4_cadih")]
 
 [node name="CustomerOrderContainer" type="Node" parent="."]
 

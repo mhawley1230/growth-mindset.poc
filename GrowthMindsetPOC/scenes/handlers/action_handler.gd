@@ -27,6 +27,7 @@ func is_planting_enabled(areas: Array[Area2D]) -> bool:
 
 func create_plant(index: int, spawn_position: Vector2) -> void:	
 	var entity_container: Node = NodeExtensions.get_entity_container()
+	
 	if entity_container == null:
 		return
 	

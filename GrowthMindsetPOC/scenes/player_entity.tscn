@@ -18,6 +18,7 @@ size = Vector2(29, 31)
 script = ExtResource("1_syolw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_gr6va")
