@@ -3,41 +3,38 @@
 [ext_resource type="Script" path="res://scenes/mobs/customer_entity.gd" id="1_fwoo5"]
 [ext_resource type="Texture2D" uid="uid://de4ubn2wqdx17" path="res://assets/Idle (32x32).png" id="2_rfxew"]
 [ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="3_lxon7"]
-[ext_resource type="Script" path="res://scenes/mobs/customer_order.gd" id="4_4oxfj"]
 [ext_resource type="PackedScene" uid="uid://xtyib2sv0qox" path="res://scenes/handlers/customer/customer_order_handler.tscn" id="4_cadih"]
+[ext_resource type="PackedScene" uid="uid://bmc2mk3n4gcny" path="res://scenes/mobs/customer_order.tscn" id="5_jg3ne"]
 
 [sub_resource type="Curve2D" id="Curve2D_1i7p1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 93, 266, 0, 0, 0, 0, 867.743, 265.514, 0, 0, 0, 0, 868.743, 298.514, 0, 0, 0, 0, 91, 300)
+"points": PackedVector2Array(0, 0, 0, 0, 1, -2, 0, 0, 0, 0, 782, -1, 0, 0, 0, 0, 782, 30, 0, 0, 0, 0, 3, 29)
 }
 point_count = 4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrnta"]
-size = Vector2(24.2692, 25)
+size = Vector2(26.1346, 28)
 
 [node name="FrogEntity" type="Node2D"]
 script = ExtResource("1_fwoo5")
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(-83.7434, -265.514)
 curve = SubResource("Curve2D_1i7p1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(93, 266)
+position = Vector2(1, -2)
 rotates = false
 loop = false
 
-[node name="CustomerBody" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D" groups=["customer"]]
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CustomerBody"]
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
 z_index = 1
-position = Vector2(0, -4)
 texture = ExtResource("2_rfxew")
 hframes = 11
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CustomerBody"]
-position = Vector2(-0.37999, 0)
-scale = Vector2(1.04, 1.08)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_vrnta")
 
 [node name="_Timer_55982" type="Timer" parent="Path2D/PathFollow2D"]
@@ -50,9 +47,8 @@ one_shot = true
 
 [node name="CustomerOrderHandler" parent="HandlerContainer" instance=ExtResource("4_cadih")]
 
-[node name="CustomerOrderContainer" type="Node" parent="."]
+[node name="CustomerOrderContainer" type="Node2D" parent="."]
 
-[node name="CustomerOrder" type="Node2D" parent="CustomerOrderContainer"]
-script = ExtResource("4_4oxfj")
-
-[node name="Sprite2D" type="Sprite2D" parent="CustomerOrderContainer/CustomerOrder"]
+[node name="CustomerOrder" parent="CustomerOrderContainer" instance=ExtResource("5_jg3ne")]
+unique_name_in_owner = true
+script = null

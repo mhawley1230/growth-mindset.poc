@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 @onready var movement_handler: MovementHandler = $HandlerContainer/MovementHandler
-@onready var customer_sprite: Sprite2D = $Path2D/PathFollow2D/CustomerBody/Sprite2D
+@onready var customer_sprite: Sprite2D = $Path2D/PathFollow2D/CharacterBody2D/Sprite2D
 @onready var customer_order_handler: CustomerOrderHandler = $HandlerContainer/CustomerOrderHandler
 
 func _ready() -> void:
