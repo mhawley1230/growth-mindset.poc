@@ -41,21 +41,24 @@ func add_order(dict: Dictionary):
 	
 #
 	# Create HBoxContainer
-	var hbox = HBoxContainer.new()
-	control.add_child(hbox)
+	var box = BoxContainer.new()
+	control.add_child(box)
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
 #
 	# Create TextureRect
+	var texture_rect = TextureRect.new()
+	box.add_child(texture_rect)
+	
 	print(dict)
 	for e in dict:
-		var texture_rect = TextureRect.new()
 		var icon_path = str("res://assets/" + e + "_icon.png")
 		texture_rect.texture = load(icon_path)  # Replace with your texture path
-		#texture_rect.rect_min_size = Vector2(200, 200)  # Minimum size for TextureRect
-		hbox.add_child(texture_rect)
-#
-		## Create Label
+		##  # Minimum size for TextureRect
+##
+		### Create Label
 		var label = Label.new()
 		label.text = str(dict[e])
+		#label.text = "2"
 		label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
 		texture_rect.add_child(label)
 	
