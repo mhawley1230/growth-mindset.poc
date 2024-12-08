@@ -2,7 +2,6 @@ class_name ActionHandler
 extends Node
 
 @export var available_plants: Array[PackedScene] = []
-
 var trading_enabled: bool = false
 var num_created: int = 0
 
