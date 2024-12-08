@@ -1,30 +1,30 @@
-#	Where should customer entity behavior live?
-#	- Top level node
-#	- Handlers
-#	- CharacterBody
-#	
-#	Top level node
-#	- Easy hierarchy
-	#	- CharacterBody child to Path2D/PathFollow2D
-#	- Looking at entity attributes with Area2D signals is difficult 
-	#	- Attributes on parent node
-#	
-#	Handlers
-#	- What behavior should this take?
-	#	- Spawner? 
-		#	- Then what should the top-level node act as? Manager?
-#	
-#	Customers as resources
-#	- More control over individuals
-#	- Easier options for preference
-#	
-#	
-#	
-#	PathContainer (Node2D) (path_follow.gd)
-#	- Path2D (Path2D)
-	#	- PathFollow2D (PathFollow2D)
-#	
-#	path_follow.gd
-#	- creates child nodes
-#	- configurable dict (array?) of CustomerEntities
-#	@export available_customers: Dict[CustomerEnitity] = {}
+Where should customer entity behavior live?
+- Top level node
+- Handlers
+- CharacterBody
+
+Top level node
+- Easy hierarchy
+	- CharacterBody child to Path2D/PathFollow2D
+- Looking at entity attributes with Area2D signals is difficult 
+	- Attributes on parent node
+
+Handlers
+- What behavior should this take?
+	- Spawner? 
+		- Then what should the top-level node act as? Manager?
+
+Customers as resources
+- More control over individuals
+- Easier options for preference
+
+
+
+PathContainer (Node2D) (path_follow.gd)
+- Path2D (Path2D)
+	- PathFollow2D (PathFollow2D)
+
+path_follow.gd
+- creates child nodes
+- configurable dict (array?) of CustomerEntities
+@export available_customers: Dict[CustomerEnitity] = {}
