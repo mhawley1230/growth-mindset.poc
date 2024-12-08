@@ -1,7 +1,7 @@
 class_name InventoryManager
 extends Node
 
-@onready var _contents = {
+@onready var _contents: Dictionary = {
 	"seeds": {},
 	"plants": {}
 }
