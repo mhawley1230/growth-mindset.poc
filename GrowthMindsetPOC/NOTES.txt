@@ -21,7 +21,7 @@ Customers as resources
 
 
 PathContainer (Node2D) (path_follow.gd)
-- Path2D (Path2D)
+- Path2D (Path2D)~
 	- PathFollow2D (PathFollow2D)
 
 path_follow.gd

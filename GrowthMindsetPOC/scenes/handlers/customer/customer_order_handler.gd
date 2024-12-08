@@ -1,7 +1,7 @@
 class_name CustomerOrderHandler
 extends Node
 
-@onready var level: Node = get_tree().get_first_node_in_group("levels")
+@onready var level: Node = get_tree().get_first_node_in_group("level")
 @onready var products: Array[Plant] = level.available_products
 @onready var max_order_size: int = level.cust_max_order_size
 @onready var order_container: Node2D = %OrderContainer
@@ -31,18 +31,22 @@ func add_order(dict: Dictionary) -> void:
 	if order_container == null:
 		return
 
-	# Create the Control node
+	# Create the ui containers
 	var control = Control.new()
 	order_container.add_child(control)
 	
 	var panel_container = PanelContainer.new()
 	control.add_child(panel_container)
 	
-	# Scale down icons
-	control.scale =  Vector2(0.5, 0.5)
-	
-	var margin_container = MarginContainer.new()
+	var margin_container = MarginContainer.	new()
 	panel_container.add_child(margin_container)
+	
+	var grid_container = GridContainer.new()
+	margin_container.add_child(grid_container)
+	
+	# configure container nodes
+	control.scale =  Vector2(0.5, 0.5)
+	grid_container.columns = 2
 	
 	# Set margins
 	var margin_value: int = 4
@@ -51,10 +55,7 @@ func add_order(dict: Dictionary) -> void:
 	margin_container.add_theme_constant_override("margin_right", margin_value)
 	margin_container.add_theme_constant_override("margin_bottom", margin_value)
 	
-	var grid_container = GridContainer.new()
-	grid_container.columns = 2
-	margin_container.add_child(grid_container)
-	
+	# Create icons and labels
 	for item in dict:
 		var icon_path: String = str("res://assets/" + item + "_icon.png")
 		
