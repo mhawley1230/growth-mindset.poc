@@ -1,13 +1,25 @@
 class_name ActionHandler
 extends Node
 
+#region inventory
+@onready var manager_container = NodeExtensions.get_manager_container()
+@onready var inventory_manager: InventoryManager = null
+#endregion
+
 @export var available_plants: Array[PackedScene] = []
+
 var trading_enabled: bool = false
 var num_created: int = 0
+
 
 func _ready() -> void:
 	SignalBus.on_trade_area_entered.connect(on_trade_area_entered)
 	SignalBus.on_trade_area_exited.connect(on_trade_area_exited)
+	
+	if manager_container == null:
+		return
+	
+	inventory_manager = manager_container.get_node("InventoryManager")
 
 
 func detect_overlapped_areas(target: Area2D) -> Array[Area2D]:
@@ -36,20 +48,20 @@ func create_plant(index: int, spawn_position: Vector2) -> void:
 	var plant_type = Globals.strip_instance_id(plant_instance)
 	
 	
-	if Inventory.get_inventory("seeds", plant_type) < 1:
+	if inventory_manager.get_inventory("seeds", plant_type) < 1:
 		print("not enough seeds")
 		return
 	#
 	entity_container.add_child(new_plant)
 	new_plant.position = Vector2i(spawn_position)
-	Inventory.remove_inventory("seeds", plant_type, 1)
+	inventory_manager.remove_inventory("seeds", plant_type, 1)
 
 
 func harvest_plant(areas: Array[Area2D]) -> void:
 	for area in areas:
 		if area.is_in_group("plant"):
 			var plant_type = Globals.strip_instance_id(area.name)
-			Inventory.add_inventory("plants", plant_type, 1)
+			inventory_manager.add_inventory("plants", plant_type, 1)
 			area.free()
 
 ## TODO: Refactor: 
@@ -57,14 +69,14 @@ func harvest_plant(areas: Array[Area2D]) -> void:
 ##    2. Trade area is child of farm stand [COMPLETE]
 ##    3. Enable trading when: CustomerEntity is in
 ##    CustomerWaitArea, player is in PlayerTradeArea
-##    4. Update Inventory - add/remove functions
+##    4. Update inventory - add/remove functions
 ##    5. Update local stats
 ##    6. Update global stats
 ##    7. Emit trade complete signal
 
 func trade() -> void:
-	#Inventory.remove_inventory("plants", "tomato", 1)
-	#Inventory.add_inventory("seeds", "tomato", 2)
+	#inventory.remove_inventory("plants", "tomato", 1)
+	#inventory.add_inventory("seeds", "tomato", 2)
 	
 	SignalBus.emit_on_trade_complete()
 

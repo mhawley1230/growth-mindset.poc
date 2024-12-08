@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://rodc4x0e0t6g"]
+
+[ext_resource type="Script" path="res://scenes/ui/plants_ui.gd" id="1_mi3fd"]
+[ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://assets/tomato_icon.png" id="1_orn0b"]
+[ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="2_wvpyk"]
+
+[node name="PlantsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mi3fd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 228.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TomatoIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_orn0b")
+expand_mode = 2
+
+[node name="TomatoLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PotatoIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("2_wvpyk")
+expand_mode = 2
+
+[node name="PotatoLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 60
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1

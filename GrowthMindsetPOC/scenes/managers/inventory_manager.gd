@@ -34,3 +34,11 @@ func get_inventory(category: String, product: String) -> int:
 
 func get_all_inventory() -> Dictionary:
 	return _contents
+
+
+func clear_inventory() -> void:
+	_contents = {
+		"seeds": {},
+		"plants": {}
+	}
+	
