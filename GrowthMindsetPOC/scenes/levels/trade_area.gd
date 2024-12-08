@@ -1,12 +1,10 @@
 class_name TradeArea
-extends Node2D
-
-@onready var area: Area2D = $Area2D as Area2D
+extends Area2D
 
 
 func _on_trade_area_entered(body):
-	if body.name == "PlayerEntity":
-		SignalBus.on_trade_area_entered.emit()
+	if body.is_in_group("player"):
+		SignalBus.on_trade_area_entered.emit(self)
 
 
 func _on_trade_area_exited(_body):

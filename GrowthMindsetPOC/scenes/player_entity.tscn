@@ -14,7 +14,7 @@ region = Rect2(16, 16, 16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_024ml"]
 size = Vector2(29, 31)
 
-[node name="PlayerEntity" type="CharacterBody2D"]
+[node name="PlayerEntity" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_syolw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

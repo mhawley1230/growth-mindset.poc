@@ -6,6 +6,8 @@ extends Node2D
 @onready var movement_handler: MovementHandler = $HandlerContainer/MovementHandler
 @onready var customer_sprite: Sprite2D = $Path2D/PathFollow2D/CharacterBody2D/Sprite2D
 @onready var customer_order_handler: CustomerOrderHandler = $HandlerContainer/CustomerOrderHandler
+@onready var order_container: Node2D = %OrderContainer 
+
 
 func _ready() -> void:
 	SignalBus.on_customer_wait_area_entered.connect(on_customer_wait_area_entered)
@@ -31,7 +33,7 @@ func despawn_customer():
 	queue_free()
 
 
-func on_customer_wait_area_entered():
+func on_customer_wait_area_entered(_body):
 	movement_handler.movement_speed = 0
 	await SignalBus.on_trade_complete
 	movement_handler.movement_speed = 300

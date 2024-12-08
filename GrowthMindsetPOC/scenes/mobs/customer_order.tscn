@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmc2mk3n4gcny"]
-
-[ext_resource type="Script" path="res://scenes/mobs/customer_order.gd" id="1_64jb8"]
-
-[node name="CustomerOrder" type="Node2D"]
-position = Vector2(0, -17)
-script = ExtResource("1_64jb8")

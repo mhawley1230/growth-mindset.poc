@@ -54,19 +54,28 @@ func harvest_plant(areas: Array[Area2D]) -> void:
 			area.free()
 
 ## TODO: Refactor: 
-##    1. Create trade area for player
-##    2. Trade area is child of farm stand
-##    3. Enable trading when: CustomerEntity is in CustomerWaitArea, 
-##         player is in PlayerTradeArea
-##    4. Transact, update global stats, update UI, and emit trade complete signal
+##    1. Create trade area for player [COMPLETE]
+##    2. Trade area is child of farm stand [COMPLETE]
+##    3. Enable trading when: CustomerEntity is in
+##    CustomerWaitArea, player is in PlayerTradeArea
+##    4. Update Inventory - add/remove functions
+##    5. Update local stats
+##    6. Update global stats
+##    7. Emit trade complete signal
+
 func trade() -> void:
-	Inventory.remove_inventory("plants", "tomato", 1)
-	Inventory.add_inventory("seeds", "tomato", 2)
+	#Inventory.remove_inventory("plants", "tomato", 1)
+	#Inventory.add_inventory("seeds", "tomato", 2)
+	
 	SignalBus.emit_on_trade_complete()
 
 
-func on_trade_area_entered() -> void:
+func on_trade_area_entered(area) -> void:
 	trading_enabled = true
+	
+	## Look for customer entity in wait area
+	for body in area.get_overlapping_bodies():
+		print(body)
 
 
 func on_trade_area_exited() -> void:

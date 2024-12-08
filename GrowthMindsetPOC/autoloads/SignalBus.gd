@@ -8,9 +8,9 @@ signal on_cursor_ready(cursor: CursorEntity)
 signal on_stage_track_ready(stage_track: Path2D)
 signal on_customer_ready(customer: CustomerEntity)
 signal on_customer_despawn(customer: CustomerEntity)
-signal on_customer_wait_area_entered()
+signal on_customer_wait_area_entered(body: CharacterBody2D)
 signal on_trade_complete()
-signal on_trade_area_entered()
+signal on_trade_area_entered(area: Area2D)
 signal on_trade_area_exited()
 
 
@@ -45,8 +45,8 @@ func emit_on_trade_complete() -> void:
 	on_trade_complete.emit()
 
 
-func emit_on_trade_area_entered() -> void:
-	on_trade_area_entered.emit()
+func emit_on_trade_area_entered(area: Area2D) -> void:
+	on_trade_area_entered.emit(area)
 
 
 func emit_on_trade_area_exited() -> void:
@@ -57,8 +57,8 @@ func emit_on_customer_despawn(customer: CustomerEntity) -> void:
 	on_customer_despawn.emit(customer)
 
 
-func emit_on_customer_wait_area_entered() -> void:
-	on_customer_wait_area_entered.emit()
+func emit_on_customer_wait_area_entered(body: CharacterBody2D) -> void:
+	on_customer_wait_area_entered.emit(body)
 
 
 
