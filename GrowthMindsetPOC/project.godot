@@ -31,8 +31,6 @@ config/icon="res://assets/icon.svg"
 NodeExtensions="*res://autoloads/NodeExtensions.gd"
 SignalBus="*res://autoloads/SignalBus.gd"
 Globals="*res://autoloads/Globals.gd"
-Inventory="*res://scenes/levels/inventory.gd"
-Level="*res://scenes/levels/level.gd"
 
 [display]
 

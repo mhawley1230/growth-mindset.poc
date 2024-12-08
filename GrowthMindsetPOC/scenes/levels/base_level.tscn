@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://scenes/levels/farm_plot.tscn" id="2_oyu7q"]
 [ext_resource type="Texture2D" uid="uid://163np3w522ow" path="res://assets/farmstand.png" id="3_8iri2"]
 [ext_resource type="Resource" uid="uid://bc1j2l3habya6" path="res://data/plants/tomato.tres" id="3_gsyqb"]
-[ext_resource type="PackedScene" uid="uid://blimsiu84ruko" path="res://scenes/managers/entity_spawn_manager.tscn" id="4_weprp"]
 [ext_resource type="Script" path="res://scenes/levels/customer_queue.gd" id="5_7mecc"]
+[ext_resource type="PackedScene" uid="uid://blimsiu84ruko" path="res://scenes/managers/spawn_marker_manager.tscn" id="6_uum3n"]
 [ext_resource type="Script" path="res://scenes/levels/trade_area.gd" id="7_iibyq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ntapu"]
@@ -186,16 +186,16 @@ layer_1/tile_data = PackedInt32Array(2293843, 327680, 5, 1900627, 262144, 6, 917
 position = Vector2(688, 432)
 scale = Vector2(1, 1)
 
-[node name="EntitySpawnManager" parent="." node_paths=PackedStringArray("player_spawn_point", "spawn_points") instance=ExtResource("4_weprp")]
+[node name="SpawnMarkerManager" parent="." node_paths=PackedStringArray("player_spawn_point", "spawn_points") instance=ExtResource("6_uum3n")]
 player_spawn_point = NodePath("PlayerSpawnMarker")
 spawn_points = [NodePath("CustomerSpawnPointContainer/CustomerSpawnPointMarker")]
 
-[node name="PlayerSpawnMarker" type="Marker2D" parent="EntitySpawnManager"]
+[node name="PlayerSpawnMarker" type="Marker2D" parent="SpawnMarkerManager"]
 position = Vector2(832, 408)
 
-[node name="CustomerSpawnPointContainer" type="Node2D" parent="EntitySpawnManager"]
+[node name="CustomerSpawnPointContainer" type="Node2D" parent="SpawnMarkerManager"]
 
-[node name="CustomerSpawnPointMarker" type="Marker2D" parent="EntitySpawnManager/CustomerSpawnPointContainer"]
+[node name="CustomerSpawnPointMarker" type="Marker2D" parent="SpawnMarkerManager/CustomerSpawnPointContainer"]
 position = Vector2(96, 271)
 
 [node name="FarmStandHolder" type="Node" parent="." groups=["farm_stand_holder"]]

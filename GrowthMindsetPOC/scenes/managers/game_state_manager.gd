@@ -1,8 +1,8 @@
 class_name GameStateManager
 extends Node
 
-
 @onready var state_timer = $StateTimer as Timer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

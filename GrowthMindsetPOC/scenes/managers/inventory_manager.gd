@@ -1,9 +1,11 @@
+class_name InventoryManager
 extends Node
 
 @onready var _contents = {
 	"seeds": {},
 	"plants": {}
 }
+
 
 func add_inventory(category: String, product: String, num: int) -> void:
 	_contents[category][product] += num

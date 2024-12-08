@@ -5,6 +5,7 @@ const LEVEL_CONTAINER: String = "level_container"
 const MANAGER_CONTAINER: String = "manager_container"
 const UI_CONTAINER: String = "ui_container"
 const BOUNDARY_CONTAINER: String = "boundary_container"
+const INVENTORY_MANAGER: String = "inventory_manager"
 
 
 func get_boundary_container() -> Node:
