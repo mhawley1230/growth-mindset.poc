@@ -9,12 +9,14 @@ extends Node
 @export var available_plants: Array[PackedScene] = []
 
 var trading_enabled: bool = false
+var customer_in_trade_area: bool = false
 var num_created: int = 0
 
 
 func _ready() -> void:
 	SignalBus.on_trade_area_entered.connect(on_trade_area_entered)
 	SignalBus.on_trade_area_exited.connect(on_trade_area_exited)
+	SignalBus.on_customer_trade_area_entered.connect(on_customer_trade_area_entered)
 	
 	if manager_container == null:
 		return
@@ -74,19 +76,29 @@ func harvest_plant(areas: Array[Area2D]) -> void:
 ##    6. Update global stats
 ##    7. Emit trade complete signal
 
-func trade() -> void:
+func trade(giving: Dictionary) -> void:
+	for item in giving:
+		print(item)
+	#inventory.remove_inventory("plants", item, item.value())
 	#inventory.remove_inventory("plants", "tomato", 1)
 	#inventory.add_inventory("seeds", "tomato", 2)
-	
 	SignalBus.emit_on_trade_complete()
 
 
 func on_trade_area_entered(area) -> void:
-	trading_enabled = true
-	
+	## Look for customer entity in wait area
+	print(area.get_overlapping_bodies())
+	for body in area.get_overlapping_bodies():
+		if body.is_in_group("customer"):
+			print("customer detected, trading enabled")
+			trading_enabled = true
+
+
+func on_customer_trade_area_entered(area, customer) -> void:
 	## Look for customer entity in wait area
 	for body in area.get_overlapping_bodies():
-		print(body)
+		if body.is_in_group("customer"):
+			customer_in_trade_area = true
 
 
 func on_trade_area_exited() -> void:

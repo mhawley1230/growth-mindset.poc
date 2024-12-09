@@ -1,8 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://56ebfdkcee17"]
+[gd_scene load_steps=13 format=3 uid="uid://56ebfdkcee17"]
 
+[ext_resource type="PackedScene" uid="uid://cn4837c5caikg" path="res://scenes/managers/cursor_manager.tscn" id="3_4wtrn"]
+[ext_resource type="PackedScene" path="res://scenes/managers/customer_manager.tscn" id="4_g8yox"]
 [ext_resource type="PackedScene" uid="uid://dkqq8ioytos1s" path="res://scenes/levels/base_level.tscn" id="4_o3fqc"]
 [ext_resource type="PackedScene" uid="uid://da3tnvt2tdyqw" path="res://scenes/managers/inventory_manager.tscn" id="5_l7r5o"]
+[ext_resource type="PackedScene" uid="uid://cpeo3xlr2tb7g" path="res://scenes/managers/game_state_manager.tscn" id="6_a5ujg"]
 [ext_resource type="PackedScene" uid="uid://rodc4x0e0t6g" path="res://scenes/ui/plants_ui.tscn" id="7_c14ka"]
+[ext_resource type="PackedScene" uid="uid://23nd1ysnsqpl" path="res://scenes/managers/player_manager.tscn" id="7_dp2t4"]
 [ext_resource type="PackedScene" uid="uid://dfvp5s8b06gqq" path="res://scenes/ui/seeds_ui.tscn" id="8_ae183"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy4b2"]
@@ -19,9 +23,17 @@ size = Vector2(104, 1432)
 
 [node name="Main" type="Node2D"]
 
-[node name="Managers" type="Node" parent="." groups=["manager_container"]]
+[node name="GlobalManagerContainer" type="Node" parent="." groups=["manager_container"]]
 
-[node name="InventoryManager" parent="Managers" instance=ExtResource("5_l7r5o")]
+[node name="GameStateManager" parent="GlobalManagerContainer" instance=ExtResource("6_a5ujg")]
+
+[node name="PlayerManager" parent="GlobalManagerContainer" instance=ExtResource("7_dp2t4")]
+
+[node name="CursorManager" parent="GlobalManagerContainer" instance=ExtResource("3_4wtrn")]
+
+[node name="CustomerManager" parent="GlobalManagerContainer" instance=ExtResource("4_g8yox")]
+
+[node name="InventoryManager" parent="GlobalManagerContainer" instance=ExtResource("5_l7r5o")]
 
 [node name="LevelContainer" type="Node2D" parent="." groups=["level_container"]]
 

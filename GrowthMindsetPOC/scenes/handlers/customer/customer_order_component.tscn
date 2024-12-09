@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xtyib2sv0qox"]
+
+[ext_resource type="Script" path="res://scenes/handlers/customer/customer_order_component.gd" id="1_ry64n"]
+
+[node name="CustomerOrderHandler" type="Node"]
+script = ExtResource("1_ry64n")

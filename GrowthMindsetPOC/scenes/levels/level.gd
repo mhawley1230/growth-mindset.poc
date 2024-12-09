@@ -1,18 +1,18 @@
 class_name Level
 extends Node
 
-#region inventory
-@onready var manager_container = NodeExtensions.get_manager_container()
-@onready var inventory_manager: InventoryManager = null
-#endregion
-
 #region product
+@export_category("products")
 @export var available_products: Array[Plant] = []
 @export var tomato_seeds_starting: int = 2
 @export var potato_seeds_starting: int = 1
 @export var tomatoes_starting: int = 0
 @export var potatoes_starting: int = 0
-@export var cust_max_order_size: int = 3
+#endregion
+
+#region inventory
+@onready var manager_container = NodeExtensions.get_manager_container()
+@onready var inventory_manager: InventoryManager = null
 #endregion
 
 

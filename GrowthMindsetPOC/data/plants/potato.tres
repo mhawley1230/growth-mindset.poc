@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://data/plants/plant.gd" id="1_lvrjj"]
 [ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="1_tf0g0"]
-[ext_resource type="PackedScene" uid="uid://caj6rs1e5q13p" path="res://scenes/plants/potato_entity.tscn" id="2_v244y"]
+[ext_resource type="PackedScene" uid="uid://cr35hsxuympkq" path="res://scenes/entities/plants/bases/potato.tscn" id="2_0jqqu"]
 [ext_resource type="Texture2D" uid="uid://c468b8j06ghxg" path="res://assets/potato_seeds_icons.png" id="4_57v13"]
 
 [resource]
 script = ExtResource("1_lvrjj")
 name = "potato"
-scene = ExtResource("2_v244y")
+scene = ExtResource("2_0jqqu")
 plant_icon = ExtResource("1_tf0g0")
 seed_icon = ExtResource("4_57v13")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwnljinkuvs12"]
 
 [ext_resource type="Script" path="res://scenes/handlers/action_handler.gd" id="1_xl0cy"]
-[ext_resource type="PackedScene" uid="uid://smij2expicck" path="res://scenes/plants/tomato_entity.tscn" id="2_1dhpw"]
+[ext_resource type="PackedScene" uid="uid://smij2expicck" path="res://scenes/entities/plants/tomato_entity.tscn" id="2_1dhpw"]
 
 [node name="ActionHandler" type="Node"]
 script = ExtResource("1_xl0cy")

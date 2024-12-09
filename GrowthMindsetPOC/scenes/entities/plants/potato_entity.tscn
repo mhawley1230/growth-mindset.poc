@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://caj6rs1e5q13p"]
+
+[ext_resource type="Script" path="res://scenes/entities/plants/plant_entity.gd" id="1_pe7ri"]
+[ext_resource type="Resource" uid="uid://cvnyqwi5l3nml" path="res://data/plants/potato.tres" id="2_rmt8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7edg"]
+
+[node name="Potato" type="Area2D" groups=["plant"]]
+script = ExtResource("1_pe7ri")
+plant = ExtResource("2_rmt8t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g7edg")

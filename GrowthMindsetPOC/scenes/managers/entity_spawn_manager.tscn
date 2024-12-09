@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://blimsiu84ruko"]
+
+[ext_resource type="Script" path="res://scenes/managers/entity_spawn_manager.gd" id="1_bapvh"]
+[ext_resource type="PackedScene" uid="uid://b0wyg35r54jsh" path="res://scenes/entities/player/player_entity.tscn" id="2_b0rxa"]
+[ext_resource type="PackedScene" uid="uid://daglc5oicddc1" path="res://scenes/entities/paths/path.tscn" id="3_y1pq8"]
+
+[node name="PlayerSpawner" type="Node"]
+script = ExtResource("1_bapvh")
+player_packed_scene = ExtResource("2_b0rxa")
+path_packed_scene = ExtResource("3_y1pq8")

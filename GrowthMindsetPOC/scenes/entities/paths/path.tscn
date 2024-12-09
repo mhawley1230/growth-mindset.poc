@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://daglc5oicddc1"]
+
+[ext_resource type="Script" path="res://scenes/entities/paths/path.gd" id="1_bjr2l"]
+[ext_resource type="PackedScene" uid="uid://dubsim4llh53v" path="res://scenes/entities/customers/frog.tscn" id="2_68m3f"]
+[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler.tscn" id="2_n5xe0"]
+
+[sub_resource type="Curve2D" id="Curve2D_1i7p1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -2, 0, 0, 0, 0, 782, -1, 0, 0, 0, 0, 782, 30, 0, 0, 0, 0, 3, 29)
+}
+point_count = 4
+
+[node name="Path2D" type="Path2D"]
+z_index = 2
+curve = SubResource("Curve2D_1i7p1")
+script = ExtResource("1_bjr2l")
+customer = ExtResource("2_68m3f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(1, -2)
+rotates = false
+loop = false
+
+[node name="_Timer_209746" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="MovementHandler" parent="." instance=ExtResource("2_n5xe0")]

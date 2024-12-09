@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://assets/tomato_icon.png" id="1_6vcpr"]
 [ext_resource type="Script" path="res://data/plants/plant.gd" id="1_7wlis"]
-[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/plants/entities/tomato.tscn" id="1_oxgto"]
+[ext_resource type="PackedScene" uid="uid://bo51uxvm00nrd" path="res://scenes/entities/plants/bases/tomato.tscn" id="1_oxgto"]
 [ext_resource type="Texture2D" uid="uid://bx2fdcqdyfb4c" path="res://assets/tomato_seeds_icon.png" id="4_psq1s"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bo51uxvm00nrd"]
 
-[ext_resource type="Texture2D" uid="uid://b8ofgqo6rqsp5" path="res://assets/tomato.png" id="1_gvdch"]
-[ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="2_bmemf"]
+[ext_resource type="Texture2D" uid="uid://b8ofgqo6rqsp5" path="res://assets/tomato.png" id="1_h6a6u"]
+[ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="2_v527t"]
 
 [sub_resource type="Animation" id="Animation_asfeg"]
 length = 0.001
@@ -69,7 +69,7 @@ z_index = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
-texture = ExtResource("1_gvdch")
+texture = ExtResource("1_h6a6u")
 hframes = 4
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
@@ -77,9 +77,9 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = 48.0
 scale = Vector2(0.5, 0.5)
-texture_under = ExtResource("2_bmemf")
-texture_over = ExtResource("2_bmemf")
-texture_progress = ExtResource("2_bmemf")
+texture_under = ExtResource("2_v527t")
+texture_over = ExtResource("2_v527t")
+texture_progress = ExtResource("2_v527t")
 tint_under = Color(1, 1, 1, 0)
 tint_over = Color(1, 1, 1, 0)
 tint_progress = Color(0.0611384, 0.841377, 0.0515826, 1)

@@ -1,18 +1,23 @@
-class_name CustomerOrderHandler
+class_name CustomerOrderComponent
 extends Node
 
-@onready var level: Node = get_tree().get_first_node_in_group("level")
-@onready var products: Array[Plant] = level.available_products
-@onready var max_order_size: int = level.cust_max_order_size
-@onready var order_container: Node2D = %OrderContainer
-@onready var order: Dictionary = {}
+@export var products: Array[Plant]
+@export var max_order_size: int
+
+@onready var level_container: Node = NodeExtensions.get_level_container()
+@onready var level: Level
+
+var order: Dictionary = {}
+
+func _ready() -> void:
+	add_order(create_order())
 
 ## 1. assign random number between 0 and 
 ## order size to each available product in level
 ## 	 - some can have less then total order size
 ## 2. validate that sum of ordered products 
 ## is less than order size
-## create UI element and add product icons and nums
+## create UI element and add product icons and nums$".."
 ## to customer entity
 func create_order() -> Dictionary:
 	var random_numbers: Array = Globals.generate_numbers(products.size(), max_order_size)
@@ -28,15 +33,8 @@ func create_order() -> Dictionary:
 
 
 func add_order(dict: Dictionary) -> void:
-	if order_container == null:
-		return
-
-	# Create the ui containers
-	var control = Control.new()
-	order_container.add_child(control)
-	
 	var panel_container = PanelContainer.new()
-	control.add_child(panel_container)
+	add_child(panel_container)
 	
 	var margin_container = MarginContainer.	new()
 	panel_container.add_child(margin_container)
@@ -45,7 +43,6 @@ func add_order(dict: Dictionary) -> void:
 	margin_container.add_child(grid_container)
 	
 	# configure container nodes
-	control.scale =  Vector2(0.5, 0.5)
 	grid_container.columns = 2
 	
 	# Set margins

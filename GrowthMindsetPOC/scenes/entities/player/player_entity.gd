@@ -32,8 +32,8 @@ func _input(_event) -> void:
 		action_handler.harvest_plant(action_handler.detect_overlapped_areas(cursor))
 		
 	if input_handler.handle_action_3_input():
-		if action_handler.trading_enabled:
-			action_handler.trade()
+		if action_handler.trading_enabled && action_handler.customer_in_trade_area:
+			action_handler.trade(action_handler.get_customer_order())
 		
 	#if input_handler.handle_action_4_input():
 		#print("action 4 pressed")
