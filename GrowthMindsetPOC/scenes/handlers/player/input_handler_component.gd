@@ -1,4 +1,4 @@
-class_name InputHandler
+class_name InputHandlerComponent
 extends Node
 
 

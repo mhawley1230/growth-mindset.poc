@@ -1,10 +1,13 @@
-class_name InventoryManager
+class_name InventoryManagerComponent
 extends Node
 
-@onready var _contents: Dictionary = {
-	"seeds": {},
-	"plants": {}
-}
+@onready var level: Level = null
+@onready var available_products: Array[Plant] = []
+@onready var _contents: Dictionary = {}
+
+
+func _ready():
+	SignalBus.on_level_ready.connect(on_level_ready)
 
 
 func add_inventory(category: String, product: String, num: int) -> void:
@@ -41,4 +44,9 @@ func clear_inventory() -> void:
 		"seeds": {},
 		"plants": {}
 	}
+
+func on_level_ready(loaded_level: Level):
+	level = loaded_level
+	available_products = level.available_products
+	print(available_products)
 	

@@ -1,9 +1,11 @@
 extends Node
 
-signal on_plant_inventory_updated(product: String, number: int)
-signal on_seed_inventory_updated(seed: String, number: int)
+signal on_level_ready(level: Level)
 signal on_player_ready(player: PlayerEntity)
 signal on_cursor_ready(cursor: CursorEntity)
+
+signal on_plant_inventory_updated(product: String, number: int)
+signal on_seed_inventory_updated(seed: String, number: int)
 signal on_stage_track_ready(stage_track: Path2D)
 #signal on_customer_ready(customer: CustomerEntity)
 #signal on_customer_despawn(customer: CustomerEntity)
@@ -13,7 +15,11 @@ signal on_trade_area_entered(area: Area2D)
 signal on_trade_area_exited()
 
 
-## Entity signals
+## Node ready signals
+func emit_on_level_ready(level: Level) -> void:
+	on_level_ready.emit(level)
+
+
 func emit_on_player_ready(player: PlayerEntity) -> void:
 	on_player_ready.emit(player)
 
@@ -21,6 +27,9 @@ func emit_on_player_ready(player: PlayerEntity) -> void:
 func emit_on_cursor_ready(cursor: CursorEntity) -> void:
 	on_cursor_ready.emit(cursor)
 
+
+#func emit_on_customer_ready(customer: Customer) -> void:
+	#on_customer_ready.emit(customer)
 
 
 ## Player action signals
@@ -43,9 +52,7 @@ func emit_on_trade_area_entered(area: Area2D) -> void:
 func emit_on_trade_area_exited() -> void:
 	on_trade_area_exited.emit()
 
-## Customer action signals
-#func emit_on_customer_ready(customer: CustomerEntity) -> void:
-	#on_customer_ready.emit(customer)
+
 #
 #func emit_on_customer_despawn(customer: CustomerEntity) -> void:
 	#on_customer_despawn.emit(customer)

@@ -11,20 +11,23 @@ extends Node
 #endregion
 
 #region inventory
-@onready var manager_container = NodeExtensions.get_manager_container()
-@onready var inventory_manager: InventoryManager = null
+@onready var manager_container: Node = NodeExtensions.get_manager_container()
+@onready var inventory_manager := $InventoryManagerComponent
 #endregion
 
 
 func _ready() -> void:
+	SignalBus.emit_on_level_ready(self)
+	
 	if manager_container == null: 
 		return
 	
 	inventory_manager = manager_container.get_node("InventoryManager")
-	setup_inventory()
+	
+	setup_starting_inventory()
 
 
-func setup_inventory() -> void:
+func setup_starting_inventory() -> void:
 	inventory_manager.clear_inventory()
 	
 	inventory_manager.create_inventory("seeds", "tomato", tomato_seeds_starting)

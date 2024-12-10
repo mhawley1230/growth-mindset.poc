@@ -1,9 +1,9 @@
-class_name ActionHandler
+class_name ActionHandlerComponent
 extends Node
 
 #region inventory
 @onready var manager_container = NodeExtensions.get_manager_container()
-@onready var inventory_manager: InventoryManager = null
+@export var inventory_manager: Node2D = null
 #endregion
 
 @export var available_plants: Array[PackedScene] = []
@@ -21,7 +21,7 @@ func _ready() -> void:
 	if manager_container == null:
 		return
 	
-	inventory_manager = manager_container.get_node("InventoryManager")
+	#inventory_manager = manager_container.get_node("InventoryManager")
 
 
 func detect_overlapped_areas(target: Area2D) -> Array[Area2D]:
@@ -36,35 +36,6 @@ func is_planting_enabled(areas: Array[Area2D]) -> bool:
 			enabled = true
 		
 	return enabled
-
-
-func create_plant(index: int, spawn_position: Vector2) -> void:	
-	var entity_container: Node = NodeExtensions.get_entity_container()
-	
-	if entity_container == null:
-		return
-	
-	var new_plant: Node2D = available_plants[index].instantiate()
-	var plant_instance: String = new_plant.name + "_" + str(new_plant.get_instance_id())
-	new_plant.name = plant_instance
-	var plant_type = Globals.strip_instance_id(plant_instance)
-	
-	
-	if inventory_manager.get_inventory("seeds", plant_type) < 1:
-		print("not enough seeds")
-		return
-	#
-	entity_container.add_child(new_plant)
-	new_plant.position = Vector2i(spawn_position)
-	inventory_manager.remove_inventory("seeds", plant_type, 1)
-
-
-func harvest_plant(areas: Array[Area2D]) -> void:
-	for area in areas:
-		if area.is_in_group("plant"):
-			var plant_type = Globals.strip_instance_id(area.name)
-			inventory_manager.add_inventory("plants", plant_type, 1)
-			area.free()
 
 ## TODO: Refactor: 
 ##    1. Create trade area for player [COMPLETE]

@@ -3,7 +3,7 @@ extends Control
 
 #region inventory
 @onready var manager_container = NodeExtensions.get_manager_container()
-@onready var inventory_manager: InventoryManager = null
+@onready var inventory_manager: InventoryManagerComponent = null
 #endregion
 
 #region labels

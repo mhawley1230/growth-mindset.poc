@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dii0d40pp8hqe"]
+
+[ext_resource type="Script" path="res://scenes/handlers/planting_component.gd" id="1_lfgdt"]
+
+[node name="PlantingComponent" type="Node"]
+script = ExtResource("1_lfgdt")
