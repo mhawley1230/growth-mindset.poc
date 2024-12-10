@@ -17,10 +17,10 @@ func create_plant(index: int, spawn_position: Vector2) -> void:
 	var plant_type = Globals.strip_instance_id(plant_instance)
 	
 	
-	#if inventory_manager.get_inventory("seeds", plant_type) < 1:
-		#print("not enough seeds")
-		#return
+	if inventory_manager.get_inventory("seeds", plant_type) < 1:
+		print("not enough seeds")
+		return
 	
 	entity_container.add_child(new_plant)
 	new_plant.position = Vector2i(spawn_position)
-	#inventory_manager.remove_inventory("seeds", plant_type, 1)
+	inventory_manager.remove_inventory("seeds", plant_type, 1)

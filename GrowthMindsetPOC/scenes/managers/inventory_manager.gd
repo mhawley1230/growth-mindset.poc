@@ -1,4 +1,4 @@
-class_name InventoryManagerComponent
+class_name InventoryManager
 extends Node
 
 @onready var level: Level = null
@@ -8,6 +8,7 @@ extends Node
 
 func _ready():
 	SignalBus.on_level_ready.connect(on_level_ready)
+	set_meta("inventory_manager", self)
 
 
 func add_inventory(category: String, product: String, num: int) -> void:

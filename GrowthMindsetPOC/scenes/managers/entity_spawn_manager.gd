@@ -19,7 +19,7 @@ func _ready():
 
 func spawn_player() -> void:
 	var new_player_entity: CharacterBody2D = player_packed_scene.instantiate()
-	var entity_container: Node2D = NodeExtensions.get_entity_container()
+	var entity_container: Node = NodeExtensions.get_entity_container()
 	
 	if entity_container == null:
 		return

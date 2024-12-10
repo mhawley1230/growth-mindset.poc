@@ -3,7 +3,7 @@ extends Control
 
 #region inventory
 @onready var manager_container = NodeExtensions.get_manager_container()
-@onready var inventory_manager: InventoryManagerComponent = null
+@onready var inventory_manager: InventoryManager = null
 #endregion
 
 #region labels
@@ -13,12 +13,17 @@ extends Control
 
 
 func _ready() -> void:
+	SignalBus.on_seed_inventory_updated.connect(on_seed_inventory_updated)
+	
 	if manager_container == null: 
 		return 
 	
 	inventory_manager = manager_container.get_node("InventoryManager")
 
 
-func _physics_process(_delta) -> void:
-	tomato_seed_label.text = str(inventory_manager.get_inventory("seeds", "tomato"))
-	potato_seed_label.text = str(inventory_manager.get_inventory("seeds", "potato"))
+func on_seed_inventory_updated(plant: Plant):
+	match plant.name.to_lower():
+		"tomato":
+			tomato_seed_label.text = str(inventory_manager.get_inventory("plant", "tomato"))
+		"potato":
+			potato_seed_label.text = str(inventory_manager.get_inventory("plant", "potato"))
