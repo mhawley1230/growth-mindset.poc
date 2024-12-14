@@ -1,26 +1,24 @@
-class_name PlayerEntity
+class_name Player
 extends CharacterBody2D
 
-#region Player
 @onready var input_handler := $InputHandlerComponent
 @onready var movement_handler := $MovementHandlerComponent
 @onready var action_handler := $ActionHandlerComponent
-#endregion
 
-#region Cursor
-@onready var cursor: Area2D = $Cursor
-@onready var cursor_position_handler := $CursorPositionHandlerComponent
-#endregion
+var cursor: Area2D = null
+
 
 func _ready() -> void:
 	NodeExtensions.get_entity_container()
 	SignalBus.emit_on_player_ready(self)
+	cursor = Refs.cursor_scene.instantiate()
+	add_child(cursor)
 
 
 func _physics_process(_delta) -> void:
 	movement_handler.handle_movement(self, input_handler.handle_movement())
 	move_and_slide()
-	cursor_position_handler.handle_cursor_position(self, cursor, input_handler.handle_movement())
+	cursor.cursor_position_handler.handle_cursor_position(self, cursor, input_handler.handle_movement())
 
 
 #func _input(_event) -> void:

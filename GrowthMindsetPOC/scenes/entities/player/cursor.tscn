@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://di6phrf8ie0q7"]
+
+[ext_resource type="Texture2D" uid="uid://dl7wei6o2u2k0" path="res://assets/cursor.png" id="1_7dims"]
+[ext_resource type="Script" path="res://scenes/entities/player/cursor.gd" id="1_w2wl4"]
+[ext_resource type="PackedScene" uid="uid://bdudl17tjdjk" path="res://scenes/handlers/player/cursor_position_handler_component.tscn" id="2_3cbr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rdvr"]
+size = Vector2(21.658, 22.1635)
+
+[node name="Cursor" type="Area2D" node_paths=PackedStringArray("cursor_position_handler")]
+position = Vector2(16, 16)
+scale = Vector2(0.999, 0.999)
+script = ExtResource("1_w2wl4")
+cursor_position_handler = NodePath("CursorPositionHandlerComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+z_as_relative = false
+texture = ExtResource("1_7dims")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(0.99, 0.99)
+shape = SubResource("RectangleShape2D_6rdvr")
+
+[node name="CursorPositionHandlerComponent" parent="." instance=ExtResource("2_3cbr4")]

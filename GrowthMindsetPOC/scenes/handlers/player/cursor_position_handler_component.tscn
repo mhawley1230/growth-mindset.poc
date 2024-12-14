@@ -2,9 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/handlers/player/cursor_position_handler_component.gd" id="1_bdws0"]
 
-[node name="CursorPositionHandlerComponent" type="Node" node_paths=PackedStringArray("cursor", "body", "movement_component", "input_handler")]
+[node name="CursorPositionHandlerComponent" type="Node"]
 script = ExtResource("1_bdws0")
-cursor = NodePath("")
-body = NodePath("")
-movement_component = NodePath("")
-input_handler = NodePath("")

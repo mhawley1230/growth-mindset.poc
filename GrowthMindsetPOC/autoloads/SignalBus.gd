@@ -1,8 +1,8 @@
 extends Node
 
 signal on_level_ready(level: Level)
-signal on_player_ready(player: PlayerEntity)
-signal on_cursor_ready(cursor: CursorEntity)
+signal on_player_ready(player: Player)
+signal on_cursor_ready(cursor: Cursor)
 
 signal on_plant_inventory_updated(product: String, number: int)
 signal on_seed_inventory_updated(seed: String, number: int)
@@ -20,11 +20,11 @@ func emit_on_level_ready(level: Level) -> void:
 	on_level_ready.emit(level)
 
 
-func emit_on_player_ready(player: PlayerEntity) -> void:
+func emit_on_player_ready(player: Player) -> void:
 	on_player_ready.emit(player)
 
 
-func emit_on_cursor_ready(cursor: CursorEntity) -> void:
+func emit_on_cursor_ready(cursor: Cursor) -> void:
 	on_cursor_ready.emit(cursor)
 
 
@@ -54,7 +54,7 @@ func emit_on_trade_area_exited() -> void:
 
 
 #
-#func emit_on_customer_despawn(customer: CustomerEntity) -> void:
+#func emit_on_customer_despawn(customer: Customer) -> void:
 	#on_customer_despawn.emit(customer)
 
 

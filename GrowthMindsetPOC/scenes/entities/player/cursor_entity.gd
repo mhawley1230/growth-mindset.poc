@@ -1,2 +1,0 @@
-class_name CursorEntity
-extends Area2D
