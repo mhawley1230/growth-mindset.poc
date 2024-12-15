@@ -20,7 +20,7 @@ func _ready() -> void:
 ## create UI element and add product icons and nums$".."
 ## to customer entity
 func create_order() -> Dictionary:
-	var random_numbers: Array = Globals.generate_numbers(products.size(), max_order_size)
+	var random_numbers: Array = Utils.generate_numbers(products.size(), max_order_size)
 	
 	for i in random_numbers.size():
 		var product = products.pick_random().name

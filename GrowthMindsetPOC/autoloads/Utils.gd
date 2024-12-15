@@ -24,3 +24,8 @@ func generate_numbers(n: int, max_sum: int) -> Array:
 		current_sum += new_number
 
 	return numbers
+
+
+func get_name_from_load_path(path: String) -> String:
+	var obj_name = path.split("/")[4].split("_")[0]
+	return obj_name
