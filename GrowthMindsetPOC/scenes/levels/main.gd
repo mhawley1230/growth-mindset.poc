@@ -1,0 +1,6 @@
+class_name Main
+extends Node2D
+
+
+func _ready():
+	Global.main = self

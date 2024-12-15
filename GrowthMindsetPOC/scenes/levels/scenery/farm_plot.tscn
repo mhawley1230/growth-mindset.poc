@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://but238i4h4316"]
 
-[ext_resource type="Script" path="res://scenes/levels/farm_plot.gd" id="1_kjthu"]
+[ext_resource type="Script" path="res://scenes/levels/scenery/farm_plot.gd" id="1_kjthu"]
 [ext_resource type="Texture2D" uid="uid://csr8kriuv850q" path="res://assets/farmplot.png" id="2_ymiwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsn3"]

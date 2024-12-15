@@ -1,11 +1,6 @@
 class_name Plant
 extends Area2D
 
-enum Type {
-	TOMATO,
-	POTATO
-}
-
 @onready var texture_progress_bar := $TextureProgressBar 
 @onready var animation_player := $AnimationPlayer
 
@@ -13,6 +8,7 @@ var isHarvestable: bool = false
 
 ## TODO: StateManager for growing states, 3-4 total states, 2-3 player/automated actions to advance state w/ animations
 func _ready():
+	set_meta("plant_name", name)
 	animation_player.play("plant_growing")
 
 func _process(_delta):

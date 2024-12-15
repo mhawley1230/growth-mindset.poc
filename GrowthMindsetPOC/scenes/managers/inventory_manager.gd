@@ -1,39 +1,34 @@
 class_name InventoryManager
 extends Node
 
-@onready var level: Level = null
-@onready var available_products: Array[Plant] = []
 @onready var _contents: Dictionary = {}
 
 
 func _ready():
-	SignalBus.on_level_ready.connect(on_level_ready)
-	set_meta("inventory_manager", self)
+	Global.inventory_manager = self
+	SignalBus.on_inventory_manager_ready.emit(self)
 
 
-func add_inventory(category: String, product: String, num: int) -> void:
-	_contents[category][product] += num
+func add_inventory(category: String, product: String, num: int) -> Dictionary:
+	if !_contents.has(category):
+		_contents[category] = { product: num }
+		
+	if !_contents[category].has(product):
+		_contents[category][product] = num
+	
+	return get_inventory(category, product)
 
 
-func remove_inventory(category: String, product: String, num: int) -> void:
-	if has_inventory(category, product):
-		_contents[category][product] -= num
+func remove_inventory(category: String, product: String, num: int) -> Dictionary:
+	_contents[category][product] -= num
+	return get_inventory(category, product)
 
 
-func has_inventory(category: String, product: String) -> bool:
-	if _contents[category][product] >= 1:
-		return true
-	return false
-
-
-func create_inventory(category: String, product: String, num: int) -> void:
-	_contents[category][product] = num
-
-
-func get_inventory(category: String, product: String) -> int:
-	if has_inventory(category, product):
-		return _contents[category][product]
-	return 0
+func get_inventory(category: String, product: String) -> Dictionary:	
+	for i in _contents[category].keys():
+		if i == product:
+			return { i: _contents[category][i] }
+	return {}
 
 
 func get_all_inventory() -> Dictionary:
@@ -41,13 +36,4 @@ func get_all_inventory() -> Dictionary:
 
 
 func clear_inventory() -> void:
-	_contents = {
-		"seeds": {},
-		"plants": {}
-	}
-
-func on_level_ready(loaded_level: Level):
-	level = loaded_level
-	available_products = level.available_products
-	print(available_products)
-	
+	return _contents.clear()

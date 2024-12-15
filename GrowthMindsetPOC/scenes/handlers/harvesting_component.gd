@@ -9,6 +9,6 @@ extends Node
 func harvest_plant(areas: Array[Area2D]) -> void:
 	for area in areas:
 		if area.is_in_group("plant"):
-			var plant_type = Globals.strip_instance_id(area.name)
+			var plant_type = Utils.strip_instance_id(area.name)
 			inventory_manager.add_inventory("plants", plant_type, 1)
 			area.free()

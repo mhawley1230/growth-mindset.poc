@@ -1,5 +1,7 @@
 extends Node
 
+enum PlantType {TOMATO, POTATO}
+
 const TILE_SIZE: Vector2 = Vector2(32, 32)
 
 

@@ -24,6 +24,6 @@ func _ready() -> void:
 func on_seed_inventory_updated(plant: Plant):
 	match plant.name.to_lower():
 		"tomato":
-			tomato_seed_label.text = str(inventory_manager.get_inventory("plant", "tomato"))
+			tomato_seed_label.text = str(inventory_manager.get_inventory("seed", "tomato"))
 		"potato":
-			potato_seed_label.text = str(inventory_manager.get_inventory("plant", "potato"))
+			potato_seed_label.text = str(inventory_manager.get_inventory("seed", "potato"))

@@ -11,18 +11,13 @@ extends Node
 @export_group("Customer scene")
 @export var frog_scene: PackedScene
 
-var plant_dict: Dictionary = {
-	Plant.Type.TOMATO: tomato_scene,
-	Plant.Type.POTATO: potato_scene
+@onready var plants: Dictionary = {
+	Utils.PlantType.TOMATO: tomato_scene,
+	Utils.PlantType.POTATO: potato_scene,
 }
 
-#var customer_dict: Dictionary = {
-	#Customer.Type.FROG: frog_scene
-#}
-
-
-func get_plant_scene_by_type(type: Plant.Type) -> PackedScene:
-	return plant_dict[type]
+func get_plant_scene_by_type(type: Utils.PlantType) -> PackedScene:
+	return plants[type]
 
 
 #func get_customer_scene_by_type(type: Customer.Type):

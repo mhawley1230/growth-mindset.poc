@@ -1,36 +1,35 @@
 class_name Level
 extends Node
 
-#region product
 @export_category("products")
-@export var available_products: Array[Plant] = []
 @export var tomato_seeds_starting: int = 2
 @export var potato_seeds_starting: int = 1
-@export var tomatoes_starting: int = 0
-@export var potatoes_starting: int = 0
-#endregion
+@export var tomatoes_starting: int = 1
+@export var potatoes_starting: int = 1
 
-#region inventory
-@onready var manager_container: Node = NodeExtensions.get_manager_container()
-@onready var inventory_manager := $InventoryManagerComponent
-#endregion
+#@export var available_products: Array[PackedScene] = []
 
+@onready var available_products: Array[PackedScene]
 
 func _ready() -> void:
+	Global.level = self
+	
 	SignalBus.emit_on_level_ready(self)
+	SignalBus.on_inventory_manager_ready.connect(set_starting_inventory)
 	
-	if manager_container == null: 
-		return
+	available_products.append(
+			Refs.get_plant_scene_by_type(Utils.PlantType.POTATO))
+	available_products.append(
+			Refs.get_plant_scene_by_type(Utils.PlantType.TOMATO))
 	
-	inventory_manager = manager_container.get_node("InventoryManager")
-	
-	setup_starting_inventory()
 
 
-func setup_starting_inventory() -> void:
-	inventory_manager.clear_inventory()
+func set_starting_inventory(inventory: InventoryManager) -> void:
+	inventory.clear_inventory()
 	
-	inventory_manager.create_inventory("seeds", "tomato", tomato_seeds_starting)
-	inventory_manager.create_inventory("seeds", "potato", potato_seeds_starting)
-	inventory_manager.create_inventory("plants", "tomato", tomatoes_starting)
-	inventory_manager.create_inventory("plants", "potato", potatoes_starting)
+	inventory.add_inventory("seeds", "tomato", tomato_seeds_starting)
+	inventory.add_inventory("seeds", "potato", potato_seeds_starting)
+	inventory.add_inventory("plants", "tomato", tomatoes_starting)
+	inventory.add_inventory("plants", "potato", potatoes_starting)
+	
+	print(inventory.get_all_inventory())

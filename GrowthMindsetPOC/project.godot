@@ -28,11 +28,11 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-Refs="*res://autoloads/Refs.tscn"
 Utils="*res://autoloads/Utils.gd"
-Globals="*res://autoloads/Globals.gd"
-NodeExtensions="*res://autoloads/NodeExtensions.gd"
+Global="*res://autoloads/Global.tscn"
+Refs="*res://autoloads/Refs.tscn"
 SignalBus="*res://autoloads/SignalBus.gd"
+NodeExtensions="*res://autoloads/NodeExtensions.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0wyg35r54jsh"]
+[gd_scene load_steps=11 format=3 uid="uid://b0wyg35r54jsh"]
 
 [ext_resource type="Texture2D" uid="uid://b4hu5c4oqm8kw" path="res://assets/Basic Charakter Spritesheet.png" id="1_bwqa7"]
 [ext_resource type="Script" path="res://scenes/entities/player/player.gd" id="1_oqiji"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cakaujwpqoynv" path="res://scenes/handlers/action_handler_component.tscn" id="6_c8j1d"]
 [ext_resource type="PackedScene" uid="uid://bwahd2kimd3jx" path="res://scenes/handlers/harvesting_component.tscn" id="7_80cxv"]
 [ext_resource type="PackedScene" uid="uid://pkwxdcbplm1m" path="res://scenes/handlers/trading_component.tscn" id="8_4glii"]
-[ext_resource type="Script" path="res://scenes/managers/inventory_manager.gd" id="11_smfnq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
 atlas = ExtResource("1_bwqa7")
@@ -53,6 +52,3 @@ drag_bottom_margin = 0.25
 [node name="HarvestingComponent" parent="." instance=ExtResource("7_80cxv")]
 
 [node name="TradingComponent" parent="." instance=ExtResource("8_4glii")]
-
-[node name="InventoryManagerComponent" type="Node" parent="."]
-script = ExtResource("11_smfnq")

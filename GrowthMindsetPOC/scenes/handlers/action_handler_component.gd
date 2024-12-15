@@ -3,7 +3,7 @@ extends Node
 
 #region inventory
 @onready var manager_container = NodeExtensions.get_manager_container()
-@export var inventory_manager: Node2D = null
+@onready var inventory_manager: InventoryManager = Global.inventory_manager
 #endregion
 
 @export var available_plants: Array[PackedScene] = []
