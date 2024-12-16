@@ -26,17 +26,19 @@ func create_textures_and_labels() -> void:
 		var icon := TextureRect.new()
 		grid_container.add_child(icon)
 		icon.texture = i
-		icon.set_expand_mode(2)
-		icon.set_h_size_flags(3)
+		
+		# Center icon in container
+		icon.set_expand_mode(TextureRect.EXPAND_FIT_WIDTH)
+		icon.set_h_size_flags(SIZE_EXPAND_FILL)
 		
 		# Create label
 		var label := Label.new()
 		grid_container.add_child(label)
-		
 		label.text = str(Global.level.plants_starting[index])
-		label.set_horizontal_alignment(1)
-		label.set_h_size_flags(3)
-		#label.set_h_size_flags(4)
+		
+		# Center label in container
+		label.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
+		label.set_h_size_flags(SIZE_EXPAND_FILL)
 		label.add_theme_font_size_override("font_size", 60)
 		
 		index += 1
