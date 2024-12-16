@@ -38,18 +38,18 @@ theme_override_font_sizes/font_size = 39
 text = "Seeds"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-columns = 2
 
-[node name="TomatoSeedsIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/GridContainer/GridContainer"]
+[node name="TomatoSeedsIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("1_m5vp5")
 
-[node name="TomatoSeedLabel" type="Label" parent="CanvasLayer/PanelContainer/GridContainer/GridContainer/TomatoSeedsIcon"]
+[node name="TomatoSeedLabel" type="Label" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer/TomatoSeedsIcon"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
@@ -65,12 +65,12 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 horizontal_alignment = 2
 
-[node name="PotatoSeedsIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/GridContainer/GridContainer"]
+[node name="PotatoSeedsIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("2_ck3ka")
 
-[node name="PotatoSeedLabel" type="Label" parent="CanvasLayer/PanelContainer/GridContainer/GridContainer/PotatoSeedsIcon"]
+[node name="PotatoSeedLabel" type="Label" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer/PotatoSeedsIcon"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3

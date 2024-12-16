@@ -4,6 +4,9 @@ extends Node
 @export var tomato_icon: Texture2D
 @export var potato_icon: Texture2D
 
+@export var tomato_seed_icon: Texture2D
+@export var potato_seed_icon: Texture2D
+
 @export_group("Packed Scenes")
 @export var player_scene: PackedScene
 @export var cursor_scene: PackedScene
@@ -21,6 +24,11 @@ extends Node
 	Utils.PlantType.POTATO: potato_icon,
 }
 
+@onready var seed_icons: Dictionary = {
+	Utils.PlantType.TOMATO: tomato_seed_icon,
+	Utils.PlantType.POTATO: potato_seed_icon,
+}
+
 
 func get_plant_scene_by_type(type: Utils.PlantType) -> PackedScene:
 	return plant_scenes[type]
@@ -29,6 +37,9 @@ func get_plant_scene_by_type(type: Utils.PlantType) -> PackedScene:
 func get_plant_icon_by_type(type: Utils.PlantType) -> Texture2D:
 	return plant_icons[type]
 
+
+func get_plant_seed_icon_by_type(type: Utils.PlantType) -> Texture2D:
+	return seed_icons[type]
 
 #func get_customer_scene_by_type(type: Customer.Type):
 	#return customer_dict[type] 

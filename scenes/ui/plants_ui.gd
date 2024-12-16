@@ -2,19 +2,15 @@ class_name PlantsUI
 extends Control
 
 
-@onready var grid_container: GridContainer = %GridContainer
-##region labels
-#@onready var tomato_label: Label = %TomatoLabel
-#@onready var potato_label: Label = %PotatoLabel
-##endregion
+@onready var grid_container := %GridContainer
 
 
 func _ready() -> void:
 	SignalBus.on_plant_inventory_updated.connect(on_plant_inventory_updated)
-	create_textures_and_labels()
+	_create_textures_and_labels()
  
 
-func create_textures_and_labels() -> void:
+func _create_textures_and_labels() -> void:
 	if Global.level.available_product_icons == null:
 		return
 	
@@ -23,13 +19,13 @@ func create_textures_and_labels() -> void:
 	for i in Global.level.available_product_icons:
 		var index: int = 0
 		# Create plant icon
-		var icon := TextureRect.new()
-		grid_container.add_child(icon)
-		icon.texture = i
+		var texture_rect := TextureRect.new()
+		grid_container.add_child(texture_rect)
+		texture_rect.texture = i
 		
 		# Center icon in container
-		icon.set_expand_mode(TextureRect.EXPAND_FIT_WIDTH)
-		icon.set_h_size_flags(SIZE_EXPAND_FILL)
+		texture_rect.set_expand_mode(TextureRect.EXPAND_FIT_WIDTH)
+		texture_rect.set_h_size_flags(SIZE_EXPAND_FILL)
 		
 		# Create label
 		var label := Label.new()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brxbgidj2rvya"]
+[gd_scene load_steps=10 format=3 uid="uid://brxbgidj2rvya"]
 
 [ext_resource type="Script" path="res://autoloads/Refs.gd" id="1_8b6yn"]
 [ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://assets/tomato_icon.png" id="2_0ce6m"]
@@ -6,12 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="3_86p1j"]
 [ext_resource type="PackedScene" uid="uid://di6phrf8ie0q7" path="res://scenes/entities/player/cursor.tscn" id="3_v8dyv"]
 [ext_resource type="PackedScene" uid="uid://smij2expicck" path="res://scenes/entities/plants/tomato.tscn" id="4_6p0ys"]
+[ext_resource type="Texture2D" uid="uid://bx2fdcqdyfb4c" path="res://assets/tomato_seeds_icon.png" id="4_q5oax"]
+[ext_resource type="Texture2D" uid="uid://c468b8j06ghxg" path="res://assets/potato_seeds_icons.png" id="5_8gp1f"]
 [ext_resource type="PackedScene" uid="uid://caj6rs1e5q13p" path="res://scenes/entities/plants/potato.tscn" id="5_xrkw5"]
 
 [node name="Refs" type="Node"]
 script = ExtResource("1_8b6yn")
 tomato_icon = ExtResource("2_0ce6m")
 potato_icon = ExtResource("3_86p1j")
+tomato_seed_icon = ExtResource("4_q5oax")
+potato_seed_icon = ExtResource("5_8gp1f")
 player_scene = ExtResource("2_8vrql")
 cursor_scene = ExtResource("3_v8dyv")
 tomato_scene = ExtResource("4_6p0ys")
