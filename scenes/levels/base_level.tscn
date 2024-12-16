@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0tby4mjpi1f"]
+[gd_scene load_steps=11 format=3 uid="uid://d0tby4mjpi1f"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_68kx5"]
 [ext_resource type="Texture2D" uid="uid://d3dumkeuyalte" path="res://assets/grass_tile.png" id="1_ejfxa"]
 [ext_resource type="Texture2D" uid="uid://hpvkrmrslja7" path="res://assets/Grass.png" id="2_3oj13"]
-[ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://assets/tomato_icon.png" id="2_sc4y5"]
-[ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="3_cg2au"]
 [ext_resource type="PackedScene" uid="uid://vuumnp328oiu" path="res://scenes/levels/scenery/boundary_container.tscn" id="4_ensgr"]
 [ext_resource type="Script" path="res://scenes/managers/entity_spawn_manager.gd" id="5_g4i1b"]
 [ext_resource type="PackedScene" uid="uid://but238i4h4316" path="res://scenes/levels/scenery/farm_plot.tscn" id="5_ycxjk"]
@@ -97,7 +95,6 @@ sources/1 = SubResource("TileSetAtlasSource_2dc3h")
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_68kx5")
-level_product_icons = Array[Texture2D]([ExtResource("2_sc4y5"), ExtResource("3_cg2au")])
 seeds_starting = Array[int]([2, 2])
 plants_starting = Array[int]([1, 1])
 

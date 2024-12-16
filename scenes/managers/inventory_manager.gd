@@ -5,8 +5,8 @@ extends Node
 
 
 func _ready():
-	Global.inventory_manager = self
 	SignalBus.on_inventory_manager_ready.emit(self)
+	Global.inventory_manager = self
 
 
 func add_inventory(category: String, product: String, num: int) -> Dictionary:

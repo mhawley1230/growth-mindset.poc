@@ -2,30 +2,29 @@ class_name Level
 extends Node
 
 @export_category("products")
-@export var level_product_icons: Array[Texture2D] = []
+@export var available_product_icons: Array[Texture2D] = []
 @export var seeds_starting: Array[int] = []
 @export var plants_starting: Array[int] = []
 
-@onready var available_products: Array[String]
+## Contains product names and Util.PlantType.* enum ref
+#@onready var product_names: Array[String]
 
 func _ready() -> void:
 	Global.level = self
 	
 	SignalBus.emit_on_level_ready(self)
 	#SignalBus.on_inventory_manager_ready.connect(set_starting_inventory)
+	#get_names_from_icon_names()
 	
-	for i in level_product_icons:
-		available_products.append(
-				Utils.get_name_from_load_path(i.get_load_path().to_upper()))
-	
-	print(available_products)
-	
-	#available_products.append(
-			#Refs.get_plant_icon_by_type(Utils.PlantType.POTATO))
-	#available_products.append(
-			#Refs.get_plant_icon_by_type(Utils.PlantType.TOMATO))
-	
-	#for i in available_products:
+
+#func get_names_from_icon_names() -> void:
+	#for i in available_product_icons:
+		## Get name of icon by parsing load path
+		#var icon_name: String = Utils.get_name_from_load_path(
+				#i.get_load_path())
+		#
+		#var ref_string: String = "Utils.PlantType." + icon_name.to_upper()
+		#product_names.append(icon_name)
 		
 
 #func set_starting_inventory(inventory: InventoryManager) -> void:

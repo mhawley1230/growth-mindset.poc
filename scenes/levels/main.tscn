@@ -1,35 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm8xxihoxnqyd"]
+[gd_scene load_steps=7 format=3 uid="uid://bm8xxihoxnqyd"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_ngl63"]
 [ext_resource type="PackedScene" uid="uid://d0tby4mjpi1f" path="res://scenes/levels/base_level.tscn" id="1_po20j"]
+[ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="3_k41dx"]
+[ext_resource type="PackedScene" uid="uid://djbbosn66hdxf" path="res://scenes/ui/ui.tscn" id="4_fm2dw"]
+[ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://assets/tomato_icon.png" id="4_tw4a6"]
 [ext_resource type="PackedScene" uid="uid://da3tnvt2tdyqw" path="res://scenes/managers/inventory_manager.tscn" id="5_m5yl4"]
-[ext_resource type="PackedScene" uid="uid://dfvp5s8b06gqq" path="res://scenes/ui/seeds_ui.tscn" id="6_hm443"]
-[ext_resource type="PackedScene" uid="uid://rodc4x0e0t6g" path="res://scenes/ui/plants_ui.tscn" id="7_4kr7m"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(16, 16)
 script = ExtResource("1_ngl63")
 
-[node name="LevelContainer" type="Node" parent="." groups=["level_container"]]
-
-[node name="BaseLevel" parent="LevelContainer" instance=ExtResource("1_po20j")]
-
-[node name="EntityContainer" type="Node" parent="." groups=["entity_container"]]
-
-[node name="UIContainer" type="Node" parent="."]
-
-[node name="SeedsUI" parent="UIContainer" instance=ExtResource("6_hm443")]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 56.0
-offset_bottom = 56.0
-
-[node name="PlantsUI" parent="UIContainer" instance=ExtResource("7_4kr7m")]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 16.0
-offset_bottom = 16.0
+[node name="BaseLevel" parent="." instance=ExtResource("1_po20j")]
+position = Vector2(-16, -16)
+available_product_icons = Array[Texture2D]([ExtResource("3_k41dx"), ExtResource("4_tw4a6")])
 
 [node name="ManagerContainer" type="Node" parent="."]
 
 [node name="InventoryManager" parent="ManagerContainer" instance=ExtResource("5_m5yl4")]
+
+[node name="UI" parent="." instance=ExtResource("4_fm2dw")]
+
+[node name="EntityContainer" type="Node" parent="." groups=["entity_container"]]
+
+[node name="UIContainer" type="Node" parent="."]
