@@ -20,6 +20,7 @@ func _create_textures_and_labels():
 		return
 	
 	for i in Global.level.available_product_icons:
+		var index: int = 0
 		# Reverse lookup to grab type from level icons, feels hacky
 		var key: int = Refs.plant_icons.find_key(i)
 		var icon: Texture2D = Refs.get_plant_seed_icon_by_type(key)
@@ -30,20 +31,23 @@ func _create_textures_and_labels():
 		texture_rect.texture = icon
 		
 		# Center icon in container
-		texture_rect.set_expand_mode(TextureRect.EXPAND_FIT_WIDTH)
-		texture_rect.set_h_size_flags(SIZE_EXPAND_FILL)
+		#texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		#texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
+		texture_rect.custom_minimum_size = Vector2(75,75)
+		texture_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		#texture_rect.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		texture_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		
 		# Create label
 		var label := Label.new()
 		texture_rect.add_child(label)
-		label.text = str(0)
-		label.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_RIGHT)
-		label.set_vertical_alignment(VERTICAL_ALIGNMENT_TOP)
+		label.text = str(Global.level.seeds_starting[index])
 		
 		# Set bottom right anchor
-		#label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+		label.set_anchors_and_offsets_preset(PRESET_BOTTOM_RIGHT)
+		index += 1
 
-func on_seed_inventory_updated(plant: Plant):
+func on_seed_inventory_updated(seed_name: String, number: int):
 	pass
 	#match plant.name.to_lower():
 		#"tomato":

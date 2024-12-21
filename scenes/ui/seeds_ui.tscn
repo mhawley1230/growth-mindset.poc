@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfvp5s8b06gqq"]
+[gd_scene load_steps=2 format=3 uid="uid://dfvp5s8b06gqq"]
 
-[ext_resource type="Texture2D" uid="uid://bx2fdcqdyfb4c" path="res://assets/tomato_seeds_icon.png" id="1_m5vp5"]
 [ext_resource type="Script" path="res://scenes/ui/seeds_ui.gd" id="1_p0ikh"]
-[ext_resource type="Texture2D" uid="uid://c468b8j06ghxg" path="res://assets/potato_seeds_icons.png" id="2_ck3ka"]
 
 [node name="SeedsUI" type="Control"]
 layout_mode = 3
@@ -41,48 +39,3 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="TomatoSeedsIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("1_m5vp5")
-
-[node name="TomatoSeedLabel" type="Label" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer/TomatoSeedsIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -28.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 20
-text = "1000"
-horizontal_alignment = 2
-
-[node name="PotatoSeedsIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-texture = ExtResource("2_ck3ka")
-
-[node name="PotatoSeedLabel" type="Label" parent="CanvasLayer/PanelContainer/GridContainer/HBoxContainer/PotatoSeedsIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -28.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 20
-text = "1000
-"
-horizontal_alignment = 2

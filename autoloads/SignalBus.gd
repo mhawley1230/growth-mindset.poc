@@ -5,8 +5,8 @@ signal on_player_ready(player: Player)
 signal on_cursor_ready(cursor: Cursor)
 signal on_inventory_manager_ready(inventory_manager: InventoryManager)
 
-signal on_plant_inventory_updated(product: String, number: int)
-signal on_seed_inventory_updated(seed: String, prev: int, new: int)
+signal on_plant_inventory_updated(plant_name: String, number: int)
+signal on_seed_inventory_updated(seed_names: String, number: int)
 signal on_stage_track_ready(stage_track: Path2D)
 #signal on_customer_ready(customer: CustomerEntity)
 #signal on_customer_despawn(customer: CustomerEntity)
@@ -38,12 +38,12 @@ func emit_on_cursor_ready(cursor: Cursor) -> void:
 
 
 ## Player action signals
-func emit_on_plant_inventory_updated(product_name: String, number: int) -> void:
-	on_plant_inventory_updated.emit(product_name, number)
+func emit_on_plant_inventory_updated(plant_name: String, number: int) -> void:
+	on_plant_inventory_updated.emit(plant_name, number)
 
 
-func emit_on_seed_inventory_updated(seed_name: String, prev: int, new: int) -> void:
-	on_seed_inventory_updated.emit(seed_name, prev, new)
+func emit_on_seed_inventory_updated(seed_name: String, number: int) -> void:
+	on_seed_inventory_updated.emit(seed_name, number)
 
 
 func emit_on_trade_complete() -> void:
