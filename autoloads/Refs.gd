@@ -15,30 +15,30 @@ extends Node
 @export var frog_scene: PackedScene
 
 @onready var plant_scenes: Dictionary = {
-	Utils.PlantType.TOMATO: tomato_scene,
-	Utils.PlantType.POTATO: potato_scene,
+	Plant.Type.TOMATO: tomato_scene,
+	Plant.Type.POTATO: potato_scene,
 }
 
 @onready var plant_icons: Dictionary = {
-	Utils.PlantType.TOMATO: tomato_icon,
-	Utils.PlantType.POTATO: potato_icon,
+	Plant.Type.TOMATO: tomato_icon,
+	Plant.Type.POTATO: potato_icon,
 }
 
 @onready var seed_icons: Dictionary = {
-	Utils.PlantType.TOMATO: tomato_seed_icon,
-	Utils.PlantType.POTATO: potato_seed_icon,
+	Plant.Type.TOMATO: tomato_seed_icon,
+	Plant.Type.POTATO: potato_seed_icon,
 }
 
 
-func get_plant_scene_by_type(type: Utils.PlantType) -> PackedScene:
+func get_plant_scene_by_type(type: Plant.Type) -> PackedScene:
 	return plant_scenes[type]
 
 
-func get_plant_icon_by_type(type: Utils.PlantType) -> Texture2D:
+func get_plant_icon_by_type(type: Plant.Type) -> Texture2D:
 	return plant_icons[type]
 
 
-func get_plant_seed_icon_by_type(type: Utils.PlantType) -> Texture2D:
+func get_plant_seed_icon_by_type(type: Plant.Type) -> Texture2D:
 	return seed_icons[type]
 
 #func get_customer_scene_by_type(type: Customer.Type):

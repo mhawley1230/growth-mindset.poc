@@ -52,18 +52,10 @@ func on_seed_inventory_updated(seed_name: String, num: int):
 	
 	for i in children.size():
 		var icon: TextureRect = children[i].get_child(0)
+		#print(seed_name, num)
 		var label: Label = icon.get_child(0)
 		
 		if seed_name == Utils.get_name_from_load_path(
 				icon.texture.resource_path):
-			label.text = str(num)
-	
-	#print("seeds inventory received:")
-	#print(seed_name + " " + str(num))
-	#
-	#print(hbox_container)
-	
-	#Global.inventory_manager.get_inventory("seeds", seed_name)
-	#
-	#for icon in hbox_container.get_children():
-		#print(get_path_to(icon))
+			label.text = str(Global.inventory_manager.get_inventory(
+					"seeds", seed_name)[seed_name])

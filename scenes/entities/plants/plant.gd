@@ -1,6 +1,8 @@
 class_name Plant
 extends Area2D
 
+enum Type { TOMATO, POTATO }
+
 @onready var texture_progress_bar := $TextureProgressBar 
 @onready var animation_player := $AnimationPlayer
 
