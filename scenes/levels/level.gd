@@ -7,37 +7,33 @@ extends Node
 @export var plants_starting: Array[int] = []
 
 ## Contains product names and Util.PlantType.* enum ref
-#@onready var product_names: Array[String]
+@onready var inventory_manager = Global.inventory_manager
+@onready var product_names: Array[String]
+
+
+func _init():
+	Global.level = self
+
 
 func _ready() -> void:
-	Global.level = self
-	
-	SignalBus.emit_on_level_ready(self)
-	#SignalBus.on_inventory_manager_ready.connect(set_starting_inventory)
-	#get_names_from_icon_names()
-	
+	inventory_manager.clear_inventory()
+	get_names_from_icon_names()
+	set_starting_inventory()
 
-#func get_names_from_icon_names() -> void:
-	#for i in available_product_icons:
-		## Get name of icon by parsing load path
-		#var icon_name: String = Utils.get_name_from_load_path(
-				#i.get_load_path())
-		#
-		#var ref_string: String = "Utils.PlantType." + icon_name.to_upper()
-		#product_names.append(icon_name)
+
+func get_names_from_icon_names() -> void:
+	for i in available_product_icons:
+		# Get name of icon by parsing load path
+		var icon_name: String = Utils.get_name_from_load_path(
+				i.resource_path)
 		
+		#var ref_string: String = "Utils.PlantType." + icon_name.to_upper()
+		product_names.append(icon_name)
 
-#func set_starting_inventory(inventory: InventoryManager) -> void:
-	#inventory.clear_inventory()
-	#
-	#for i in available_products:
-		#Global.inventory_manager.add_inventory("seeds", available_products[i],
-				#seeds_starting[i])
-	#inventory.add_inventory(
-			#"seeds", "tomato", tomato_seeds_starting)
-	#inventory.add_inventory(
-			#"seeds", "potato", potato_seeds_starting)
-	#inventory.add_inventory(
-			#"plants", "tomato", tomatoes_starting)
-	#inventory.add_inventory(
-			#"plants", "potato", potatoes_starting)
+
+func set_starting_inventory() -> void:
+	for i in product_names.size():
+		inventory_manager.add_inventory("seeds", product_names[i],
+				seeds_starting[i])
+		inventory_manager.add_inventory("plants", product_names[i],
+				plants_starting[i])

@@ -5,23 +5,26 @@ extends Control
 @onready var grid_container := %GridContainer
 
 
-func _ready() -> void:
+func _init() -> void:
+	Global.plants_ui = self
 	SignalBus.on_plant_inventory_updated.connect(on_plant_inventory_updated)
+
+
+func _ready() -> void:
 	_create_textures_and_labels()
  
 
 func _create_textures_and_labels() -> void:
-	if Global.level.available_product_icons == null:
+	if Global.level == null:
 		return
 	
-	#print(Global.level.available_product_icons)
+	var icons: Array[Texture2D] = Global.level.available_product_icons
 	
-	for i in Global.level.available_product_icons:
-		var index: int = 0
+	for i in icons.size():
 		# Create plant icon
 		var texture_rect := TextureRect.new()
 		grid_container.add_child(texture_rect)
-		texture_rect.texture = i
+		texture_rect.texture = icons[i]
 		
 		# Center icon in container
 		texture_rect.set_expand_mode(TextureRect.EXPAND_FIT_WIDTH)
@@ -30,22 +33,23 @@ func _create_textures_and_labels() -> void:
 		# Create label
 		var label := Label.new()
 		grid_container.add_child(label)
-		label.text = str(Global.level.plants_starting[index])
+		label.text = "000"
+		#label.text = str(Global.level.plants_starting[index])
 		
 		# Center label in container
 		label.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 		label.set_h_size_flags(SIZE_EXPAND_FILL)
 		label.add_theme_font_size_override("font_size", 60)
-		
-		index += 1
-		
+		label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
 
-func on_plant_inventory_updated(plant: Plant) -> void:
-	pass
-	#match plant.name.to_lower():
-		#"tomato":
-			#tomato_label.text = str(
-					#Global.inventory_manager.get_inventory("plant", "tomato"))
-		#"potato":
-			#potato_label.text = str(
-					#Global.inventory_manager.get_inventory("plant", "potato"))
+
+func on_plant_inventory_updated(plant_name: String, num: int) -> void:
+	var children = grid_container.get_children()
+	
+	for i in children.size():
+		if children[i] is TextureRect:
+			var icon: TextureRect = children[i]
+			var icon_path: String = icon.texture.resource_path
+			
+			if plant_name == Utils.get_name_from_load_path(icon_path):
+				children[i + 1].text = str(num)

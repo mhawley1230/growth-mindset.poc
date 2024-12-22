@@ -6,13 +6,7 @@
 [node name="UI" type="CanvasLayer"]
 
 [node name="SeedsUI" parent="." instance=ExtResource("1_6b1no")]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 56.0
-offset_bottom = 56.0
 
 [node name="PlantsUI" parent="." instance=ExtResource("2_ot0ml")]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_right = 11.0
+offset_bottom = -2.0

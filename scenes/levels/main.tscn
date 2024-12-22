@@ -11,16 +11,12 @@
 position = Vector2(16, 16)
 script = ExtResource("1_ngl63")
 
+[node name="InventoryManager" parent="." instance=ExtResource("5_m5yl4")]
+
+[node name="UI" parent="." instance=ExtResource("4_fm2dw")]
+
 [node name="BaseLevel" parent="." instance=ExtResource("1_po20j")]
 position = Vector2(-16, -16)
 available_product_icons = Array[Texture2D]([ExtResource("3_k41dx"), ExtResource("4_tw4a6")])
 
-[node name="ManagerContainer" type="Node" parent="."]
-
-[node name="InventoryManager" parent="ManagerContainer" instance=ExtResource("5_m5yl4")]
-
-[node name="UI" parent="." instance=ExtResource("4_fm2dw")]
-
 [node name="EntityContainer" type="Node" parent="." groups=["entity_container"]]
-
-[node name="UIContainer" type="Node" parent="."]
