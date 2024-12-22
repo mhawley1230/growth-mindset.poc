@@ -9,7 +9,6 @@ func _init():
 
 func _ready():
 	SignalBus.on_inventory_manager_ready.emit(self)
-	
 
 
 func add_inventory(category: String, product: String, num: int):
