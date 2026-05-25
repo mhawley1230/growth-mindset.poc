@@ -2,8 +2,8 @@ class_name ActionHandlerComponent
 extends Node
 
 #region inventory
-@onready var manager_container = NodeExtensions.get_manager_container()
-@onready var inventory_manager: InventoryManager = Global.inventory_manager
+#@onready var manager_container: Node = NodeExtensions.get_manager_container()
+#@onready var inventory_manager: InventoryManager = Global.inventory_manager
 #endregion
 
 @export var available_plants: Array[PackedScene] = []
@@ -13,13 +13,13 @@ var customer_in_trade_area: bool = false
 var num_created: int = 0
 
 
-func _ready() -> void:
-	SignalBus.on_trade_area_entered.connect(on_trade_area_entered)
-	SignalBus.on_trade_area_exited.connect(on_trade_area_exited)
-	SignalBus.on_customer_trade_area_entered.connect(on_customer_trade_area_entered)
+#func _ready() -> void:
+	#SignalBus.on_trade_area_entered.connect(on_trade_area_entered)
+	#SignalBus.on_trade_area_exited.connect(on_trade_area_exited)
+	#SignalBus.on_customer_trade_area_entered.connect(on_customer_trade_area_entered)
 	
-	if manager_container == null:
-		return
+	#if manager_container == null:
+		#return
 	
 	#inventory_manager = manager_container.get_node("InventoryManager")
 
@@ -31,7 +31,7 @@ func detect_overlapped_areas(target: Area2D) -> Array[Area2D]:
 func is_planting_enabled(areas: Array[Area2D]) -> bool:
 	var enabled: bool = false
 	
-	for area in areas:
+	for area: Area2D in areas:
 		if area is FarmPlot and areas.size() == 1:
 			enabled = true
 		
@@ -48,26 +48,26 @@ func is_planting_enabled(areas: Array[Area2D]) -> bool:
 ##    7. Emit trade complete signal
 
 func trade(giving: Dictionary) -> void:
-	for item in giving:
+	for item: Plant in giving:
 		print(item)
 	#inventory.remove_inventory("plants", item, item.value())
 	#inventory.remove_inventory("plants", "tomato", 1)
 	#inventory.add_inventory("seeds", "tomato", 2)
-	SignalBus.emit_on_trade_complete()
+	#SignalBus.emit_on_trade_complete()
 
 
-func on_trade_area_entered(area) -> void:
+func on_trade_area_entered(area: Area2D) -> void:
 	## Look for customer entity in wait area
 	print(area.get_overlapping_bodies())
-	for body in area.get_overlapping_bodies():
+	for body:CharacterBody2D in area.get_overlapping_bodies():
 		if body.is_in_group("customer"):
 			print("customer detected, trading enabled")
 			trading_enabled = true
 
 
-func on_customer_trade_area_entered(area, customer) -> void:
+func on_customer_trade_area_entered(area: Area2D, _customer: CharacterBody2D) -> void:
 	## Look for customer entity in wait area
-	for body in area.get_overlapping_bodies():
+	for body: CharacterBody2D in area.get_overlapping_bodies():
 		if body.is_in_group("customer"):
 			customer_in_trade_area = true
 

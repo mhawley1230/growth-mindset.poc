@@ -8,7 +8,7 @@ extends Node
 var player_spawned: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	if player_spawned == true:
 		return
 	

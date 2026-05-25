@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://but238i4h4316"]
+
+[ext_resource type="Script" uid="uid://dodqbjfxve643" path="res://features/levels/test_level/farm_plot.gd" id="1_kjthu"]
+[ext_resource type="Texture2D" uid="uid://csr8kriuv850q" path="res://assets/farmplot.png" id="2_ymiwh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsn3"]
+size = Vector2(95.5625, 95.9375)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x14vh"]
+texture = ExtResource("2_ymiwh")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_y4lol"]
+sources/1 = SubResource("TileSetAtlasSource_x14vh")
+
+[node name="FarmPlot" type="Area2D" unique_id=1719077229]
+scale = Vector2(2, 2)
+script = ExtResource("1_kjthu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=577086746]
+position = Vector2(48, 48)
+shape = SubResource("RectangleShape2D_iqsn3")
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1621367459]
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_y4lol")
+format = 2
+
+[node name="SoilLayer" type="TileMapLayer" parent="TileMap" unique_id=746875034]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAAAAQABAAAAAGABAAAAAQAAAAAAAGACAAAAAQACAAAAAGACAAEAAQABAAAAAGABAAEAAQACAAAAAGAAAAEAAQAAAAAAAGAAAAIAAQAAAAAAAGABAAIAAQAAAAAAAGACAAIAAQACAAAAAGA=")
+tile_set = SubResource("TileSet_y4lol")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

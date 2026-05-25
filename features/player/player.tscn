@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b0wyg35r54jsh"]
+
+[ext_resource type="Texture2D" uid="uid://b4hu5c4oqm8kw" path="res://assets/Basic Charakter Spritesheet.png" id="1_bwqa7"]
+[ext_resource type="Script" uid="uid://beqxpigvoc3ew" path="res://features/player/player.gd" id="1_oqiji"]
+[ext_resource type="PackedScene" uid="uid://bodxxkfsugul" path="res://features/player/input_handler_component.tscn" id="4_05bti"]
+[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://scenes/handlers/movement_handler_component.tscn" id="5_p6tnc"]
+[ext_resource type="PackedScene" uid="uid://dii0d40pp8hqe" path="res://scenes/handlers/planting_component.tscn" id="6_aspgi"]
+[ext_resource type="PackedScene" uid="uid://cakaujwpqoynv" path="res://scenes/handlers/action_handler_component.tscn" id="6_c8j1d"]
+[ext_resource type="PackedScene" uid="uid://bwahd2kimd3jx" path="res://scenes/handlers/harvesting_component.tscn" id="7_80cxv"]
+[ext_resource type="PackedScene" uid="uid://pkwxdcbplm1m" path="res://scenes/handlers/trading_component.tscn" id="8_4glii"]
+[ext_resource type="PackedScene" uid="uid://di6phrf8ie0q7" path="res://features/player/cursor.tscn" id="9_5sj0x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
+atlas = ExtResource("1_bwqa7")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_024ml"]
+size = Vector2(29, 31)
+
+[node name="Player" type="CharacterBody2D" unique_id=1413232517 groups=["player"]]
+z_index = 3
+script = ExtResource("1_oqiji")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1795792119]
+z_index = 1
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_gr6va")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2076548138]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_024ml")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1013217587]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 2048
+limit_bottom = 1024
+drag_left_margin = 0.25
+drag_top_margin = 0.25
+drag_right_margin = 0.25
+drag_bottom_margin = 0.25
+
+[node name="InputHandlerComponent" parent="." unique_id=745717410 instance=ExtResource("4_05bti")]
+unique_name_in_owner = true
+
+[node name="MovementHandlerComponent" parent="." unique_id=591041508 instance=ExtResource("5_p6tnc")]
+unique_name_in_owner = true
+
+[node name="ActionHandlerComponent" parent="." unique_id=1119332588 instance=ExtResource("6_c8j1d")]
+unique_name_in_owner = true
+
+[node name="PlantingComponent" parent="." unique_id=386505808 instance=ExtResource("6_aspgi")]
+unique_name_in_owner = true
+
+[node name="HarvestingComponent" parent="." unique_id=1296517199 instance=ExtResource("7_80cxv")]
+unique_name_in_owner = true
+
+[node name="TradingComponent" parent="." unique_id=544161195 instance=ExtResource("8_4glii")]
+unique_name_in_owner = true
+
+[node name="Cursor" parent="." unique_id=1631206166 instance=ExtResource("9_5sj0x")]
+unique_name_in_owner = true
+position = Vector2(8, 8)

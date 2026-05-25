@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cn2102fgquy0x"]
+
+[ext_resource type="Script" uid="uid://b0b3yri2y2c0v" path="res://features/game_flow/root_context.gd" id="1_an0xt"]
+[ext_resource type="PackedScene" uid="uid://bm8xxihoxnqyd" path="res://features/game_flow/game_scene.tscn" id="2_skbfa"]
+
+[node name="Game" type="Node" unique_id=180872126]
+script = ExtResource("1_an0xt")
+game_scene_packed = ExtResource("2_skbfa")

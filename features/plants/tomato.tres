@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Tomato" format=3 uid="uid://bijcxat5wigob"]
+
+[ext_resource type="Script" uid="uid://cgyuim5ms22xi" path="res://features/plants/tomato.gd" id="1_1bd2t"]
+[ext_resource type="Texture2D" uid="uid://bsydlvanebwya" path="res://assets/tomato_icon.png" id="1_lgno8"]
+[ext_resource type="PackedScene" uid="uid://smij2expicck" path="res://features/plants/tomato.tscn" id="2_j0yjn"]
+
+[resource]
+script = ExtResource("1_1bd2t")
+plant_name = "tomato"
+scene = ExtResource("2_j0yjn")
+icon = ExtResource("1_lgno8")
+value = 2
+metadata/_custom_type_script = "uid://c3ugj3vm8reay"
+metadata/category = "plant"

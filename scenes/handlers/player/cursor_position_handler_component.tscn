@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdudl17tjdjk"]
-
-[ext_resource type="Script" path="res://scenes/handlers/player/cursor_position_handler_component.gd" id="1_bdws0"]
-
-[node name="CursorPositionHandlerComponent" type="Node"]
-script = ExtResource("1_bdws0")

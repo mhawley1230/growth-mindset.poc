@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bm8xxihoxnqyd"]
+
+[ext_resource type="Script" uid="uid://7thyfhmvnjgt" path="res://features/game_flow/game_context.gd" id="1_ur5na"]
+[ext_resource type="PackedScene" uid="uid://d0tby4mjpi1f" path="res://features/levels/test_level/base_level.tscn" id="3_706mp"]
+
+[node name="LevelSelect" type="Node2D" unique_id=2084092624]
+script = ExtResource("1_ur5na")
+game_level = ExtResource("3_706mp")

@@ -6,5 +6,5 @@ extends Node
 
 var trading_with: CharacterBody2D
 
-func trade():
+func trade() -> void:
 	pass
