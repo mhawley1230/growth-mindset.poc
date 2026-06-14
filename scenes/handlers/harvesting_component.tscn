@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwahd2kimd3jx"]
-
-[ext_resource type="Script" path="res://scenes/handlers/harvesting_component.gd" id="1_4dt4b"]
-
-[node name="HarvestingComponent" type="Node"]
-script = ExtResource("1_4dt4b")

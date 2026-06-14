@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dii0d40pp8hqe"]
+
+[ext_resource type="Script" uid="uid://d4k3muk7lqck" path="res://features/handlers/planting_component.gd" id="1_lfgdt"]
+
+[node name="PlantingComponent" type="Node"]
+script = ExtResource("1_lfgdt")

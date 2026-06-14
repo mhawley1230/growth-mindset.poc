@@ -47,10 +47,6 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="GrowthMindsetPOC"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res://addons/resource_database/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg")
-
 [godot_resource_groups]
 
 auto_rebuild=true
