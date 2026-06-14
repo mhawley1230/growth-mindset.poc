@@ -6,7 +6,6 @@ signal request_level_load
 # LOCAL STRUCTURE
 @export var overlay: GameOverlay
 @export var game_level: PackedScene
-## TODO: abstract to level select scene w/ passthrough 
 
 var _game_state_holder: GameStateHolder
 # var _sfx: SFXPlayer
@@ -30,5 +29,6 @@ func handle_level_select() -> void:
 		current_level.queue_free()
 	current_level = game_level.instantiate()
 	add_child(current_level)
+	current_level.initialize()
 	
 	#var _selected_level: LevelContext = current_level as LevelContext

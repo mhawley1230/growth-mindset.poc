@@ -4,6 +4,16 @@ extends Node
 var _game_controller: GameController
 var _game_state_holder: GameStateHolder
 
+func bind_services(game_state_holder: GameStateHolder,\
+	game_controller: GameController,\
+	) -> void:
+	_game_state_holder = game_state_holder
+	_game_controller = game_controller
+	
+
+func initialize() -> void:
+	print("level initialized")
+
 #@export_category("products")
 #@export var available_product_icons: Array[Texture2D] = []
 #@export var seeds_starting: Array[int] = []

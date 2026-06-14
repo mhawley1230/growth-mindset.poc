@@ -14,7 +14,6 @@ extends CharacterBody2D
 	#NodeExtensions.get_entity_container()
 	#SignalBus.emit_on_player_ready(self)
 	##cursor = Refs.cursor_scene.instantiate()
-	##assdsawdasdwasd(cursor)
 #
 #
 #func _physics_process(_delta: float) -> void:
