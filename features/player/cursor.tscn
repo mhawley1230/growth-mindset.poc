@@ -8,7 +8,6 @@
 size = Vector2(21.658, 22.1635)
 
 [node name="Cursor" type="Area2D" unique_id=1720912364 node_paths=PackedStringArray("cursor_position_component")]
-position = Vector2(16, 16)
 scale = Vector2(0.999, 0.999)
 script = ExtResource("1_w2wl4")
 cursor_position_component = NodePath("CursorPositionComponent")

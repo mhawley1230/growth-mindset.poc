@@ -27,4 +27,3 @@ func instantiate_player() -> void:
 	if _player_spawn_point:
 		_player.global_position = _player_spawn_point.global_position
 	_player.bind_services(_inventory_controller)
-

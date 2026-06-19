@@ -1,31 +1,41 @@
-class_name Path
+class_name PathController
 extends Path2D
 
-@export var customer: PackedScene
-@export var movement_component: Node = null
-@onready var path_follow: PathFollow2D = $PathFollow2D
+@export var customer_scene: PackedScene
+@export var path_follow: PathFollow2D
+@export var movement_component: MovementComponent
+@export var trade_area: TradeArea
+
+var customer: CharacterBody2D
 
 # Emitted when the customer reaches the end of the path (so the level can
 # recycle / count it) instead of the path freeing itself blindly.
-signal customer_finished(customer: Node)
+signal customer_finished(customer: Area2D)
 
 var instance: CharacterBody2D
 
 func _ready() -> void:
-	if customer == null:
+	movement_component = MovementComponent.new()
+	
+	if customer_scene == null:
 		return
-	instance = customer.instantiate()
-	path_follow.add_child(instance)
-	instance.global_position = path_follow.global_position
+	
+	customer = customer_scene.instantiate()
+	path_follow.add_child(customer)
+	customer.global_position = path_follow.global_position
+	
+	if trade_area:
+		trade_area.customer_entered.connect(on_trade_area_entered)
+		trade_area.trade_area_exited.connect(on_trade_area_exited)
 
 func _physics_process(delta: float) -> void:
-	if instance == null or movement_component == null:
+	if customer == null or movement_component == null:
 		return
 
 	path_follow.set_progress(path_follow.get_progress() + movement_component.movement_speed * delta)
-
+	
 	if path_follow.get_progress_ratio() > 0.5:
-		var sprite: Node = instance.get_node_or_null("Sprite2D")
+		var sprite: Sprite2D = customer.get_node_or_null("Sprite2D")
 		if sprite:
 			sprite.flip_h = true
 

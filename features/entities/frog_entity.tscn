@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bljm2lretf7wi"]
+
+[ext_resource type="Texture2D" uid="uid://de4ubn2wqdx17" path="res://assets/frog_sprite (32x32).png" id="1_i6a5x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nw72v"]
+
+[node name="FrogEntity" type="CharacterBody2D" unique_id=668182912 groups=["customer"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1951082206]
+position = Vector2(0, -8)
+texture = ExtResource("1_i6a5x")
+hframes = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1105646346]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_nw72v")
