@@ -5,67 +5,53 @@ signal on_inventory_updated
 
 var _game_state_holder: GameStateHolder
 
-#var _contents: Dictionary = {}
-
 func bind_services(game_state_holder: GameStateHolder) -> void:
 	_game_state_holder = game_state_holder
 
 func setup() -> void:
 	on_inventory_updated.emit()
 
-## Phase 1 minimal reset. Phase 2 (step 11) reimplements the dictionary ops
-## on top of GameState so resets clear real contents via the holder.
 func reset() -> void:
-	setup()
+	var inv: Dictionary = _inventory()
+	if inv.is_empty():
+		return
+	inv["seeds"].clear()
+	inv["plants"].clear()
+	on_inventory_updated.emit()
 
-#func add_inventory(category: String, product: String, num: int) -> Dictionary:
-	#if !_contents.has(category):
-		#_contents[category] = { product: num }
-		#
-	#if !_contents[category].has(product):
-#func _init() -> void:
-	#Global.inventory_manager = self
-#
-#
-#func _ready() -> void:
-	#SignalBus.on_inventory_manager_ready.emit(self)
-#
-		#_contents[category][product] = num
-	#
-	#handle_inventory_update_signal(category, product, num)
-	#return get_inventory(category, product)
-#
-#
-#func remove_inventory(category: String, product: String, num: int) -> Dictionary:
-	#_contents[category][product] -= num
-	#
-	#handle_inventory_update_signal(category, product, num)
-	#return get_inventory(category, product)
-#
-#
-#func get_inventory(category: String, product: String) -> Dictionary:
-	#for key: String in _contents[category].keys():
-		#if key == product:
-			#return { key: _contents[category][key] }
-	#return { product : 0 }
-#
-#
-#func get_all_inventory() -> Dictionary:
-	#return _contents
-#
-#
-#func clear_inventory() -> Dictionary:
-	#_contents = {}
-	#return _contents
-#
-#
-#func handle_inventory_update_signal(
-			#category: String, 
-			#product: String, 
-			#num: int
-		#) -> void:
-	#match category:
-		#"plants":
-			#SignalBus.emit_on_plant_inventory_updated(product)
-		#"seeds":
-			#SignalBus.emit_on_seed_inventory_updated(product)
+func add(category: String, product: String, amount: int) -> void:
+	var inv: Dictionary = _inventory()
+	if not inv.has(category):
+		return
+	var cat: Dictionary = inv[category]
+	cat[product] = int(cat.get(product, 0)) + amount
+	on_inventory_updated.emit()
+
+func remove(category: String, product: String, amount: int) -> bool:
+	var inv: Dictionary = _inventory()
+	if not inv.has(category):
+		return false
+	var cat: Dictionary = inv[category]
+	var current: int = int(cat.get(product, 0))
+	if current < amount:
+		return false
+	cat[product] = current - amount
+	on_inventory_updated.emit()
+	return true
+
+func get_count(category: String, product: String) -> int:
+	var inv: Dictionary = _inventory()
+	if not inv.has(category):
+		return 0
+	return int(inv[category].get(product, 0))
+
+func get_category(category: String) -> Dictionary:
+	var inv: Dictionary = _inventory()
+	if not inv.has(category):
+		return {}
+	return inv[category]
+
+func _inventory() -> Dictionary:
+	if _game_state_holder == null or _game_state_holder.game_state == null:
+		return {}
+	return _game_state_holder.game_state.inventory

@@ -1,14 +1,21 @@
 class_name HarvestingComponent
 extends Node
 
-#@export var body: CharacterBody2D = null
-#@export var cursor: Area2D = null
-#@export var target_plant: Area2D = null
-#@export var inventory_manager: Node = null
-#
-#func harvest_plant(areas: Array[Area2D]) -> void:
-	#for area: Area2D in areas:
-		#if area.is_in_group("plant"):
-			#var plant_type: String = Utils.strip_instance_id(area.name)
-			#inventory_manager.add_inventory("plants", plant_type, 1)
-			#area.free()
+## Harvests any ready plant overlapped by the cursor, crediting one to inventory.
+func harvest_plant(areas: Array[Area2D], inventory: InventoryController) -> void:
+	if inventory == null:
+		return
+
+	for area: Area2D in areas:
+		if not area.is_in_group("plant"):
+			continue
+		if area is PlantEntity and not (area as PlantEntity).isHarvestable:
+			continue
+		var plant_type: String = _strip_id(area.name)
+		inventory.add("plants", plant_type, 1)
+		area.queue_free()
+
+## Plants are named "<Type><instance_id>" when planted; strip the trailing digits
+## to recover the product key.
+func _strip_id(node_name: String) -> String:
+	return node_name.to_lower().rstrip("0123456789")

@@ -2,6 +2,14 @@
 
 GrowthMindsetPOC — Godot 4 farming game. Review of the context/controller pattern in `/features` and a sequenced plan to bring the rest of the project in line.
 
+> **Status (updated):** Phases 0, 1, and 2 are complete. Phase 3 is done on the
+> code side; its runnable customer loop is blocked on scene/content work that
+> can't be done headless (no customer entity scene exists). Phases 4–5 remain.
+> All work was verified statically (no Godot CLI in the build environment), so a
+> confirming open in the editor is still pending — see Phase 5. Sections 1 and 2
+> below describe the *original* state at review time; the per-phase notes in
+> section 3 record what has since changed.
+
 ---
 
 ## 1. The pattern, as written
@@ -62,38 +70,50 @@ Communication direction: dependencies flow **down** via `bind_services`; events 
 
 Ordered so each phase leaves the game runnable and unblocks the next. Phases 1–2 are the critical path; everything else depends on a working DI chain.
 
-### Phase 0 — Cleanup & ground rules (low risk, do first)
+### Phase 0 — Cleanup & ground rules ✅ DONE
 
-1. Delete the `scenes/levels/*.tmp` files from disk (already git-ignored).
-2. Delete or migrate `scenes/managers/entity_spawn_manager.gd` — its role now belongs to `EntitySpawnController`. Remove the dead `Refs`/`NodeExtensions` references.
-3. Replace `project_structure_notes.txt` with a short `ARCHITECTURE.md` that states the role definitions below. Keep `NOTES.txt` as a design-questions scratchpad.
-4. **Fix the taxonomy and apply it consistently:**
+1. ✅ Deleted all `.tmp` autosave files (97 in `scenes/levels`, 1 in `scenes/entities/paths`, 2 strays in `assets/`); pruned the emptied folders.
+2. ✅ Deleted `scenes/managers/entity_spawn_manager.gd` (+`.uid`) — confirmed nothing referenced it.
+3. ✅ Created `ARCHITECTURE.md` with the role definitions and lifecycle contract. (`project_structure_notes.txt` was already removed in the working tree; `NOTES.txt` kept.)
+4. ✅ **Taxonomy fixed and applied consistently** — `Handler` retired everywhere: folder `features/handlers/` → `features/components/`; `*HandlerComponent` → `*Component`; `CustomerSpawnerHandler` → `CustomerSpawnerComponent`; `PlantController` (entity) → `PlantEntity`; `Plant` (resource) → `PlantData`. Every `class_name`, code reference, scene node name, `%`-unique ref, exported NodePath, `.tres` `script_class`, and `path=` string updated; all `.uid` values preserved so uid-based scene refs never broke.
+
+   Original taxonomy targets, for reference:
    - *Context* — owns lifecycle + a child scene (`build/bind/initialize`).
    - *Controller* — injected stateful logic service (`extends Node`).
    - *Component* — stateless behavior attached to an entity. Drop the `/handlers` folder name or the `Handler` suffix — pick one. Recommend: folder `components/`, suffix `Component`, retire `Handler`.
    - *Entity* — an in-world `CharacterBody2D`/`Area2D` (Player, Plant, Customer). Rename `PlantController` → `PlantEntity` (or just `Plant` scene script, with the resource renamed `PlantData`).
 
-### Phase 1 — Repair the DI chain (critical path)
+### Phase 1 — Repair the DI chain ✅ DONE
 
-This is the single most important fix; nothing downstream works without it.
+This was the single most important fix; nothing downstream worked without it.
 
-5. In `GameContext.handle_level_select()`, after instantiating the level, call the full lifecycle: `current_level.build_services()` → `current_level.bind_services(_game_state_holder, _game_controller)` → `current_level.initialize()` — mirroring how `RootContext` drives `GameContext`.
-6. Remove the premature `bind_services(...)` call from `LevelContext._ready()` (it runs before injection). Let the parent context drive binding instead.
-7. Decide where `GameController` is built and owned — recommend `GameContext.build_services()` creates it (it's game-scoped, not level-scoped) and passes it down to the level during `bind_services`. Wire `on_game_loss` up to `GameContext`.
-8. Have `GameContext.build_services()` also create `InventoryController`, bind it with the state holder, and pass it to `GameOverlay.initialize(...)` so the overlay/UI get a live controller.
+5. ✅ `GameContext.handle_level_select()` now runs the full lifecycle on the level: `build_services()` → `bind_services(_game_state_holder, _game_controller, _inventory_controller)` → `initialize()`. (Inventory is passed down too, since the level needs it for spawning and seeding.)
+6. ✅ Removed the premature `bind_services(...)` from `LevelContext._ready()`; the parent context drives binding. The spawn controller is fetched via `@onready` instead.
+7. ✅ `GameContext.build_services()` creates and owns `GameController`; `on_game_loss` is re-emitted up to `GameContext` and on to `RootContext.handle_loss` (placeholder until Phase 4's menu). `GameController`'s binding completes in `LevelContext.initialize()`, where the level-scoped `EntitySpawnController` is available.
+8. ✅ `GameContext.build_services()` also creates `InventoryController`, binds it with the holder, and calls `overlay.initialize(...)` (guarded — the overlay scene is not yet attached, see Phase 2 note).
 
-### Phase 2 — Restore core gameplay through the pattern
+   Supporting fixes that made the chain runnable: `GameStateHolder.setup()` now creates the `GameState`; `GameController.state` is null-safe; `InventoryController.reset()` added; `EntitySpawnController.instantiate_player()`'s parse-error method call fixed.
 
-9. `EntitySpawnController`: fix `instantiate_player()` (`.instantiate()` + position at `_player_spawn_point`), call its `bind_services` from `LevelContext`, and have the level ask it to spawn the player instead of placing the player statically in `base_level.tscn`.
-10. Uncomment and finish `Player._input` / `_physics_process`, routing through the components. Confirm movement, planting, harvesting, trading paths each call into a component method, not inline logic.
-11. Reimplement `InventoryController`'s add/remove/get on top of `GameState` (move the commented dictionary logic in, but key it off `GameState` rather than a private field, so resets work via the holder). Reconnect `SeedsBox`/`PlantsBox.bind_events()` to `on_inventory_updated`.
-12. Flesh out `PlantingComponent` and `HarvestingComponent` to call `InventoryController` (injected, not via `Global`).
+### Phase 2 — Restore core gameplay through the pattern ✅ DONE
 
-### Phase 3 — Migrate the customer / trading system
+9. ✅ `EntitySpawnController.bind_services()` now takes the inventory controller too and is called from `LevelContext`, which then calls `instantiate_player()`. (There was no static player to remove — `base_level.tscn` only had an unused `player.tscn` ext_resource; the spawn controller already had its `player_packed_scene` and `_player_spawn_point` assigned.) The spawned `Player` gets the `InventoryController` injected via `Player.bind_services(...)`.
+10. ✅ `Player._physics_process` / `_input` restored and route through components: `MovementComponent` (movement + `move_and_slide`), `CursorPositionComponent` (half-tile snap via `GameConstants.TILE_SIZE`), `PlantingComponent` (action 1), `HarvestingComponent` (action 2). Action 3 (trading) is a Phase 3 placeholder.
+11. ✅ Inventory now lives on `GameState.inventory` (owned by the holder, cleared by `reset()`); `InventoryController` has `add`/`remove`/`get_count`/`get_category`/`reset`. `SeedsBox`/`PlantsBox.bind_events()` reconnected to `on_inventory_updated`.
+12. ✅ `PlantingComponent.create_plant()` and `HarvestingComponent.harvest_plant()` implemented against the injected `InventoryController` (seed check + spend on plant; ready-check + credit on harvest). `LevelContext` seeds a placeholder starting inventory.
 
-13. Replace all former `SignalBus` calls in `Path`, `TradeArea`, `CustomerQueue`, `CustomerOrderComponent` with local signals wired by the `LevelContext` (or a dedicated `CustomerSpawnController` built by the level).
-14. Resolve the open question in `NOTES.txt` (where customer behavior lives) by making spawning a level-owned controller and per-customer behavior a set of components on the customer entity — consistent with the Player composition model.
-15. Finish `ActionHandlerComponent.trade` / `TradingComponent` against the injected `InventoryController`.
+   **Two remaining scene/editor tasks (code is ready, flagged in comments):**
+   - Populate `ActionComponent.available_plants` in `player.tscn` (assign `tomato.tscn`/`potato.tscn`) — planting no-ops safely until then.
+   - Attach the `GameOverlay` scene to `GameContext` in `game_scene.tscn` and finish the box layouts — the UI binding is correct but there is no overlay node in the scene yet, so inventory counts don't render.
+
+### Phase 3 — Migrate the customer / trading system ✅ CODE DONE · ⚠️ scenes pending
+
+Discovery during this phase: the customer/trading scripts were **orphaned** — no scene referenced `Path`/`TradeArea`/`CustomerQueue`/`CustomerSpawnerComponent`, there is **no customer entity scene at all**, and the `SignalBus` calls the plan meant to migrate were already commented out. So the work was less "migrate off SignalBus" and more "lay down the conformant code skeleton"; the actual runnable loop needs scenes built in the editor.
+
+13. ✅ `TradeArea` and `CustomerQueue` now declare and emit **local signals** (`player_entered`, `customer_entered`, `trade_area_exited`; `customer_arrived`) instead of `SignalBus`. `TradeArea` self-wires to its built-in `body_entered`/`body_exited`. `Path` is guarded (null customer/movement) and emits `customer_finished` instead of blindly freeing.
+14. ✅ Design decision recorded in `NOTES.txt`: the customer is a `CharacterBody2D` entity composed of components (movement + `CustomerOrderComponent`); a `Path` carries it; **spawning is a level-owned authority** (`CustomerSpawnerComponent`, fleshed out with a guarded `spawn()`/`setup()` and a `customer_spawned` signal, analogous to `EntitySpawnController`). `CustomerOrderComponent.create_order()` now builds a real randomized, size-capped order keyed by product name.
+15. ✅ Trading implemented against the injected `InventoryController`: `TradingComponent.execute(order, inventory)` validates the whole order then swaps plants for seed payment; `ActionComponent.try_trade(...)` gates on trade-area state and delegates; `Player` action 3 calls it (safe no-op until the customer system feeds it an order).
+
+   **Remaining (editor/content, can't be done headless):** build the customer entity scene (`CharacterBody2D` + sprite + components, group `"customer"`), a `Path` scene, and place `CustomerSpawnerComponent` / `TradeArea` / `CustomerQueue` nodes in the level, then assign exports and connect the local signals to the player's `ActionComponent` setters.
 
 ### Phase 4 — Fill out the flow
 
@@ -109,4 +129,6 @@ This is the single most important fix; nothing downstream works without it.
 
 ## 4. Summary
 
-The pattern itself is sound and already proven on the `Root → Game` handoff. The project's real problem is not the design but that the migration stalled halfway: the dependency-injection chain breaks at `LevelContext`, `GameController` and `InventoryController` are written but never wired, the player is inert, and a layer of pre-refactor singleton-based code still sits alongside the new structure. Fixing the DI chain (Phase 1) is the unlock — once dependencies flow all the way down to the level and its entities, the remaining work is mostly filling in component bodies that already have the right shape.
+The pattern itself is sound and already proven on the `Root → Game` handoff. The project's real problem was not the design but that the migration had stalled halfway. Phases 0–2 have now addressed the core of that: the legacy singleton-era code is gone and the taxonomy is consistent (Phase 0); the dependency-injection chain flows end to end from `RootContext` down through `GameContext`, `LevelContext`, the `EntitySpawnController`, and into the spawned `Player` (Phase 1); and core gameplay — movement, cursor, planting, harvesting, and a holder-owned inventory model — runs through components and controllers rather than globals (Phase 2).
+
+What remains: Phase 3 migrates the customer/trading system off the removed `SignalBus`; Phase 4 adds the menu/end-screen flow and the plant growth-state machine; Phase 5 is verification. Two Phase-2 scene/editor tasks are also outstanding (assigning `ActionComponent.available_plants` and attaching the `GameOverlay` scene). And because there is no Godot CLI in the build environment, all Phase 0–2 work was verified by static analysis (arity, types, references, uid/path integrity) — a confirming open in the editor remains the first item of Phase 5.

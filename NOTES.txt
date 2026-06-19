@@ -1,3 +1,22 @@
+=== DECISION (Phase 3): where customer behavior lives ===
+Resolved to match the Player composition model:
+- The customer is a CharacterBody2D entity. Per-customer behavior lives in
+  COMPONENTS on that entity (movement, CustomerOrderComponent for its order),
+  not on a parent node and not via global managers.
+- A Path (Path2D + PathFollow2D) carries one customer along its route; the Path
+  owns movement progress and emits customer_finished / trade-stop locally.
+- SPAWNING is a level-owned authority: CustomerSpawnerComponent, built/setup by
+  the LevelContext (analogous to EntitySpawnController for the player). It emits
+  customer_spawned; it does not own per-customer behavior.
+- Cross-entity events (trade area, queue) use LOCAL signals (TradeArea,
+  CustomerQueue) wired by the level/spawner. No SignalBus.
+
+REMAINING (editor/content, can't be done headless): build the customer entity
+scene (CharacterBody2D + Sprite2D + components, group "customer"), the Path
+scene, and place CustomerSpawnerComponent / TradeArea / CustomerQueue nodes in
+the level, then assign exports. The code side above is ready to wire.
+
+--- original brainstorm (kept for context) ---
 Where should customer entity behavior live?
 - Top level node
 - Handlers

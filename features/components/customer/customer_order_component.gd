@@ -9,22 +9,32 @@ var order: Dictionary = {}
 func _ready() -> void:
 	add_order(create_order())
 
-## 1. assign random number between 0 and 
-## order size to each available product in level
-## 	 - some can have less then total order size
-## 2. validate that sum of ordered products 
-## is less than order size
-## create UI element and add product icons and nums$".."
-## to customer entity
+## Builds a random order keyed by product name, e.g. { "tomato": 2 }, whose
+## quantities sum to at most max_order_size. Some products may get zero.
 func create_order() -> Dictionary:
+	var result: Dictionary = {}
+	if products.is_empty() or max_order_size <= 0:
+		order = result
+		return order
+
+	var remaining: int = max_order_size
+	for product: PlantData in products:
+		if product == null or remaining <= 0:
+			continue
+		var qty: int = randi_range(0, remaining)
+		if qty > 0:
+			result[product.plant_name] = qty
+			remaining -= qty
+
+	order = result
 	return order
 
 
 func add_order(dict: Dictionary) -> void:
 	var panel_container = PanelContainer.new()
 	add_child(panel_container)
-	
-	var margin_container = MarginContainer.	new()
+
+	var margin_container = MarginContainer.new()
 	panel_container.add_child(margin_container)
 	
 	var grid_container = GridContainer.new()

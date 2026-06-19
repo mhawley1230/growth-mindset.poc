@@ -22,14 +22,19 @@ func initialize() -> void:
 	# The spawn controller is level-scoped, so GameController's binding completes
 	# here, once the level's EntitySpawnController exists.
 	if _entity_spawn_controller:
-		_entity_spawn_controller.bind_services(_game_controller, _game_state_holder)
+		_entity_spawn_controller.bind_services(
+			_game_controller, _game_state_holder, _inventory_controller)
 	_game_controller.bind_services(
 		_inventory_controller, _entity_spawn_controller, _game_state_holder)
 	_game_controller.start()
+	if _entity_spawn_controller:
+		_entity_spawn_controller.instantiate_player()
+	_seed_starting_inventory()
 	print("level initialized")
 
-# Phase 2 (step 9): have the spawn controller instantiate the player here, e.g.
-#	_entity_spawn_controller.instantiate_player()
-#
-# Phase 2 (step 11): seed starting inventory through _inventory_controller from
-# level-configured products instead of the old global InventoryManager.
+## TODO: replace with level-configured starting products (see the commented
+## @export arrays that previously drove starting inventory). Placeholder so the
+## inventory + planting/harvesting slice is exercisable.
+func _seed_starting_inventory() -> void:
+	_inventory_controller.add("seeds", "tomato", 5)
+	_inventory_controller.add("seeds", "potato", 5)

@@ -1,26 +1,33 @@
 class_name PlantingComponent
 extends Node
-#
-#@onready var inv: InventoryManager = Global.inventory_manager
-#
-#func create_plant(index: int, spawn_position: Vector2) -> void:	
-	#var entity_container: Node = NodeExtensions.get_entity_container()
-	#
-	#if entity_container == null:
-		#return
-	#
-	#var icons: Array[Texture2D] = Global.level.available_product_icons
-	##var key: int = Refs.plant_icons.find_key(icons[index])
-	##var scene: PackedScene = Refs.get_plant_scene_by_type(key)
-	##var instance: Plant = scene.instantiate()
-	#var plant_type: String = instance.name.to_lower()
-	#instance.name = instance.name + str(instance.get_instance_id())
-	#
-	#var current_inv: Dictionary = inv.get_inventory("seeds", plant_type)
-	#if current_inv[plant_type] <= 0:
-		#print("not enough %s seeds" % plant_type)
-		#return
-	#
-	#entity_container.add_child(instance)
-	#instance.position = Vector2i(spawn_position)
-	#inv.remove_inventory("seeds", plant_type, 1)
+
+## Spawns a plant entity at the cursor position and spends a seed.
+## available_plants is the ActionComponent's configured plant scenes (assign in
+## player.tscn). plant_type is derived from the scene's root node name.
+func create_plant(
+		available_plants: Array[PackedScene],
+		spawn_position: Vector2,
+		inventory: InventoryController,
+	) -> void:
+	if available_plants.is_empty() or inventory == null:
+		return
+
+	var scene: PackedScene = available_plants[0]
+	if scene == null:
+		return
+
+	var instance: Node2D = scene.instantiate()
+	var plant_type: String = instance.name.to_lower()
+
+	if inventory.get_count("seeds", plant_type) <= 0:
+		print("not enough %s seeds" % plant_type)
+		instance.queue_free()
+		return
+
+	instance.name = instance.name + str(instance.get_instance_id())
+
+	var container: Node = owner.get_parent() if owner else get_parent()
+	container.add_child(instance)
+	instance.global_position = spawn_position
+
+	inventory.remove("seeds", plant_type, 1)
