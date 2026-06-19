@@ -17,6 +17,10 @@ func bind_services(game_controller: GameController,
 	_game_state_holder = game_state_holder
 	
 func instantiate_player() -> void:
-	_player = player_packed_scene.instantiate_player_spawn_point()
-	print(_player_spawn_point.global_position)
-	
+	if _player:
+		return
+	_player = player_packed_scene.instantiate() as Player
+	add_child(_player)
+	if _player_spawn_point:
+		_player.global_position = _player_spawn_point.global_position
+

@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://b4hu5c4oqm8kw" path="res://assets/Basic Charakter Spritesheet.png" id="1_bwqa7"]
 [ext_resource type="Script" uid="uid://beqxpigvoc3ew" path="res://features/player/player.gd" id="1_oqiji"]
-[ext_resource type="PackedScene" uid="uid://bodxxkfsugul" path="res://features/player/input_handler_component.tscn" id="4_05bti"]
-[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://features/handlers/movement_handler_component.tscn" id="5_p6tnc"]
-[ext_resource type="PackedScene" uid="uid://dii0d40pp8hqe" path="res://features/handlers/planting_component.tscn" id="6_aspgi"]
-[ext_resource type="PackedScene" uid="uid://cakaujwpqoynv" path="res://features/handlers/action_handler_component.tscn" id="6_c8j1d"]
-[ext_resource type="PackedScene" uid="uid://bwahd2kimd3jx" path="res://features/handlers/harvesting_component.tscn" id="7_80cxv"]
-[ext_resource type="PackedScene" uid="uid://pkwxdcbplm1m" path="res://features/handlers/trading_component.tscn" id="8_4glii"]
+[ext_resource type="PackedScene" uid="uid://bodxxkfsugul" path="res://features/player/input_component.tscn" id="4_05bti"]
+[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://features/components/movement_component.tscn" id="5_p6tnc"]
+[ext_resource type="PackedScene" uid="uid://dii0d40pp8hqe" path="res://features/components/planting_component.tscn" id="6_aspgi"]
+[ext_resource type="PackedScene" uid="uid://cakaujwpqoynv" path="res://features/components/action_component.tscn" id="6_c8j1d"]
+[ext_resource type="PackedScene" uid="uid://bwahd2kimd3jx" path="res://features/components/harvesting_component.tscn" id="7_80cxv"]
+[ext_resource type="PackedScene" uid="uid://pkwxdcbplm1m" path="res://features/components/trading_component.tscn" id="8_4glii"]
 [ext_resource type="PackedScene" uid="uid://di6phrf8ie0q7" path="res://features/player/cursor.tscn" id="9_5sj0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
@@ -42,13 +42,13 @@ drag_top_margin = 0.25
 drag_right_margin = 0.25
 drag_bottom_margin = 0.25
 
-[node name="InputHandlerComponent" parent="." unique_id=745717410 instance=ExtResource("4_05bti")]
+[node name="InputComponent" parent="." unique_id=745717410 instance=ExtResource("4_05bti")]
 unique_name_in_owner = true
 
-[node name="MovementHandlerComponent" parent="." unique_id=591041508 instance=ExtResource("5_p6tnc")]
+[node name="MovementComponent" parent="." unique_id=591041508 instance=ExtResource("5_p6tnc")]
 unique_name_in_owner = true
 
-[node name="ActionHandlerComponent" parent="." unique_id=1119332588 instance=ExtResource("6_c8j1d")]
+[node name="ActionComponent" parent="." unique_id=1119332588 instance=ExtResource("6_c8j1d")]
 unique_name_in_owner = true
 
 [node name="PlantingComponent" parent="." unique_id=386505808 instance=ExtResource("6_aspgi")]

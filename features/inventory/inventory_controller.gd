@@ -13,6 +13,11 @@ func bind_services(game_state_holder: GameStateHolder) -> void:
 func setup() -> void:
 	on_inventory_updated.emit()
 
+## Phase 1 minimal reset. Phase 2 (step 11) reimplements the dictionary ops
+## on top of GameState so resets clear real contents via the holder.
+func reset() -> void:
+	setup()
+
 #func add_inventory(category: String, product: String, num: int) -> Dictionary:
 	#if !_contents.has(category):
 		#_contents[category] = { product: num }

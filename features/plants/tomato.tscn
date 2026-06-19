@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://smij2expicck"]
 
-[ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_controller.gd" id="1_uidfo"]
+[ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_entity.gd" id="1_uidfo"]
 [ext_resource type="Texture2D" uid="uid://b8ofgqo6rqsp5" path="res://assets/tomato.png" id="2_x8f4o"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="3_60wmy"]
 

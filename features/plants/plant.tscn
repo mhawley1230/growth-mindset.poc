@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doc3wv4t3al1q"]
 
-[ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_controller.gd" id="1_qxqr3"]
+[ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_entity.gd" id="1_qxqr3"]
 [ext_resource type="Texture2D" uid="uid://b2o1r6exd648h" path="res://assets/potato.png" id="2_3msue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7edg"]

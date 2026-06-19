@@ -18,6 +18,7 @@ func _ready() -> void:
 func build_services() -> void:
 	_game_state_holder = GameStateHolder.new()
 	add_child(_game_state_holder)
+	_game_state_holder.setup()
 
 func bind_services() -> void:
 	pass
@@ -33,12 +34,9 @@ func handle_request_start_game() -> void:
 	if level_select_scene:
 		level_select_scene.build_services()
 		level_select_scene.bind_services(_game_state_holder)
+		level_select_scene.on_game_loss.connect(handle_loss)
 		level_select_scene.initialize()
-		
-		## start timer, accept inputs, ect.
-		#game_scene.handle_start_new_game()
-		
-		#game_scene.on_game_loss.connect(handle_loss)
 
-# func handle_loss() -> void:
-	# go_to_menu() # function to set menu as current_scene, instantiates menu scene
+func handle_loss() -> void:
+	print("game over")
+	# TODO (Phase 4): swap current_scene to the menu scene via a MenuContext.

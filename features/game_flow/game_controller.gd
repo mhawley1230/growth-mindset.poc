@@ -8,7 +8,10 @@ var _game_state_holder: GameStateHolder
 var _entity_spawn_controller: EntitySpawnController
 
 var state: GameState:
-	get: return _game_state_holder.game_state
+	get:
+		if _game_state_holder == null:
+			return null
+		return _game_state_holder.game_state
 
 func bind_services(inventory_controller: InventoryController,\
 		entity_spawn_controller: EntitySpawnController,\
