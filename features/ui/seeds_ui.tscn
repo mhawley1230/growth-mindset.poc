@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" uid="uid://crfrq1vlbafqe" path="res://features/ui/seeds_ui.gd" id="1_p0ikh"]
 
-[node name="SeedsUI" type="Control"]
+[node name="SeedsUI" type="Control" unique_id=267890862]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_p0ikh")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=511540780]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -20,10 +19,10 @@ offset_top = -131.0
 offset_right = 192.0
 grow_vertical = 0
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=1563288627]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/GridContainer"]
+[node name="TitleLabel" type="Label" parent="PanelContainer/GridContainer" unique_id=1926412307]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -31,7 +30,7 @@ theme_override_font_sizes/font_size = 39
 text = "Seeds"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/GridContainer" unique_id=787877775]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6

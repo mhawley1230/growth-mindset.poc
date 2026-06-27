@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bwahd2kimd3jx" path="res://features/components/harvesting_component.tscn" id="7_80cxv"]
 [ext_resource type="PackedScene" uid="uid://pkwxdcbplm1m" path="res://features/components/trading_component.tscn" id="8_4glii"]
 [ext_resource type="PackedScene" uid="uid://di6phrf8ie0q7" path="res://features/player/cursor.tscn" id="9_5sj0x"]
+[ext_resource type="PackedScene" uid="uid://cgbeftebmjaxn" path="res://features/game_flow/game_overlay.tscn" id="10_hudov"]
+[ext_resource type="Script" uid="uid://dl5jke3rquukl" path="res://features/ui/hud_layer.gd" id="11_hudly"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr6va"]
 atlas = ExtResource("1_bwqa7")
@@ -41,6 +43,17 @@ drag_left_margin = 0.25
 drag_top_margin = 0.25
 drag_right_margin = 0.25
 drag_bottom_margin = 0.25
+
+[node name="HUDLayer" type="CanvasLayer" parent="Camera2D" unique_id=329744240 node_paths=PackedStringArray("ui_root")]
+layer = 2
+script = ExtResource("11_hudly")
+scale_mode = 2
+ui_root = NodePath("GameOverlay")
+
+[node name="GameOverlay" parent="Camera2D/HUDLayer" unique_id=1787323803 instance=ExtResource("10_hudov")]
+unique_name_in_owner = true
+top_level = true
+z_index = 3
 
 [node name="InputComponent" parent="." unique_id=745717410 instance=ExtResource("4_05bti")]
 unique_name_in_owner = true

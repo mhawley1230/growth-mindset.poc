@@ -8,11 +8,16 @@ extends CharacterBody2D
 @onready var harvesting_component: HarvestingComponent = %HarvestingComponent
 @onready var trading_component: TradingComponent = %TradingComponent
 @onready var cursor: Cursor = %Cursor
+@onready var game_overlay: GameOverlay = %GameOverlay
 
 var _inventory_controller: InventoryController
 
 func bind_services(inventory_controller: InventoryController) -> void:
 	_inventory_controller = inventory_controller
+	# The inventory HUD is scoped to this player's Camera2D, so the player owns
+	# its wiring rather than the level/GameContext.
+	if game_overlay:
+		game_overlay.initialize(inventory_controller)
 
 func _physics_process(_delta: float) -> void:
 	var input_dir: Vector2 = input_component.handle_movement()

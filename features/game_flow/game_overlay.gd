@@ -7,3 +7,4 @@ extends Node
 func initialize(inventory_controller: InventoryController) -> void:
 		seeds_box.initialize(inventory_controller)
 		plants_box.initialize(inventory_controller)
+		

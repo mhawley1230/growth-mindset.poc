@@ -12,8 +12,8 @@ extends Control
 #
 #func _ready() -> void:
 	#_create_textures_and_labels()
- #
-#
+ ##
+##
 #func _create_textures_and_labels() -> void:
 	#for i: int in icons.size():
 		## Create plant icon

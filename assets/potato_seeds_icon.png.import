@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c468b8j06ghxg"
-path="res://.godot/imported/potato_seeds_icons.png-1255eac6a171fa94f386c612e54951c6.ctex"
+path="res://.godot/imported/potato_seeds_icon.png-68ff6ad713cfc23015c901442ca51e68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/potato_seeds_icons.png"
-dest_files=["res://.godot/imported/potato_seeds_icons.png-1255eac6a171fa94f386c612e54951c6.ctex"]
+source_file="res://assets/potato_seeds_icon.png"
+dest_files=["res://.godot/imported/potato_seeds_icon.png-68ff6ad713cfc23015c901442ca51e68.ctex"]
 
 [params]
 

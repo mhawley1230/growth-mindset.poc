@@ -7,25 +7,30 @@
 [node name="GameOverlay" type="Control" unique_id=1496388748 node_paths=PackedStringArray("seeds_box", "plants_box")]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 4
 script = ExtResource("1_serg6")
 seeds_box = NodePath("InventoryOverlay/SeedsBox")
 plants_box = NodePath("InventoryOverlay/PlantsBox")
 
 [node name="InventoryOverlay" type="Control" parent="." unique_id=206701608]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="SeedsBox" type="PanelContainer" parent="InventoryOverlay" unique_id=306210535]
+[node name="SeedsBox" type="PanelContainer" parent="InventoryOverlay" unique_id=306210535 node_paths=PackedStringArray("label")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -171.0
+offset_top = -131.0
 offset_right = 192.0
-offset_bottom = -40.0
 grow_vertical = 0
 script = ExtResource("2_7wups")
+label = NodePath("GridContainer/HBoxContainer")
 
 [node name="GridContainer" type="GridContainer" parent="InventoryOverlay/SeedsBox" unique_id=2023074448]
 layout_mode = 2
@@ -48,10 +53,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -285.0
-offset_top = 31.0
-offset_right = -61.0
-offset_bottom = 227.0
+offset_left = -224.0
+offset_bottom = 196.0
 grow_horizontal = 0
 script = ExtResource("3_n63w1")
 grid_display = NodePath("MarginContainer/GridContainer")
