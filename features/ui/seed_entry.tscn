@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bwm32rweqwm0"]
+
+[ext_resource type="Script" uid="uid://bypt11tphcag0" path="res://features/ui/seed_entry.gd" id="1_0t5sy"]
+[ext_resource type="Texture2D" uid="uid://c468b8j06ghxg" path="res://assets/potato_seeds_icon.png" id="1_3ivp5"]
+
+[node name="SeedEntry" type="Control" unique_id=1640766085]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+script = ExtResource("1_0t5sy")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=1912300246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 1
+
+[node name="Icon" type="TextureRect" parent="AspectRatioContainer" unique_id=1459861904]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_3ivp5")
+
+[node name="CountLabel" type="Label" parent="AspectRatioContainer/Icon" unique_id=685000210]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 31.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 9
+text = "0"
+horizontal_alignment = 2

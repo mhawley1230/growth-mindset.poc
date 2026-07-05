@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c6m1rip6ggnoy"]
+
+[ext_resource type="Script" uid="uid://c01n2x1pivqu3" path="res://features/ui/plants_box.gd" id="1_qi4b1"]
+
+[node name="PlantsBox" type="PanelContainer" unique_id=646242443 node_paths=PackedStringArray("grid_display")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.0
+offset_bottom = 196.0
+grow_horizontal = 0
+script = ExtResource("1_qi4b1")
+grid_display = NodePath("MarginContainer/GridContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=227622020]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer" unique_id=917041677]
+layout_mode = 2
+columns = 2

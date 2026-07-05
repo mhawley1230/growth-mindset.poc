@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cgbeftebmjaxn"]
+
+[ext_resource type="PackedScene" uid="uid://dvedq2r1s3sgq" path="res://features/ui/seeds_box.tscn" id="2_dt7j1"]
+[ext_resource type="Script" uid="uid://dl5jke3rquukl" path="res://features/ui/hud_layer.gd" id="2_mnvum"]
+[ext_resource type="Script" uid="uid://bnwm4sqkv3fod" path="res://features/ui/level_overlay.gd" id="3_level_overlay"]
+[ext_resource type="PackedScene" uid="uid://c6m1rip6ggnoy" path="res://features/ui/plants_box.tscn" id="3_mnvum"]
+
+[node name="LevelOverlay" type="Control" unique_id=1496388748 node_paths=PackedStringArray("seeds_box", "plants_box")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+script = ExtResource("3_level_overlay")
+seeds_box = NodePath("HUDLayer/InventoryOverlay/SeedsBox")
+plants_box = NodePath("HUDLayer/InventoryOverlay/PlantsBox")
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1168530174 node_paths=PackedStringArray("ui_root")]
+script = ExtResource("2_mnvum")
+scale_mode = 3
+ui_root = NodePath("..")
+metadata/_custom_type_script = "uid://dl5jke3rquukl"
+
+[node name="InventoryOverlay" type="Control" parent="HUDLayer" unique_id=206701608]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SeedsBox" parent="HUDLayer/InventoryOverlay" unique_id=1461752014 instance=ExtResource("2_dt7j1")]
+layout_mode = 1
+offset_left = 16.0
+offset_top = -136.0
+offset_right = 208.0
+offset_bottom = -8.0
+
+[node name="PlantsBox" parent="HUDLayer/InventoryOverlay" unique_id=646242443 instance=ExtResource("3_mnvum")]
+layout_mode = 1
+offset_left = -248.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 220.0
+
+[node name="ResourcesOverlay" type="Control" parent="HUDLayer" unique_id=1825461315]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeOverlay" type="Control" parent="HUDLayer" unique_id=1844599037]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
