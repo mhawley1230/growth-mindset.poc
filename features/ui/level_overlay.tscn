@@ -15,7 +15,7 @@ plants_box = NodePath("HUDLayer/InventoryOverlay/PlantsBox")
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1168530174 node_paths=PackedStringArray("ui_root")]
 script = ExtResource("2_mnvum")
-scale_mode = 3
+scale_mode = 1
 ui_root = NodePath("..")
 metadata/_custom_type_script = "uid://dl5jke3rquukl"
 
@@ -31,16 +31,16 @@ mouse_filter = 2
 [node name="SeedsBox" parent="HUDLayer/InventoryOverlay" unique_id=1461752014 instance=ExtResource("2_dt7j1")]
 layout_mode = 1
 offset_left = 16.0
-offset_top = -136.0
-offset_right = 208.0
+offset_top = -176.0
+offset_right = 280.0
 offset_bottom = -8.0
 
 [node name="PlantsBox" parent="HUDLayer/InventoryOverlay" unique_id=646242443 instance=ExtResource("3_mnvum")]
 layout_mode = 1
-offset_left = -248.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = 220.0
+offset_left = -256.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 228.0
 
 [node name="ResourcesOverlay" type="Control" parent="HUDLayer" unique_id=1825461315]
 layout_mode = 3

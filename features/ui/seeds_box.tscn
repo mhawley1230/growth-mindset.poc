@@ -3,17 +3,19 @@
 [ext_resource type="Script" uid="uid://cerpr62dkejnn" path="res://features/ui/seeds_box.gd" id="1_lmkx3"]
 [ext_resource type="PackedScene" uid="uid://bwm32rweqwm0" path="res://features/ui/seed_entry.tscn" id="2_6bnpd"]
 
-[node name="SeedsBox" type="PanelContainer" unique_id=1461752014 node_paths=PackedStringArray("label")]
+[node name="SeedsBox" type="PanelContainer" unique_id=1461752014 node_paths=PackedStringArray("container")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 67.0
-offset_top = -181.0
-offset_right = 259.0
-offset_bottom = -50.0
+offset_top = -254.0
+offset_right = 343.0
+offset_bottom = -59.0
 grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_lmkx3")
-label = NodePath("GridContainer/HBoxContainer")
+container = NodePath("GridContainer/MarginContainer/HBoxContainer")
 seed_entry_scene = ExtResource("2_6bnpd")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=2105489654]
@@ -27,7 +29,16 @@ theme_override_font_sizes/font_size = 39
 text = "Seeds"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer" unique_id=1503231123]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer" unique_id=1643302753]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/MarginContainer" unique_id=1503231123]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

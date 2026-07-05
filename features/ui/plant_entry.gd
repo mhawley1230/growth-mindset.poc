@@ -1,8 +1,9 @@
-class_name SeedEntry
+class_name PlantEntry
 extends Control
 
-## Single icon+count widget for one seed product. Instanced once per product
-## by SeedsBox and reused (overwritten) whenever that product's count changes.
+## Single icon+count widget for one plant product. Instanced once per product
+## by PlantsBox and reused (overwritten) whenever that product's count changes.
+## Mirrors SeedEntry.
 
 ## Count font height as a fraction of the icon's rendered height. The font
 ## tracks the icon so the number stays legible at any box size or resolution.

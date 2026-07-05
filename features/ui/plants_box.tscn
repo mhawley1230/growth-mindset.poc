@@ -1,24 +1,28 @@
 [gd_scene format=3 uid="uid://c6m1rip6ggnoy"]
 
 [ext_resource type="Script" uid="uid://c01n2x1pivqu3" path="res://features/ui/plants_box.gd" id="1_qi4b1"]
+[ext_resource type="PackedScene" uid="uid://c8pl1nt3ntrys" path="res://features/ui/plant_entry.tscn" id="2_plent"]
 
-[node name="PlantsBox" type="PanelContainer" unique_id=646242443 node_paths=PackedStringArray("grid_display")]
+[node name="PlantsBox" type="PanelContainer" unique_id=646242443 node_paths=PackedStringArray("entry_list")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -224.0
-offset_bottom = 196.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 128.0
 grow_horizontal = 0
 script = ExtResource("1_qi4b1")
-grid_display = NodePath("MarginContainer/GridContainer")
+entry_list = NodePath("MarginContainer/EntryList")
+plant_entry_scene = ExtResource("2_plent")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=227622020]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer" unique_id=917041677]
+[node name="EntryList" type="VBoxContainer" parent="MarginContainer" unique_id=917041677]
 layout_mode = 2
-columns = 2
+theme_override_constants/separation = 8

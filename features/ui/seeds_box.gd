@@ -2,7 +2,7 @@ class_name SeedsBox
 extends PanelContainer
 
 ## Horizontal container that holds one icon+count entry per seed product.
-@export var label: HBoxContainer
+@export var container: HBoxContainer
 
 ## Reusable per-product widget (icon + count), instanced once per product and
 ## overwritten in place afterwards. See features/inventory/seed_entry.tscn.
@@ -23,7 +23,7 @@ func bind_events() -> void:
 	_inventory_controller.on_inventory_updated.connect(update_inventory)
 
 func update_inventory() -> void:
-	if _inventory_controller == null or label == null or seed_entry_scene == null:
+	if _inventory_controller == null or container == null or seed_entry_scene == null:
 		return
 	var seeds: Dictionary[String, int] = _inventory_controller.get_category("seeds")
 	for product: String in seeds:
@@ -37,6 +37,6 @@ func update_inventory() -> void:
 ## by update_inventory() every time the inventory changes.
 func _add_entry(product: String) -> void:
 	var entry: SeedEntry = seed_entry_scene.instantiate()
-	label.add_child(entry)
+	container.add_child(entry)
 	entry.setup(InventoryIcons.get_icon("seeds", product), product)
 	_entries[product] = entry
