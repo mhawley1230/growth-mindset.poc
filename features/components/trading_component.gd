@@ -9,7 +9,7 @@ const SEED_REWARD: int = 2
 
 ## Executes a trade if the player holds every ordered plant. order is keyed by
 ## product name: { "tomato": 2, "potato": 1 }.
-func execute(order: Dictionary, inventory: InventoryController) -> bool:
+func execute(order: Dictionary[String, int], inventory: InventoryController) -> bool:
 	if inventory == null or order.is_empty():
 		return false
 

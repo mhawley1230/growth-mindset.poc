@@ -2,17 +2,12 @@ class_name InventoryIcons
 extends RefCounted
 
 ## Maps an inventory entry (category + product key) to its display icon.
-##
-## Filenames in /assets are inconsistent (e.g. singular "tomato_seeds_icon" vs
-## plural "potato_seeds_icons"), so the mapping is explicit rather than derived
-## from a naming convention. Add new products here as they are introduced.
-
-const SEED_ICONS: Dictionary = {
+const SEED_ICONS: Dictionary[String, String] = {
 	"tomato": "res://assets/tomato_seeds_icon.png",
 	"potato": "res://assets/potato_seeds_icon.png",
 }
 
-const PLANT_ICONS: Dictionary = {
+const PLANT_ICONS: Dictionary[String, String] = {
 	"tomato": "res://assets/tomato_icon.png",
 	"potato": "res://assets/potato_icon.png",
 }
@@ -20,7 +15,7 @@ const PLANT_ICONS: Dictionary = {
 ## Returns the icon for a product in a category ("seeds" or "plants"),
 ## or null if the product has no registered icon.
 static func get_icon(category: String, product: String) -> Texture2D:
-	var table: Dictionary = SEED_ICONS if category == "seeds" else PLANT_ICONS
+	var table: Dictionary[String, String] = SEED_ICONS if category == "seeds" else PLANT_ICONS
 	if not table.has(product):
 		push_warning("InventoryIcons: no icon for %s/%s" % [category, product])
 		return null

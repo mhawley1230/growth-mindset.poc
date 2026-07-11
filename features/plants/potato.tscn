@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caj6rs1e5q13p"]
 
-[ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_entity.gd" id="1_pe7ri"]
+[ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_entity.gd" id="1_jwfs5"]
 [ext_resource type="Texture2D" uid="uid://b2o1r6exd648h" path="res://assets/potato.png" id="2_apxws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7edg"]
@@ -67,7 +67,7 @@ _data = {
 }
 
 [node name="Potato" type="Area2D" unique_id=997153208 groups=["plant"]]
-script = ExtResource("1_pe7ri")
+script = ExtResource("1_jwfs5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=173475473]
 shape = SubResource("RectangleShape2D_g7edg")

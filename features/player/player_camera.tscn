@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ctvstlsdpxsrp"]
+
+[node name="Camera2D" type="Camera2D" unique_id=1753469242]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 300
+position_smoothing_enabled = true
+drag_left_margin = 0.25
+drag_top_margin = 0.25
+drag_right_margin = 0.25
+drag_bottom_margin = 0.25

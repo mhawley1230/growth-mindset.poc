@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlantData" format=3 uid="uid://c2pl0n2q6mv8"]
+
+[ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="1_gijqi"]
+[ext_resource type="Script" uid="uid://c3ugj3vm8reay" path="res://features/plants/plant_data.gd" id="1_ukoud"]
+[ext_resource type="PackedScene" uid="uid://caj6rs1e5q13p" path="res://features/plants/potato.tscn" id="2_li6ys"]
+
+[resource]
+script = ExtResource("1_ukoud")
+plant_name = "potato"
+scene = ExtResource("2_li6ys")
+icon = ExtResource("1_gijqi")
+value = 2
+metadata/_custom_type_script = "uid://c3ugj3vm8reay"

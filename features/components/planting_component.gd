@@ -2,28 +2,25 @@ class_name PlantingComponent
 extends Node
 
 ## Spawns a plant entity at the cursor position and spends a seed.
-## available_plants is the ActionComponent's configured plant scenes (assign in
-## player.tscn). plant_type is derived from the scene's root node name.
+## plant_data is the player's currently selected crop (Player.get_selected_plant,
+## cycled by the swap_plant input). The inventory key comes from
+## plant_data.plant_name rather than the scene's root node name, so it stays
+## correct regardless of how a given plant scene names its root.
 func create_plant(
-		available_plants: Array[PackedScene],
+		plant_data: PlantData,
 		spawn_position: Vector2,
 		inventory: InventoryController,
 	) -> void:
-	if available_plants.is_empty() or inventory == null:
+	if plant_data == null or plant_data.scene == null or inventory == null:
 		return
 
-	var scene: PackedScene = available_plants[0]
-	if scene == null:
-		return
-
-	var instance: Node2D = scene.instantiate()
-	var plant_type: String = instance.name.to_lower()
+	var plant_type: String = plant_data.plant_name
 
 	if inventory.get_count("seeds", plant_type) <= 0:
 		print("not enough %s seeds" % plant_type)
-		instance.queue_free()
 		return
 
+	var instance: Node2D = plant_data.scene.instantiate()
 	instance.name = instance.name + str(instance.get_instance_id())
 
 	var container: Node = owner.get_parent() if owner else get_parent()

@@ -1,13 +1,6 @@
 class_name ActionComponent
 extends Node
 
-#region inventory
-#@onready var manager_container: Node = NodeExtensions.get_manager_container()
-#@onready var inventory_manager: InventoryManager = Global.inventory_manager
-#endregion
-
-@export var available_plants: Array[PackedScene] = []
-
 var trading_enabled: bool = false
 var customer_in_trade_area: bool = false
 var current_order: Dictionary = {}
@@ -46,13 +39,5 @@ func try_trade(trading_component: TradingComponent, inventory: InventoryControll
 	return trading_component.execute(current_order, inventory)
 
 
-## TODO: Figure out way to swap types of seeds in action bar
-##     - What button should this be on?
-##     - How are seed types stored in action bar?
-##     - What variables are accessed? 
-##     - What data structure works best?
-##
-## func swap_seed_type() -> void:
-##     1. Access seeds data object
-##     2. Increment index/key of array, list, ect.
-##     3. Update action bar visuals
+## Seed-type swapping now lives on Player (_swap_plant/get_selected_plant),
+## cycling LevelContext.available_plants on the swap_plant (Q) input.

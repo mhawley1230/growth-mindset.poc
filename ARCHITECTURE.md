@@ -46,6 +46,41 @@ initialize()       # connect signals and start behavior
 A parent context instantiates the child scene, then calls
 `build_services() → bind_services(...) → initialize()` on it, in that order.
 
+## UI resolution scaling
+
+The inventory HUD is scoped to the player's `Camera2D` via `HUDLayer` (a
+`CanvasLayer`). Because a `CanvasLayer` renders independently of the 2D camera
+transform, the HUD stays fixed on screen while the camera pans/zooms. `HUDLayer`
+authors the UI against a `reference_resolution` and applies a single `scale`
+transform so the whole HUD (icons *and* text) scales to the window. Seed icons
+additionally fit their box through an `AspectRatioContainer`, so an icon's
+on-screen size is `icon_reference_size × layer_scale`.
+
+The `SeedEntry/CountLabel` needed to scale with that icon for legibility. The
+constraint that shaped the decision: the HUD subtree is already transform-scaled
+by `HUDLayer`, so **growing `font_size` from the window resolution double-scales**
+(the increase gets multiplied again by the layer transform).
+
+Options considered:
+
+1. **Size the font from the icon's rect** (chosen). `SeedEntry` listens to the
+   icon's `resized` signal and sets `font_size = icon.size.y × count_to_icon_ratio`.
+   `icon.size` is in reference space (pre-transform), so the final size is one clean
+   scale that tracks the icon at any box size or resolution, re-rasterized (crisp),
+   with no resolution wiring and no double-scale risk.
+2. **Broadcast a scale factor from `HUDLayer`** to resolution-aware widgets.
+   Centralized, but only correct if text is not also transform-scaled; more plumbing.
+3. **Engine `canvas_items` stretch** (project setting). Crisp, global font
+   oversampling, but largely replaces the camera-scoped `HUDLayer` scaler.
+4. **Per-label viewport listener** (`font_size = base × viewport/reference`).
+   Simple but the most exposed to the double-scale trap; each label repeats the math.
+5. **Static bump** of the authored `font_size`. Zero code, but stays soft at large
+   scales and never tracks the icon.
+
+Decision: **option 1**, implemented in `features/ui/seed_entry.gd`. Tunable via the
+exported `count_to_icon_ratio` (font height as a fraction of icon height) and
+`min_font_size` (legibility floor).
+
 ## Naming & folder conventions
 
 - Suffix `Component` for stateless entity behaviors; **do not** use `Handler`.
