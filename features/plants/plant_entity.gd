@@ -3,8 +3,8 @@ extends Area2D
 
 enum Type { TOMATO, POTATO }
 
-@onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar 
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@export var texture_progress_bar: TextureProgressBar
+@export var animation_player: AnimationPlayer
 
 var isHarvestable: bool = false
 

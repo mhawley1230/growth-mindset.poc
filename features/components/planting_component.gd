@@ -19,7 +19,7 @@ func create_plant(
 	if inventory.get_count("seeds", plant_type) <= 0:
 		print("not enough %s seeds" % plant_type)
 		return
-
+	
 	var instance: Node2D = plant_data.scene.instantiate()
 	instance.name = instance.name + str(instance.get_instance_id())
 

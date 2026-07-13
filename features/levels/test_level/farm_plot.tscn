@@ -15,7 +15,7 @@ sources/1 = SubResource("TileSetAtlasSource_x14vh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsn3"]
 size = Vector2(95.5625, 95.9375)
 
-[node name="FarmPlot" type="Area2D" unique_id=1719077229]
+[node name="FarmPlot" type="Area2D" unique_id=1719077229 groups=["farm_plot"]]
 scale = Vector2(2, 2)
 script = ExtResource("1_kjthu")
 

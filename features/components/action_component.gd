@@ -13,9 +13,9 @@ func detect_overlapped_areas(target: Area2D) -> Array[Area2D]:
 
 func is_planting_enabled(areas: Array[Area2D]) -> bool:
 	var enabled: bool = false
-
+	
 	for area: Area2D in areas:
-		if area is FarmPlot and areas.size() == 1:
+		if area.is_in_group("farm_plot") and areas.size() == 1:
 			enabled = true
 
 	return enabled
@@ -25,8 +25,8 @@ func is_planting_enabled(areas: Array[Area2D]) -> bool:
 func set_trading_enabled(enabled: bool) -> void:
 	trading_enabled = enabled
 
-func set_customer_in_trade_area(present: bool) -> void:
-	customer_in_trade_area = present
+func set_customer_in_trade_area() -> void:
+	customer_in_trade_area = true
 
 func set_current_order(order: Dictionary) -> void:
 	current_order = order

@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if input_component.handle_create_plant_input():
 		var areas: Array[Area2D] = action_component.detect_overlapped_areas(cursor)
-		if action_component.is_planting_enabled(areas):
+		if areas && action_component.is_planting_enabled(areas):
 			planting_component.create_plant(
 				get_selected_plant(), cursor.global_position, _inventory_controller)
 

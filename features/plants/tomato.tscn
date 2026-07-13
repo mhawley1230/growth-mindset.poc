@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://smij2expicck"]
 
 [ext_resource type="Script" uid="uid://bc7yppgqiy5vt" path="res://features/plants/plant_entity.gd" id="1_uidfo"]
-[ext_resource type="Script" uid="uid://c3ugj3vm8reay" path="res://features/plants/plant_data.gd" id="2_jspjb"]
 [ext_resource type="Texture2D" uid="uid://b8ofgqo6rqsp5" path="res://assets/tomato.png" id="2_x8f4o"]
 [ext_resource type="Texture2D" uid="uid://brepwjfbgiww2" path="res://assets/progress.png" id="3_60wmy"]
-[ext_resource type="PackedScene" uid="uid://caj6rs1e5q13p" path="res://features/plants/potato.tscn" id="3_jircs"]
-[ext_resource type="Texture2D" uid="uid://btt7xyg3goy1k" path="res://assets/potato_icon.png" id="4_mjbiw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3v2u"]
 size = Vector2(24.5, 25.4375)
@@ -71,18 +68,15 @@ _data = {
 &"plant_growing": SubResource("Animation_tspdn")
 }
 
-[node name="Tomato" type="Area2D" unique_id=40898209 groups=["plant"]]
+[node name="Tomato" type="Area2D" unique_id=40898209 node_paths=PackedStringArray("texture_progress_bar", "animation_player") groups=["plant"]]
 script = ExtResource("1_uidfo")
+texture_progress_bar = NodePath("TextureProgressBar")
+animation_player = NodePath("AnimationPlayer")
 metadata/type = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=174308890]
 position = Vector2(0, -1.28125)
 shape = SubResource("RectangleShape2D_h3v2u")
-script = ExtResource("2_jspjb")
-plant_name = "tomato"
-scene = ExtResource("3_jircs")
-icon = ExtResource("4_mjbiw")
-value = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=201139048]
 z_index = 2

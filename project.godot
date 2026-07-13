@@ -48,6 +48,12 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="GrowthMindsetPOC"
 
+[global_group]
+
+farm_stand=""
+farm_plot=""
+plant=""
+
 [godot_resource_groups]
 
 auto_rebuild=true
