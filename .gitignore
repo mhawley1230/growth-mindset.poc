@@ -1,3 +1,4 @@
 /Free Assets/**
 /.godot/**
 **/*.tmp/**
+/.claude/**
