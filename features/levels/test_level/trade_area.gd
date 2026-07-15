@@ -17,7 +17,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		print("body entered " + str(body.name))
 		player_entered.emit()
-	elif body.is_in_group("customer"):
+	elif body is CustomerEntity:
 		customer_entered.emit(body)
 		print("body entered " + str(body.name))
 

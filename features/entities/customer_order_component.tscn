@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b4b3wcptju6kf"]
+
+[ext_resource type="Script" uid="uid://deqanr0hc7xs" path="res://features/components/customer/customer_order_component.gd" id="1_187hb"]
+[ext_resource type="Script" uid="uid://c3ugj3vm8reay" path="res://features/plants/plant_data.gd" id="2_bcu6j"]
+[ext_resource type="Resource" uid="uid://bijcxat5wigob" path="res://features/plants/tomato.tres" id="3_hg52m"]
+[ext_resource type="Resource" uid="uid://c2pl0n2q6mv8" path="res://features/plants/potato.tres" id="4_khj4e"]
+
+[node name="CustomerOrderComponent" type="Control" unique_id=263759564]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("1_187hb")
+products = Array[ExtResource("2_bcu6j")]([ExtResource("3_hg52m"), ExtResource("4_khj4e")])
+max_order_size = 3

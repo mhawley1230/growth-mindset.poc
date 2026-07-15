@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" uid="uid://deqanr0hc7xs" path="res://features/components/customer/customer_order_component.gd" id="1_ry64n"]
 
-[node name="CustomerOrderComponent" type="Node" unique_id=1833795346]
+[node name="CustomerOrderComponent" type="Control" unique_id=1538259574]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_ry64n")

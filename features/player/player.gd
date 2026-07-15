@@ -41,7 +41,7 @@ func _input(_event: InputEvent) -> void:
 		harvesting_component.harvest_plant(
 			action_component.detect_overlapped_areas(cursor), _inventory_controller)
 
-	if input_component.handle_action_3_input():
+	if input_component.handle_trade_input():
 		# Gated inside try_trade on trade-area state + a customer order, both pushed
 		# in by the level once the customer system has scenes (see NOTES).
 		action_component.try_trade(trading_component, _inventory_controller)

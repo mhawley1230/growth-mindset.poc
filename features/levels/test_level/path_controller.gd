@@ -15,8 +15,9 @@ signal customer_finished(customer: Area2D)
 var instance: CharacterBody2D
 
 func _ready() -> void:
-	movement_component = MovementComponent.new()
-	
+	if movement_component == null:
+		movement_component = MovementComponent.new()
+
 	if customer_scene == null:
 		return
 	
@@ -48,6 +49,16 @@ func on_trade_area_entered(_customer: Node) -> void:
 	if movement_component:
 		movement_component.movement_speed = 0
 
-func on_trade_area_exited(_body: Node) -> void:
+## The customer is stopped (speed 0) while waiting, so it can only leave the
+## TradeArea under its own power once it starts moving again -- guard this to
+## the customer itself so the player stepping out mid-trade doesn't
+## prematurely release a customer that hasn't been served yet.
+func on_trade_area_exited(body: Node) -> void:
+	if body is CustomerEntity and movement_component:
+		movement_component.movement_speed = 300
+
+## Connected to TradingComponent.trade_completed by LevelContext: once a trade
+## clears the waiting customer's order, let it resume moving along the path.
+func on_trade_completed() -> void:
 	if movement_component:
 		movement_component.movement_speed = 300

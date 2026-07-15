@@ -10,8 +10,8 @@ func handle_harvest_plant_input() -> bool:
 	return Input.is_action_just_pressed("harvest_plant")
 
 
-func handle_action_3_input() -> bool:
-	return Input.is_action_just_pressed("action_3")
+func handle_trade_input() -> bool:
+	return Input.is_action_just_pressed("trade")
 
 
 func handle_action_4_input() -> bool:

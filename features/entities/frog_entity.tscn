@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://bljm2lretf7wi"]
 
 [ext_resource type="Texture2D" uid="uid://de4ubn2wqdx17" path="res://assets/frog_sprite (32x32).png" id="1_i6a5x"]
+[ext_resource type="Script" uid="uid://c7524fmhsm621" path="res://features/entities/customer_entity.gd" id="1_wnmwa"]
+[ext_resource type="PackedScene" uid="uid://b4b3wcptju6kf" path="res://features/entities/customer_order_component.tscn" id="3_vkqtw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nw72v"]
 
-[node name="FrogEntity" type="CharacterBody2D" unique_id=668182912 groups=["customer"]]
+[node name="FrogEntity" type="CharacterBody2D" unique_id=668182912 node_paths=PackedStringArray("customer_order_component") groups=["customer"]]
+script = ExtResource("1_wnmwa")
+customer_order_component = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1951082206]
 position = Vector2(0, -8)
@@ -14,3 +18,5 @@ hframes = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1105646346]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_nw72v")
+
+[node name="CustomerOrderComponent" parent="." unique_id=263759564 instance=ExtResource("3_vkqtw")]
