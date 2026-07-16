@@ -15,6 +15,9 @@ func _ready() -> void:
 	request_start_game.connect(handle_request_start_game)
 	request_start_game.emit()
 
+func _initialize() -> void:
+	pass
+
 func build_services() -> void:
 	_game_state_holder = GameStateHolder.new()
 	add_child(_game_state_holder)

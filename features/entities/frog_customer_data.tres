@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CustomerEntityData" format=3 uid="uid://njylufl4vibp"]
+
+[ext_resource type="Script" uid="uid://d3cjbuur2meim" path="res://features/entities/customer_entity_data.gd" id="1_frog"]
+[ext_resource type="PackedScene" uid="uid://bljm2lretf7wi" path="res://features/entities/frog_entity.tscn" id="2_frog"]
+
+[resource]
+script = ExtResource("1_frog")
+scene = ExtResource("2_frog")
+customer_name = "Frog"
+description = "A regular customer hopping in for produce."
+metadata/_custom_type_script = "uid://2arqt7ebgtm17"

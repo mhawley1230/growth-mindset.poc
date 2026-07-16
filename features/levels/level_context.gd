@@ -72,8 +72,6 @@ func _wire_trade_area() -> void:
 	_trade_area.customer_entered.connect(_on_trade_area_customer_entered)
 	_trade_area.trade_area_exited.connect(_on_trade_area_exited)
 	player.trading_component.trade_completed.connect(_on_trade_completed)
-	if _path_controller:
-		player.trading_component.trade_completed.connect(_path_controller.on_trade_completed)
 
 func _on_trade_area_player_entered() -> void:
 	var player: Player = _entity_spawn_controller.get_player()
@@ -105,3 +103,5 @@ func _on_trade_completed() -> void:
 	var order_component: CustomerOrderComponent = _current_trade_customer.get_node_or_null("CustomerOrderComponent")
 	if order_component:
 		order_component.clear_order()
+	if _path_controller:
+		_path_controller.resume_customer(_current_trade_customer)

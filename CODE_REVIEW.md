@@ -45,7 +45,7 @@ next to the thing that replaced them. Worth an explicit call: either wire the
 spawner in (if multiple/timed customers are still the goal) or update
 `NOTES.txt` to record the simpler design and remove the unused component.
 
-`RootContext` is also the one Context that doesn't implement `initialize()`
+**[DONE]**`RootContext` is also the one Context that doesn't implement `initialize()`
 (only `build_services`/`bind_services`) — a small gap against "each context
 implements the three-phase lifecycle." Functionally harmless since
 `_ready()` + `request_start_game` cover the same timing, but worth either
@@ -54,12 +54,12 @@ adding a no-op `initialize()` for consistency or noting the exception in
 
 ## 3. Bugs
 
-1. **`farm_plot.tscn` connects signals to methods that don't exist.** It has
+1. **[DONE]`farm_plot.tscn` connects signals to methods that don't exist.** It has
    `[connection signal="area_entered" ... method="_on_area_entered"]` and the
    same for `area_exited`, but `farm_plot.gd` is just
    `class_name FarmPlot extends Area2D` — no methods at all. This will throw
    a "nonexistent function" error the moment the scene loads.
-2. **`customer_order_component.tscn` is broken and orphaned.** Its root node
+2. **[DONE]`customer_order_component.tscn` is broken and orphaned.** Its root node
    is `type="Node2D"`, but the attached script (`customer_order_component.gd`)
    declares `extends Control` — `Node2D` and `Control` aren't compatible, so
    this scene can't be instanced as-is. It's also unused: `frog_entity.tscn`

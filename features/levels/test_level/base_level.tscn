@@ -11,11 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://b21b2qi7p4e5y" path="res://features/levels/test_level/farm_stand.tscn" id="7_rndb5"]
 [ext_resource type="Script" uid="uid://cr1ic77xywk58" path="res://features/levels/test_level/path_controller.gd" id="9_u3uux"]
 [ext_resource type="Texture2D" uid="uid://d1hnvalddrck4" path="res://assets/farm.png" id="10_dsj7v"]
-[ext_resource type="PackedScene" uid="uid://bljm2lretf7wi" path="res://features/entities/frog_entity.tscn" id="10_t1fwm"]
 [ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://features/components/movement_component.tscn" id="12_ownks"]
 [ext_resource type="PackedScene" uid="uid://cgbeftebmjaxn" path="res://features/ui/level_overlay.tscn" id="13_g5v2j"]
 [ext_resource type="Resource" uid="uid://bijcxat5wigob" path="res://features/plants/tomato.tres" id="14_tomato"]
 [ext_resource type="Resource" uid="uid://c2pl0n2q6mv8" path="res://features/plants/potato.tres" id="15_potato"]
+[ext_resource type="Script" uid="uid://d3cjbuur2meim" path="res://features/entities/customer_entity_data.gd" id="18_cust_script"]
+[ext_resource type="Resource" uid="uid://njylufl4vibp" path="res://features/entities/frog_customer_data.tres" id="19_frog_data"]
+[ext_resource type="Script" uid="uid://olelgewruxpy" path="res://features/levels/test_level/customer_queue.gd" id="20_cust_queue"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j52i6"]
 texture = ExtResource("1_ejfxa")
@@ -227,9 +229,12 @@ size = Vector2(20.934021, 20)
 
 [sub_resource type="Curve2D" id="Curve2D_o41i6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 413, 212, 0, 0, 0, 0, 848, 211, 0, 0, 0, 0, 847, 261, 0, 0, 0, 0, 414, 258)
+"points": PackedVector2Array(0, 0, 0, 0, 413, 212, 0, 0, 0, 0, 848, 211, 0, 0, 0, 0, 847, 261, 0, 0, 0, 0, 412.47647, 260.15253)
 }
 point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aqtm"]
+size = Vector2(405.4183, 26.363602)
 
 [node name="BaseLevel" type="Node2D" unique_id=1564818963]
 script = ExtResource("1_aaeo1")
@@ -277,12 +282,13 @@ shape = SubResource("RectangleShape2D_kufy4")
 [node name="FarmPlot" parent="." unique_id=1502021027 instance=ExtResource("5_ycxjk")]
 position = Vector2(768, 384)
 scale = Vector2(1, 1)
-script = null
 
-[node name="EntitySpawnController" type="Node2D" parent="." unique_id=1468274384 node_paths=PackedStringArray("_player_spawn_point")]
+[node name="EntitySpawnController" type="Node2D" parent="." unique_id=1468274384 node_paths=PackedStringArray("_player_spawn_point", "path_controller")]
 script = ExtResource("6_bo1of")
 _player_spawn_point = NodePath("Marker2D")
 player_packed_scene = ExtResource("7_o41i6")
+path_controller = NodePath("../CustomerArea/Path2D")
+customers_array = Array[ExtResource("18_cust_script")]([ExtResource("19_frog_data")])
 
 [node name="Marker2D" type="Marker2D" parent="EntitySpawnController" unique_id=1032478708]
 position = Vector2(768, 320)
@@ -292,13 +298,12 @@ position = Vector2(951, 200)
 
 [node name="CustomerArea" type="Node" parent="." unique_id=1914664599]
 
-[node name="Path2D" type="Path2D" parent="CustomerArea" unique_id=169815654 node_paths=PackedStringArray("path_follow", "movement_component", "trade_area")]
-position = Vector2(-12, 6)
+[node name="Path2D" type="Path2D" parent="CustomerArea" unique_id=169815654 node_paths=PackedStringArray("path_follow_template", "trade_area")]
+position = Vector2(-5.033478, -17.100542)
+scale = Vector2(0.99650156, 1.1000024)
 curve = SubResource("Curve2D_o41i6")
 script = ExtResource("9_u3uux")
-customer_scene = ExtResource("10_t1fwm")
-path_follow = NodePath("PathFollow2D")
-movement_component = NodePath("MovementComponent")
+path_follow_template = NodePath("PathFollow2D")
 trade_area = NodePath("../TradeArea")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CustomerArea/Path2D" unique_id=161628506]
@@ -307,7 +312,17 @@ rotation = -0.0037174548
 rotates = false
 loop = false
 
-[node name="MovementComponent" parent="CustomerArea/Path2D" unique_id=593769334 instance=ExtResource("12_ownks")]
+[node name="MovementComponent" parent="CustomerArea/Path2D/PathFollow2D" unique_id=593769334 instance=ExtResource("12_ownks")]
+
+[node name="CustomerQueue" type="Area2D" parent="CustomerArea/Path2D" unique_id=1155507531 node_paths=PackedStringArray("trade_area")]
+script = ExtResource("20_cust_queue")
+max_waiting_points = 7
+point_spacing = 72.0
+trade_area = NodePath("../../TradeArea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CustomerArea/Path2D/CustomerQueue" unique_id=1710157461]
+position = Vector2(614.1821, 213.27283)
+shape = SubResource("RectangleShape2D_5aqtm")
 
 [node name="TradeArea" type="Area2D" parent="CustomerArea" unique_id=1344943964]
 position = Vector2(1043, 349)
