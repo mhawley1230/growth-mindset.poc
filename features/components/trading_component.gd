@@ -12,7 +12,7 @@ const SEED_REWARD: int = 2
 func execute(order: Dictionary[String, int], inventory: InventoryController) -> bool:
 	if inventory == null or order.is_empty():
 		return false
-
+	
 	# Validate the whole order first so partial trades never happen.
 	for product: String in order:
 		if inventory.get_count("plants", product) < int(order[product]):
@@ -24,6 +24,7 @@ func execute(order: Dictionary[String, int], inventory: InventoryController) -> 
 		inventory.remove("plants", product, qty)
 		inventory.add("seeds", product, qty * SEED_REWARD)
 
-	print("Trade successful. Updated inventory")
 	trade_completed.emit()
+	#print("Trade successful. Updated inventory")
+	#print(inventory._inventory())
 	return true

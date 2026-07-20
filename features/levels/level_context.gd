@@ -33,14 +33,17 @@ func initialize() -> void:
 	if _entity_spawn_controller:
 		_entity_spawn_controller.bind_services(
 			_game_controller, _game_state_holder, _inventory_controller)
+	
 	_game_controller.bind_services(
 		_inventory_controller, _entity_spawn_controller, _game_state_holder)
 	_game_controller.start()
+	
 	if _entity_spawn_controller:
 		_entity_spawn_controller.instantiate_player(available_plants)
-		print("player loaded")
+	
 	_seed_starting_inventory()
 	_wire_trade_area()
+	
 	if _level_overlay_packed:
 		var level_overlay: LevelOverlay = _level_overlay_packed.instantiate()
 		if _entity_spawn_controller.get_player():
@@ -54,11 +57,10 @@ func initialize() -> void:
 ## @export arrays that previously drove starting inventory). Placeholder so the
 ## inventory + planting/harvesting slice is exercisable.
 func _seed_starting_inventory() -> void:
-	_inventory_controller.add("plants", "tomato", 0)
-	_inventory_controller.add("plants", "potato", 0)
+	_inventory_controller.add("plants", "tomato", 10)
+	_inventory_controller.add("plants", "potato", 10)
 	_inventory_controller.add("seeds", "tomato", 5)
 	_inventory_controller.add("seeds", "potato", 5)
-	print("Inventory loaded")
 
 ## Bridges TradeArea's local signals into the player's ActionComponent (see
 ## NOTES.txt "DECISION: customer behavior" - cross-entity events are wired by

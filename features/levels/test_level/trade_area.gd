@@ -15,11 +15,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		print("body entered " + str(body.name))
 		player_entered.emit()
 	elif body is CustomerEntity:
 		customer_entered.emit(body)
-		print("body entered " + str(body.name))
 
 func _on_body_exited(body: Node) -> void:
 	trade_area_exited.emit(body)

@@ -10,7 +10,9 @@ func _ready() -> void:
 	add_order(create_order())
 
 ## Builds a random order keyed by product name, e.g. { "tomato": 2 }, whose
-## quantities sum to at most max_order_size. Some products may get zero.
+## quantities sum to at most max_order_size. Some products may get zero, but
+## the roll is never allowed to leave every product at zero (see below) --
+## an empty order can never be fulfilled, which would strand the customer.
 func create_order() -> Dictionary:
 	var result: Dictionary[String, int] = {}
 	if products.is_empty() or max_order_size <= 0:
@@ -21,10 +23,19 @@ func create_order() -> Dictionary:
 	for product: PlantData in products:
 		if product == null or remaining <= 0:
 			continue
-		var qty: int = randi_range(0, remaining)
+		var qty: int = randi_range(1, remaining)
 		if qty > 0:
 			result[product.plant_name] = qty
 			remaining -= qty
+
+	# Every product rolled zero -- force one non-null product to a non-zero
+	# quantity so the order is guaranteed fulfillable.
+	if result.is_empty():
+		var valid_products: Array[PlantData] = products.filter(
+			func(p: PlantData) -> bool: return p != null)
+		if not valid_products.is_empty():
+			var chosen: PlantData = valid_products[randi() % valid_products.size()]
+			result[chosen.plant_name] = randi_range(1, max_order_size)
 
 	order = result
 	return order
@@ -72,5 +83,5 @@ func clear_order() -> void:
 	for child: Node in get_children():
 		child.queue_free()
 
-func get_order() -> Dictionary[String, int]:
+func get_order() -> Dictionary:
 	return order

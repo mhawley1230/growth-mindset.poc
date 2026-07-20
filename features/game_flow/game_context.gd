@@ -31,7 +31,6 @@ func initialize() -> void:
 	request_level_load.emit()
 
 func handle_level_select() -> void:
-	print("select level signal received")
 	if current_level:
 		current_level.queue_free()
 	current_level = game_level.instantiate()

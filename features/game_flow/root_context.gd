@@ -31,7 +31,6 @@ func handle_request_start_game() -> void:
 		current_scene.queue_free()
 	current_scene = game_scene_packed.instantiate()
 	add_child(current_scene)
-	print("level selected")
 	
 	var level_select_scene: GameContext = current_scene as GameContext
 	if level_select_scene:

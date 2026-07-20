@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://b21b2qi7p4e5y" path="res://features/levels/test_level/farm_stand.tscn" id="7_rndb5"]
 [ext_resource type="Script" uid="uid://cr1ic77xywk58" path="res://features/levels/test_level/path_controller.gd" id="9_u3uux"]
 [ext_resource type="Texture2D" uid="uid://d1hnvalddrck4" path="res://assets/farm.png" id="10_dsj7v"]
-[ext_resource type="PackedScene" uid="uid://do6n4ur3ehyk0" path="res://features/components/movement_component.tscn" id="12_ownks"]
 [ext_resource type="PackedScene" uid="uid://cgbeftebmjaxn" path="res://features/ui/level_overlay.tscn" id="13_g5v2j"]
 [ext_resource type="Resource" uid="uid://bijcxat5wigob" path="res://features/plants/tomato.tres" id="14_tomato"]
 [ext_resource type="Resource" uid="uid://c2pl0n2q6mv8" path="res://features/plants/potato.tres" id="15_potato"]
+[ext_resource type="Script" uid="uid://dtcjir22d8kma" path="res://features/components/movement_component.gd" id="17_dnbl1"]
 [ext_resource type="Script" uid="uid://d3cjbuur2meim" path="res://features/entities/customer_entity_data.gd" id="18_cust_script"]
 [ext_resource type="Resource" uid="uid://njylufl4vibp" path="res://features/entities/frog_customer_data.tres" id="19_frog_data"]
 [ext_resource type="Script" uid="uid://olelgewruxpy" path="res://features/levels/test_level/customer_queue.gd" id="20_cust_queue"]
@@ -306,23 +306,24 @@ script = ExtResource("9_u3uux")
 path_follow_template = NodePath("PathFollow2D")
 trade_area = NodePath("../TradeArea")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="CustomerArea/Path2D" unique_id=161628506]
-position = Vector2(413, 212)
-rotation = -0.0037174548
-rotates = false
-loop = false
-
-[node name="MovementComponent" parent="CustomerArea/Path2D/PathFollow2D" unique_id=593769334 instance=ExtResource("12_ownks")]
-
 [node name="CustomerQueue" type="Area2D" parent="CustomerArea/Path2D" unique_id=1155507531 node_paths=PackedStringArray("trade_area")]
 script = ExtResource("20_cust_queue")
-max_waiting_points = 7
-point_spacing = 72.0
+max_waiting_points = 1
 trade_area = NodePath("../../TradeArea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CustomerArea/Path2D/CustomerQueue" unique_id=1710157461]
 position = Vector2(614.1821, 213.27283)
 shape = SubResource("RectangleShape2D_5aqtm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CustomerArea/Path2D" unique_id=915529880]
+visible = false
+position = Vector2(413, 212)
+rotation = -0.0037174548
+rotates = false
+loop = false
+
+[node name="MovementComponent" type="Node" parent="CustomerArea/Path2D/PathFollow2D" unique_id=111380465]
+script = ExtResource("17_dnbl1")
 
 [node name="TradeArea" type="Area2D" parent="CustomerArea" unique_id=1344943964]
 position = Vector2(1043, 349)

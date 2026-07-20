@@ -112,7 +112,7 @@ func _advance_customer(path_follow: PathFollow2D, delta: float) -> void:
 		path_follow.queue_free()
 
 func _get_customer(path_follow: PathFollow2D) -> CharacterBody2D:
-	for child in path_follow.get_children():
+	for child: Node in path_follow.get_children():
 		if child is CharacterBody2D:
 			return child
 	return null
